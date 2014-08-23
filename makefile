@@ -6,18 +6,6 @@
 # Config
 PRJ_NAME = dmcServer
 
-# -- Global variables --
-TOOLCHAIN := C:\SysGCC\Raspberry\bin
-
-# -- GNU Tools --
-AS := $(TOOLCHAIN)/arm-linux-gnueabihf-as # Assembler
-AR := $(TOOLCHAIN)/arm-linux-gnueabihf-ar # Archiver
-CC := $(TOOLCHAIN)/arm-linux-gnueabihf-gcc # C Compiler
-CXX := $(TOOLCHAIN)/arm-linux-gnueabihf-g++ # C++ Compiler
-OBJCOPY := $(TOOLCHAIN)/arm-linux-gnueabihf-objcopy # Obj copy
-OBJDUMP := $(TOOLCHAIN)/arm-linux-gnueabihf-objdump # Obj dump
-READELF := $(TOOLCHAIN)/arm-linux-gnueabihf-readelf # Read elf
-
 SRC_DIR := ./src
 CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/dmcServer.cpp \
@@ -48,13 +36,16 @@ LIBS := #-lm -lc
 # -- Rules --
 all: $(OUTPUT)
 
+run: $(OUTPUT)
+	$(OUTPUT)
+
 clean:
 	rm -f $(OUTPUT) $(TEMP_FILES)
 
 $(OUTPUT): $(CXX_OBJ)
-	$(CXX) -o $@ $^ $(CXX_FLAGS) $(LIB_DIR) $(LIBS)
+	g++ -o $@ $^ $(CXX_FLAGS) $(LIB_DIR) $(LIBS)
 
 %.cpp.o: %.cpp
-	$(CXX) -c -o $@ $^ $(CXX_FLAGS) $(LIBS)
+	g++ -c -o $@ $^ $(CXX_FLAGS) $(LIBS)
 
-.PHONY: clean
+.PHONY: clean run
