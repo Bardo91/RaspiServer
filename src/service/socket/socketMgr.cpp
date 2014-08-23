@@ -12,6 +12,12 @@
 #include "socketMgr.h"
 #include <sstream>
 
+#ifdef __linux__
+	#include <cstring>
+	#define INVALID_SOCKET -1
+	#define SOCKET_ERROR -1
+#endif // __linux__
+
 namespace dmc {
 
 	void initSocketLib();

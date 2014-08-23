@@ -17,6 +17,7 @@
 	#include <sys/types.h>
 	#include <sys/socket.h>
 	#include <netdb.h>
+	typedef int SOCKET;
 #endif // __linux__
 
 #include <map>
@@ -46,7 +47,7 @@ namespace dmc {
 
 	private:
 		unsigned							mPort;
-		int									mListener;
+		SOCKET								mListener;
 		std::thread							mListenThread;
 		std::map<unsigned, ServerSocket*>	mActiveConnections;
 	};
