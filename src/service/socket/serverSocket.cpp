@@ -18,12 +18,6 @@
 	#include <sys/types.h>
 	#include <sys/socket.h>
 	#include <netdb.h>
-
-	typedef int SOCKET;
-	const int INVALID_SOCKET = -1;
-	const int SOCKET_ERROR = -1;
-
-	#define closesocket(SOCKET) close(SOCKET)
 #endif // __linux__
 
 const unsigned BUFFER_SIZE = 1024;

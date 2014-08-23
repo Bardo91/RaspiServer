@@ -46,7 +46,7 @@ namespace dmc {
 
 	private:
 		unsigned							mPort;
-		SOCKET								mListener;
+		int									mListener;
 		std::thread							mListenThread;
 		std::map<unsigned, ServerSocket*>	mActiveConnections;
 	};
