@@ -16,6 +16,7 @@
 	#include <cstring>
 	#define INVALID_SOCKET -1
 	#define SOCKET_ERROR -1
+	#define closesocket(SOCKET) close(SOCKET)
 #endif // __linux__
 
 namespace dmc {
