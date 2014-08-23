@@ -10,7 +10,7 @@ SRC_DIR := ./src
 CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/dmcServer.cpp \
 	$(SRC_DIR)/service/lanService.cpp \
-	$(SRC_DIR)/service/socket/serverMgr.cpp \
+	$(SRC_DIR)/service/socket/socketMgr.cpp \
 	$(SRC_DIR)/service/socket/serverSocket.cpp \
 
 CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
@@ -20,7 +20,7 @@ TEMP_FILES := $(CXX_OBJ)
 PREPROCESSOR_DEFINITIONS := $(PLATFROM_DEFINITIONS)
 WARNING_FLAGS := -Wall -Werror
 INCLUDE_FLAGS :=  -I$(BBDUINO_HOME) -I$(BBDUINO_HOME)/stl
-CXX_COMPILE_FLAGS := -std=c++0x -fno-rtti -fno-exceptions
+CXX_COMPILE_FLAGS := -std=c++11 -fno-rtti -fno-exceptions
 DEBUG_FLAGS := -ggdb
 OPTIMIZATION_FLAGS := #-O4
 COMMON_C_FLAGS := $(PLATFORM_FLAGS) $(PREPROCESSOR_DEFINITIONS) $(WARNING_FLAGS)\
@@ -43,9 +43,9 @@ clean:
 	rm -f $(OUTPUT) $(TEMP_FILES)
 
 $(OUTPUT): $(CXX_OBJ)
-	g++ -o $@ $^ $(CXX_FLAGS) $(LIB_DIR) $(LIBS)
+	gcc-4.7 -o $@ $^ $(CXX_FLAGS) $(LIB_DIR) $(LIBS)
 
 %.cpp.o: %.cpp
-	g++ -c -o $@ $^ $(CXX_FLAGS) $(LIBS)
+	gcc-4.7 -c -o $@ $^ $(CXX_FLAGS) $(LIBS)
 
 .PHONY: clean run
