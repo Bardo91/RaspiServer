@@ -3,3 +3,4 @@
 *.user
 *.o
 /*.opensdf
+*.suo

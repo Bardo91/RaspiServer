@@ -12,6 +12,12 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #endif // _WIN32
+#ifdef __linux__
+	#include <unistd.h>
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netdb.h>
+#endif // __linux__
 
 #include <map>
 #include <string>
