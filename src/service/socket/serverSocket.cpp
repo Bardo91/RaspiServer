@@ -18,6 +18,7 @@
 	#include <sys/types.h>
 	#include <sys/socket.h>
 	#include <netdb.h>
+	#define SOCKET_ERROR -1
 #endif // __linux__
 
 const unsigned BUFFER_SIZE = 1024;

@@ -9,10 +9,11 @@
 #include "lanService.h"
 
 namespace dmc {
+	const unsigned int PORT = 15028;
 
 	//------------------------------------------------------------------------------------------------------------------
 	LANService::LANService()
-		:mComServer(5028)
+		:mComServer(PORT)
 	{
 		// Intentionally blank
 	}

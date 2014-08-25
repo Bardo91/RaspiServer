@@ -20,7 +20,7 @@ TEMP_FILES := $(CXX_OBJ)
 PREPROCESSOR_DEFINITIONS := $(PLATFROM_DEFINITIONS)
 WARNING_FLAGS := -Wall -Werror
 INCLUDE_FLAGS :=  -I$(BBDUINO_HOME) -I$(BBDUINO_HOME)/stl
-CXX_COMPILE_FLAGS := -std=c++11 -fno-rtti -fno-exceptions
+CXX_COMPILE_FLAGS := -std=c++11 -fno-rtti -fno-exceptions -pthread
 DEBUG_FLAGS := -ggdb
 OPTIMIZATION_FLAGS := #-O4
 COMMON_C_FLAGS := $(PLATFORM_FLAGS) $(PREPROCESSOR_DEFINITIONS) $(WARNING_FLAGS)\
@@ -29,7 +29,7 @@ CC_FLAGS := $(COMMON_C_FLAGS)
 CXX_FLAGS := $(COMMON_C_FLAGS) $(CXX_COMPILE_FLAGS)
 
 OUT_NAME := $(PRJ_NAME)
-OUTPUT := $(OUT_NAME)
+OUTPUT := ./$(OUT_NAME)
 
 LIBS := #-lm -lc
 
@@ -42,10 +42,12 @@ run: $(OUTPUT)
 clean:
 	rm -f $(OUTPUT) $(TEMP_FILES)
 
+rebuild: clean all
+
 $(OUTPUT): $(CXX_OBJ)
-	gcc-4.7 -o $@ $^ $(CXX_FLAGS) $(LIB_DIR) $(LIBS)
+	g++-4.7 -o $@ $^ $(CXX_FLAGS) $(LIB_DIR) $(LIBS)
 
 %.cpp.o: %.cpp
-	gcc-4.7 -c -o $@ $^ $(CXX_FLAGS) $(LIBS)
+	g++-4.7 -c -o $@ $^ $(CXX_FLAGS) $(LIBS)
 
-.PHONY: clean run
+.PHONY: clean run rebuild
