@@ -17,14 +17,17 @@ namespace dmc {
 	class LANService {
 	public:
 		LANService();
-		~LANService();
 
-		typedef std::function<void (const std::string&)> Listener;
+		// Listener type
+		typedef Event<unsigned, const std::string&> Event;
+		typedef Event::Listener Listener;
+
 		// Listeners interface
-		void registerListener(uint8_t _command, Listener _listener);
+		void registerListener		(uint8_t _command, Listener _listener);
+		void update					();
 
 	private:
-		std::map<uint8_t, Event<Listener>>	mEvents;
+		std::map<uint8_t, Event>	mEvents;
 		SocketMgr							mComServer;
 	};
 }

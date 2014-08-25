@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "lanService.h"
+#include <string>
 
 namespace dmc {
 	const unsigned int PORT = 15028;
@@ -19,7 +20,15 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	LANService::~LANService() {
-		// Intentionally blank
+	void LANService::registerListener(uint8_t _command, Listener _l) {
+		mEvents[_command] += _l;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void LANService::update() {
+		// Request received messages
+		std::string message;
+		unsigned client;
+		mComServer.readAny(client, message);
 	}
 }
