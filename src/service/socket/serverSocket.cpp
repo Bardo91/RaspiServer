@@ -52,7 +52,7 @@ namespace dmc {
 
 		bool canRead = !mInBuffer.empty();
 		if(canRead) {
-			_msg = mInBuffer; // Note: In case is necessary, this copy can be avoided by using move semantics and recreating the string with placement new.
+			_msg = mInBuffer; // Note: In case it's necessary, this copy can be avoided by using move semantics and recreating the string with placement new.
 		}
 
 		mReadLock.unlock();

@@ -12,6 +12,7 @@
 namespace dmc {
 
 	class SerialWin32 {
+
 	};
 
 	typedef SerialWin32 SerialBase;
