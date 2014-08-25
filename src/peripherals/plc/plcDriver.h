@@ -6,18 +6,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PLC Driver
-#ifndef _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
-#define _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
+#ifndef _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_
+#define _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_
 
 #include <string>
 
-namespace waveformgen {
+namespace dmc {
 
 	class PLCDriver {
 	public:
 		void operator()(unsigned _clientId, const std::string& _msg);
 	};
 
-}	// namespace waveformgen
+}	// namespace dmc
 
-#endif // _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
+#endif // _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_

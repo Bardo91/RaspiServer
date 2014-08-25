@@ -8,9 +8,17 @@
 
 #include <cassert>
 #include "dmcServer.h"
+#include "peripherals/plc/plcDriver.h"
 #include "service/lanService.h"
 
 namespace dmc {
+
+	enum Command {
+		On = 1,
+		Off = 2,
+		Dimmer = 3,
+		RGB = 4
+	};
 
 	//------------------------------------------------------------------------------------------------------------------
 	DmcServer::DmcServer(int , const char**)
@@ -42,7 +50,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::initHardware() {
 		// 666 TODO: Buttons, Leds and pins
-		// 666 TODO: PLC Communications
+		mPlc = new PLCDriver;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -57,7 +65,11 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::registerListeners() {
-		// 666 TODO
+		auto plcListener = [this](unsigned _client, const std::string& _msg) { (*mPlc)(_client, _msg); };
+		mService->registerListener(Command::On, plcListener);
+		mService->registerListener(Command::Off, plcListener);
+		mService->registerListener(Command::Dimmer, plcListener);
+		mService->registerListener(Command::RGB, plcListener);
 	}
 
 }

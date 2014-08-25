@@ -11,6 +11,7 @@
 namespace dmc {
 
 	class LANService;
+	class PLCDriver;
 	
 	class DmcServer {
 	public:
@@ -27,6 +28,7 @@ namespace dmc {
 
 	private:
 		LANService* mService;
+		PLCDriver*	mPlc;
 	};
 
 }

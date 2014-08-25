@@ -10,11 +10,10 @@
 #include <iostream>
 #include "plcDriver.h"
 
-namespace waveformgen {
-
+namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void PLCDriver::operator()(unsigned _clientId, const std::string& _msg) {
 		std::cout << "PLCDriver received command \"" << unsigned(_msg[1]) << "\" from client" << _clientId << "\n";
 	}
 
-}	// namespace waveformgen
+}	// namespace dmc

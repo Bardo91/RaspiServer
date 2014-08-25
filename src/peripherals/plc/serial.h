@@ -14,13 +14,13 @@
 #include "serialWin32.h"
 #endif // _WIN32
 
-namespace waveformgen {
+namespace dmc {
 
 	class Serial : public SerialBase {
 	public:
 		Serial(const char* _port, unsigned _baudRate) : SerialBase(_port,_baudRate) {}
 	};
 
-}	// namespace waveformgen
+}	// namespace dmc
 
 #endif // _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
