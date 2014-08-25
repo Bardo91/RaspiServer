@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h" />
+    <ClInclude Include="src\service\event.h" />
     <ClInclude Include="src\service\lanService.h" />
     <ClInclude Include="src\service\socket\serverSocket.h" />
     <ClInclude Include="src\service\socket\socketMgr.h" />

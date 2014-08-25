@@ -56,5 +56,8 @@
     <ClInclude Include="src\service\socket\socketMgr.h">
       <Filter>Source Files\service\socket</Filter>
     </ClInclude>
+    <ClInclude Include="src\service\event.h">
+      <Filter>Source Files\service</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
