@@ -21,6 +21,7 @@
 #endif // __linux__
 
 #include <map>
+#include <mutex>
 #include <string>
 #include <thread>
 
@@ -48,6 +49,7 @@ namespace dmc {
 	private:
 		unsigned							mPort;
 		SOCKET								mListener;
+		mutable std::mutex					mConMutex;
 		std::thread							mListenThread;
 		std::map<unsigned, ServerSocket*>	mActiveConnections;
 	};

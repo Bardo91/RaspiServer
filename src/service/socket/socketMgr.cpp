@@ -40,33 +40,46 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	bool SocketMgr::write(unsigned _clientId, const std::string& _msg) const {
 		// Is there such client between active connections?
+		mConMutex.lock();
 		auto connectionIter = mActiveConnections.find(_clientId);
-		if(connectionIter == mActiveConnections.end())
+		if(connectionIter == mActiveConnections.end()) {
+			mConMutex.unlock();
 			return false; // No client known by that id
+		}
 
-		return connectionIter->second->write(_msg);
+		bool ret = connectionIter->second->write(_msg);
+		mConMutex.unlock();
+		return ret;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	bool SocketMgr::readAny(unsigned& _clientId, std::string& _msg) const {
+		mConMutex.lock();
 		for(auto& connection : mActiveConnections) {
 			if(connection.second->read(_msg)) { // Message received
 				_clientId = connection.first;
+				mConMutex.unlock();
 				return true;
 			}
 		}
 		// No message received
+		mConMutex.unlock();
 		return false;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	bool SocketMgr::readFrom(unsigned _clientId, std::string& _msg) const {
+		mConMutex.lock();
 		// Is there such client between active connections?
 		auto connectionIter = mActiveConnections.find(_clientId);
-		if(connectionIter == mActiveConnections.end())
+		if(connectionIter == mActiveConnections.end()) {
+			mConMutex.unlock();
 			return false; // No client known by that id
+		}
 
-		return connectionIter->second->read(_msg);
+		bool ret = connectionIter->second->read(_msg);
+		mConMutex.unlock();
+		return ret;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -120,19 +133,26 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void SocketMgr::createConnection(int _socketDesc) {
 		// Ensure descriptor isn't already in use
+		mConMutex.lock();
 		assert(mActiveConnections.find(_socketDesc) == mActiveConnections.end());
 		// Add new connection
 		mActiveConnections[_socketDesc] = new ServerSocket(_socketDesc);
+		mConMutex.unlock();
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	bool SocketMgr::closeConnection(unsigned _clientId) {
 		// Is there such client between active connections?
+		mConMutex.lock();
 		auto connectionIter = mActiveConnections.find(_clientId);
-		if(connectionIter == mActiveConnections.end())
+		if(connectionIter == mActiveConnections.end()) {
+			mConMutex.unlock();
 			return false; // No client known by that id
+		}
 
 		delete connectionIter->second;
+		mActiveConnections.erase(connectionIter);
+		mConMutex.unlock();
 		return true;
 	}
 
