@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace dmc {
-	const unsigned int PORT = 15028;
+	const unsigned int PORT = 5028;
 
 	//------------------------------------------------------------------------------------------------------------------
 	LANService::LANService()
