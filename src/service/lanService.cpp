@@ -6,8 +6,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <cassert>
+#include <iostream>
 #include "lanService.h"
 #include <string>
+
+using namespace std;
 
 namespace dmc {
 	const unsigned int PORT = 15028;
@@ -29,6 +33,13 @@ namespace dmc {
 		// Request received messages
 		std::string message;
 		unsigned client;
-		mComServer.readAny(client, message);
+		if(mComServer.readAny(client, message)) { // There are messages to process
+			assert(message.size() > 1);
+			// Debug message
+			cout << "LAN Service received message a message\n";
+			// Alert everyone who is listening to this command
+			uint8_t commandType = message[1];
+			mEvents[commandType](client, message);
+		}
 	}
 }

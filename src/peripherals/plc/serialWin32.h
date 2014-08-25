@@ -1,0 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Project: DMC Server
+// Date:	2014/Aug/25
+// Author:	Carmelo J. Fdez-Agüera Tortosa
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Simple serial port communications
+#ifndef _DMCSERVER_PERIPHERALS_PLC_SERIALWIN32_H_
+#define _DMCSERVER_PERIPHERALS_PLC_SERIALWIN32_H_
+
+namespace dmc {
+
+	class SerialWin32 {
+	};
+
+	typedef SerialWin32 SerialBase;
+
+}	// namespace dmc
+
+#endif // _DMCSERVER_PERIPHERALS_PLC_SERIALWIN32_H_

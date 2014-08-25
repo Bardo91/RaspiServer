@@ -20,10 +20,10 @@ namespace dmc {
 
 		void operator()(Arg_ ... _arg) {
 			for(auto& listener : mListeners)
-				listener(_arg);
+				listener(_arg...);
 		}
 
-		void operator+=(const Listener& _l)	{ mListeners.push_back(_l); }
+		void operator+=(const Listener& _l)		{ mListeners.push_back(_l); }
 		void operator+=(Listener&& _l)			{ mListeners.push_back(_l); }
 
 	private:
