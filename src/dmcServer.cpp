@@ -6,10 +6,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include "service/lanService.h" // This include must be first due to windows-specific include order requirements
 #include <cassert>
 #include "dmcServer.h"
 #include "peripherals/plc/plcDriver.h"
-#include "service/lanService.h"
 
 namespace dmc {
 

@@ -10,12 +10,17 @@
 #define _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_
 
 #include <string>
+#include "serial.h"
 
 namespace dmc {
 
 	class PLCDriver {
 	public:
+		PLCDriver();
 		void operator()(unsigned _clientId, const std::string& _msg);
+
+	private:
+		Serial	mCom;
 	};
 
 }	// namespace dmc
