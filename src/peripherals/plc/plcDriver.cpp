@@ -7,8 +7,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PLC Driver
 
+#include <cassert>
 #include <iostream>
 #include "plcDriver.h"
+
+using namespace std;
 
 namespace dmc {
 
@@ -20,14 +23,40 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	enum Command {
+		On = 1,
+		Off = 2,
+		Dimmer = 3,
+		RGB = 4
+	};
+
+	//------------------------------------------------------------------------------------------------------------------
 	void PLCDriver::operator()(unsigned _clientId, const std::string& _msg) {
-		std::cout << "PLCDriver received command \"" << unsigned(_msg[1]) << "\" from client" << _clientId << "\n";
-		static bool onOff = true;
-		if(onOff)
-			mCom.write("00000000000000000", 12);
-		else
-			mCom.write("RRRRRRRRRRRR", 12);
-		onOff = !onOff;
+		uint8_t command = uint8_t(_msg[1]);
+		cout << "PLCDriver received command \"" << command << "\" from client" << _clientId << "\n";
+		unsigned intensity = 0;
+		switch(command) {
+		case On:
+			cout << "On command\n";
+			mCom.write("RBW", 3);
+			break;
+		case Off:
+			cout << "Off command\n";
+			mCom.write("0", 1);
+			break;
+		case Dimmer:
+			intensity = unsigned(_msg[3]);
+			cout << "Dimmer command to " << intensity << "%\n";
+			if(intensity > 50)
+				mCom.write("RBG", 3);
+			else
+				mCom.write("0", 1);
+			break;
+		default:
+			std::cout << "Unknown command";
+			assert(false);
+			break;
+		}
 	}
 
 }	// namespace dmc
