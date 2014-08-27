@@ -28,12 +28,14 @@ namespace dmc {
 		const std::string&	payload	() const { return mPayload;	}
 		Type				type	() const { return mType;	}
 		bool				isOk	() const { return mType != InvalidMsg; }
+		unsigned			size	() const { return mSize; };
 
 	private:
 		bool	checkIntegrity		(const std::string& _rawMsg) const;
 
 	private:
 		Type		mType;
+		unsigned	mSize;
 		std::string mPayload;
 	};
 

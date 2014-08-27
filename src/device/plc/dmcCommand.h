@@ -17,6 +17,9 @@ namespace dmc {
 	public:
 		DmcCommand(const Message&);
 		void run() override;
+
+	private:
+		Message	mSrcCommand;
 	};
 
 }	// namespace dmc

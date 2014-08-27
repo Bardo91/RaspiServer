@@ -19,6 +19,7 @@ namespace dmc {
 			return;
 		}
 
+		mSize = _rawMessage.size();
 		mType = Type(_rawMessage[1]);
 		mPayload = _rawMessage.substr(2);
 	}

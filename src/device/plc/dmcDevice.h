@@ -15,10 +15,7 @@ namespace dmc {
 	class DmcDevice : public Device {
 	public:
 		DmcDevice(unsigned _id);
-
-		void turnOn		();
-		void turnOff	();
-		void dimm		(unsigned _value);
+		void runCommand(const std::string&);
 	};
 
 }	// namespace dmc

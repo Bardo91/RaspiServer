@@ -22,21 +22,8 @@ namespace dmc {
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------
-	void DmcDevice::turnOn() {
-		// Send on message
-		PLCDriver::get()->sendCommand(id(), std::string()+char(Message::On));
-	}
-
-	//---------------------------------------------------------------------------------------------------------------------
-	void DmcDevice::turnOff() {
-		// Send off message
-		PLCDriver::get()->sendCommand(id(), std::string()+char(Message::Off));
-	}
-
-	//---------------------------------------------------------------------------------------------------------------------
-	void DmcDevice::dimm(unsigned) {
-		// Send dimm message
-		PLCDriver::get()->sendCommand(id(), std::string()+char(Message::Dimmer));
+	void DmcDevice::runCommand(const std::string& _plcCommand) {
+		PLCDriver::get()->sendCommand(id(), _plcCommand);
 	}
 
 }	// namespace dmc
