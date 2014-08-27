@@ -83,5 +83,8 @@
     <ClInclude Include="src\service\message.h">
       <Filter>Source Files\service</Filter>
     </ClInclude>
+    <ClInclude Include="src\service\serviceListener.h">
+      <Filter>Source Files\service</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

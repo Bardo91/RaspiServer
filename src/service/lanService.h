@@ -14,19 +14,19 @@
 
 namespace dmc {
 
+	class ServiceListener;
+
 	class LANService {
 	public:
 		LANService();
 
-		// Listener type
-		typedef Event<unsigned, const std::string&> MEvent;
-		typedef MEvent::Listener Listener;
-
 		// Listeners interface
-		void registerListener		(uint8_t _msgType, Listener _listener);
+		void registerListener		(ServiceListener* _listener);
 		void update					();
 
 	private:
+		typedef Event<unsigned, const std::string&> MEvent;
+
 		std::map<uint8_t, MEvent>	mEvents;
 		SocketMgr					mComServer;
 	};

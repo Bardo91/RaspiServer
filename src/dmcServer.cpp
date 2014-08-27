@@ -76,11 +76,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::registerListeners() {
-		auto plcListener = [this](unsigned _client, const std::string& _msg) { (*mPlc)(_client, _msg); };
-		mService->registerListener(Command::On, plcListener);
-		mService->registerListener(Command::Off, plcListener);
-		mService->registerListener(Command::Dimmer, plcListener);
-		mService->registerListener(Command::RGB, plcListener);
+		mService->registerListener(mPlc);
 	}
 
 }
