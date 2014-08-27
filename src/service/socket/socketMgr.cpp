@@ -30,7 +30,7 @@ namespace dmc {
 		assert(0 != _port);	// Ensure data integrity
 		initSocketLib();
 
-		addrinfo * socketAddress = getAddresInfo(_port);
+		addrinfo * socketAddress = buildAddresInfo(_port);
 		mListener = socket(socketAddress->ai_family, socketAddress->ai_socktype, socketAddress->ai_protocol);
 		assert(mListener != INVALID_SOCKET);
 
@@ -83,7 +83,7 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	addrinfo* SocketMgr::getAddresInfo(unsigned _port) {
+	addrinfo* SocketMgr::buildAddresInfo(unsigned _port) {
 		// Translate port into a string
 		assert(0 != _port);
 		std::stringstream portName;
