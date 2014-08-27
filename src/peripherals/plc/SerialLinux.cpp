@@ -50,8 +50,8 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void SerialLinux::openPort(const char* _port) {
 		mFileDesc = open(	_port,			// Port name
-							O_RDWR |		// Read and write
-							O_NONBLOCK);	// Nonblocking mode
+					O_RDWR |		// Read and write
+					O_NONBLOCK);	// Nonblocking mode
 
 		assert(0 < mFileDesc);
 	}
