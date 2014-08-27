@@ -24,6 +24,7 @@ namespace dmc {
 	DmcServer::DmcServer(int , const char**)
 		:mService(nullptr)
 	{
+		loadDefaultConfig();
 		// Prerequisites for launching the service
 		initHardware();
 		loadDatabase();
@@ -48,9 +49,14 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	void DmcServer::loadDefaultConfig() {
+		mPlcPortName = "COM4";
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::initHardware() {
 		// 666 TODO: Buttons, Leds and pins
-		mPlc = new PLCDriver;
+		mPlc = new PLCDriver(mPlcPortName.c_str());
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

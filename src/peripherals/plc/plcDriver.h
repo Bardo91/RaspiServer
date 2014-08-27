@@ -16,7 +16,7 @@ namespace dmc {
 
 	class PLCDriver {
 	public:
-		PLCDriver();
+		PLCDriver(const char* _port);
 		void operator()(unsigned _clientId, const std::string& _msg);
 
 	private:

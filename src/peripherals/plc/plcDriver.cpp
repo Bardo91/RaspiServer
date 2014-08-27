@@ -16,8 +16,8 @@ using namespace std;
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	PLCDriver::PLCDriver()
-		:mCom("COM4", cBaudRate)
+	PLCDriver::PLCDriver(const char* _port)
+		:mCom(_port, cBaudRate)
 	{
 	}
 
