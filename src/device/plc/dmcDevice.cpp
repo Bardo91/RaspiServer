@@ -16,7 +16,9 @@ namespace dmc {
 	DmcDevice::DmcDevice(unsigned _id)
 		:Device(_id)
 	{
-		DmcCommand::registerFactory();
+		DmcCommand::registerFactory(unsigned(Message::On));
+		DmcCommand::registerFactory(unsigned(Message::Off));
+		DmcCommand::registerFactory(unsigned(Message::Dimmer));
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------
