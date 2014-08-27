@@ -74,8 +74,8 @@ namespace dmc {
 			if(nBytes > 0) { // Incomming message
 				mReadLock.lock(); // Prevent collisions
 
-				for(int i = 0; i < nBytes; ++i)
-					mInBuffer.append(listenBuffer, i);
+				//for(int i = 0; i < nBytes; ++i)
+					mInBuffer.append(listenBuffer, nBytes);
 
 				mReadLock.unlock(); // 
 			} 

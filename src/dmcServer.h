@@ -8,6 +8,8 @@
 #ifndef _DMCSERVER_DMCSERVER_H_
 #define _DMCSERVER_DMCSERVER_H_
 
+#include <string>
+
 namespace dmc {
 
 	class LANService;
@@ -21,6 +23,8 @@ namespace dmc {
 		bool update	();
 
 	private:
+		void processArguments	(int _argc, const char** _argv);
+		void loadDefaultConfig	();
 		void initHardware		();
 		void loadDatabase		();
 		void launchService		();
@@ -29,6 +33,7 @@ namespace dmc {
 	private:
 		LANService* mService;
 		PLCDriver*	mPlc;
+		std::string	mPlcPortName;
 	};
 
 }

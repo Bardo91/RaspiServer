@@ -42,7 +42,7 @@ namespace dmc {
 		bool closeConnection(unsigned _client);
 
 	private:
-		addrinfo*	getAddresInfo	(unsigned _port);
+		addrinfo*	buildAddresInfo	(unsigned _port);
 		void		startListening	(const addrinfo* _socketAddress);
 		void		createConnection(int _socketDesc);
 

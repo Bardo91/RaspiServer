@@ -10,12 +10,24 @@
 #define _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_
 
 #include <string>
+#include "serial.h"
+#include <vector>
+#include <service/serviceListener.h>
 
 namespace dmc {
 
-	class PLCDriver {
+	class PLCDriver : public ServiceListener {
 	public:
-		void operator()(unsigned _clientId, const std::string& _msg);
+		PLCDriver(const char* _port);
+
+		void								operator()			(unsigned _clientId, const Message& _msg) override;
+		const std::vector<Message::Type>&	supportedMessages	() const override
+				{ return mSupportedMessages; }
+
+	private:
+		Serial	mCom;
+		std::vector<Message::Type>		mSupportedMessages;
+		static const unsigned			cBaudRate = 115200;
 	};
 
 }	// namespace dmc

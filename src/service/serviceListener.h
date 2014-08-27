@@ -5,21 +5,20 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Simple serial port communications
-#ifndef _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
-#define _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
+// PLC Driver
+#ifndef _DMCSERVER_SERVICE_SERVICELISTENER_H_
+#define _DMCSERVER_SERVICE_SERVICELISTENER_H_
 
-#include <cstdint>
-#include "serialWin32.h"
-#include "SerialLinux.h"
+#include <service/message.h>
 
 namespace dmc {
 
-	class Serial : public SerialBase {
+	class ServiceListener {
 	public:
-		Serial(const char* _port, unsigned _baudRate) : SerialBase(_port,_baudRate) {}
+		virtual void								operator()			(unsigned _clientId, const Message& _msg)	= 0;
+		virtual const std::vector<Message::Type>&	supportedMessages	() const									= 0;
 	};
 
 }	// namespace dmc
 
-#endif // _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
+#endif // _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_
