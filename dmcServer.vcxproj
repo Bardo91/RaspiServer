@@ -79,6 +79,7 @@
     <ClInclude Include="src\dmcServer.h" />
     <ClInclude Include="src\peripherals\plc\plcDriver.h" />
     <ClInclude Include="src\peripherals\plc\serial.h" />
+    <ClInclude Include="src\peripherals\plc\SerialLinux.h" />
     <ClInclude Include="src\peripherals\plc\serialWin32.h" />
     <ClInclude Include="src\service\event.h" />
     <ClInclude Include="src\service\lanService.h" />

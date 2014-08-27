@@ -28,7 +28,7 @@ namespace dmc {
 
 	private:
 		std::map<uint8_t, MEvent>	mEvents;
-		SocketMgr							mComServer;
+		SocketMgr					mComServer;
 	};
 }
 
