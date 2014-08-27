@@ -21,7 +21,6 @@ namespace dmc {
 		LANService();
 
 		// Listeners interface
-		void registerListener		(ServiceListener* _listener);
 		void update					();
 
 	private:

@@ -92,9 +92,6 @@
     <ClInclude Include="src\service\message.h">
       <Filter>Source Files\service</Filter>
     </ClInclude>
-    <ClInclude Include="src\service\serviceListener.h">
-      <Filter>Source Files\service</Filter>
-    </ClInclude>
     <ClInclude Include="src\device\deviceMgr.h">
       <Filter>Source Files\device</Filter>
     </ClInclude>

@@ -9,7 +9,6 @@
 #include <cassert>
 #include <iostream>
 #include "lanService.h"
-#include <service/serviceListener.h>
 #include <string>
 
 using namespace std;
@@ -22,16 +21,6 @@ namespace dmc {
 		:mComServer(PORT)
 	{
 		// Intentionally blank
-	}
-
-	//------------------------------------------------------------------------------------------------------------------
-	void LANService::registerListener(ServiceListener* _l) {
-		for(auto supportedMsgType : _l->supportedMessages()) {
-			// Use a lambda to invoke listener
-			auto msgDelegate = [=](unsigned _client, const std::string& _msg) { (*_l)(_client, _msg); };
-			// Register delegate
-			mEvents[uint8_t(supportedMsgType)] += msgDelegate;
-		}
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
