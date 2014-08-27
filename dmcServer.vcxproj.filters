@@ -98,5 +98,8 @@
     <ClInclude Include="src\device\device.h">
       <Filter>Source Files\device</Filter>
     </ClInclude>
+    <ClInclude Include="src\service\command.h">
+      <Filter>Source Files\service</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
