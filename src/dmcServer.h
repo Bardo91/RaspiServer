@@ -23,6 +23,7 @@ namespace dmc {
 		bool update	();
 
 	private:
+		void processArguments	(int _argc, const char** _argv);
 		void loadDefaultConfig	();
 		void initHardware		();
 		void loadDatabase		();

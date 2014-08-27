@@ -21,10 +21,11 @@ namespace dmc {
 	};
 
 	//------------------------------------------------------------------------------------------------------------------
-	DmcServer::DmcServer(int , const char**)
+	DmcServer::DmcServer(int _argc, const char** _argv)
 		:mService(nullptr)
 	{
-		loadDefaultConfig();
+		loadDefaultConfig(); // This fills every important thing with default values
+		processArguments(_argc, _argv); // Execution arguments can override default configuration values
 		// Prerequisites for launching the service
 		initHardware();
 		loadDatabase();
@@ -32,6 +33,17 @@ namespace dmc {
 		launchService();
 		// Register client processes to respond to service events
 		registerListeners();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void DmcServer::processArguments(int _argc, const char** _argv) {
+		for(int i = 0; i < _argc; ++i) {
+			std::string argument(_argv[i]);
+			if(argument.substr(0,9)=="-plcPort=") {
+				mPlcPortName = argument.substr(9);
+				assert(!mPlcPortName.empty());
+			}
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
