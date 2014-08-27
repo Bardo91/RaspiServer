@@ -11,7 +11,10 @@
 
 #ifdef __linux__
 
-#include <Windows.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <unistd.h>
+
 #include <cstdint>
 
 namespace dmc {
