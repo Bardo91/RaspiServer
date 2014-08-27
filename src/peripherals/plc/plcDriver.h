@@ -21,6 +21,8 @@ namespace dmc {
 
 	private:
 		Serial	mCom;
+
+		static const unsigned cBaudRate = 115200;
 	};
 
 }	// namespace dmc
