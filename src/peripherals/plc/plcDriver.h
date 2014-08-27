@@ -13,6 +13,7 @@
 #include "serial.h"
 #include <vector>
 #include <service/serviceListener.h>
+#include <string>
 
 namespace dmc {
 
@@ -24,6 +25,8 @@ namespace dmc {
 		void								operator()			(unsigned _clientId, const Message& _msg) override;
 		const std::vector<Message::Type>&	supportedMessages	() const override
 				{ return mSupportedMessages; }
+
+		void								sendCommand			(unsigned _devId, const std::string& _payload);
 
 	private:
 		PLCDriver(const char* _port);

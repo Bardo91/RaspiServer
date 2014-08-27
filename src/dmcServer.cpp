@@ -11,7 +11,6 @@
 #include "dmcServer.h"
 #include "peripherals/plc/plcDriver.h"
 #include <device/deviceMgr.h>
-#include <device/plc/dmcCommand.h>
 #include <device/plc/dmcDevice.h>
 
 namespace dmc {
@@ -67,8 +66,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::loadDatabase() {
-		// 666 TODO: Register commands straight from devices and load devices from a real database
-		DmcCommand::registerFactory();
+		// 666 TODO: Load devices from a real database
 		DeviceMgr::get()->registerDevice(new DmcDevice(4)); // 4 is a random number
 	}
 

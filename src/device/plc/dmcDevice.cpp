@@ -6,7 +6,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "dmcDevice.h"
+#include <device/plc/dmcCommand.h>
 #include <peripherals/plc/plcDriver.h>
+#include <string>
 
 namespace dmc {
 
@@ -14,14 +16,25 @@ namespace dmc {
 	DmcDevice::DmcDevice(unsigned _id)
 		:Device(_id)
 	{
+		DmcCommand::registerFactory();
 	}
 
 	//---------------------------------------------------------------------------------------------------------------------
 	void DmcDevice::turnOn() {
 		// Send on message
-		PLCDriver::get()->
+		PLCDriver::get()->sendCommand(id(), std::string()+char(Message::On));
+	}
+
+	//---------------------------------------------------------------------------------------------------------------------
+	void DmcDevice::turnOff() {
+		// Send off message
+		PLCDriver::get()->sendCommand(id(), std::string()+char(Message::Off));
+	}
+
+	//---------------------------------------------------------------------------------------------------------------------
+	void DmcDevice::dimm(unsigned) {
+		// Send dimm message
+		PLCDriver::get()->sendCommand(id(), std::string()+char(Message::Dimmer));
 	}
 
 }	// namespace dmc
-
-#endif // _DMCSERVER_DEVICE_PLC_DMCDEVICE_H_
