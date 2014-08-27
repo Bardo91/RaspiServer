@@ -28,7 +28,6 @@ namespace dmc {
 		void initHardware		();
 		void loadDatabase		();
 		void launchService		();
-		void registerListeners	();
 
 	private:
 		LANService* mService;

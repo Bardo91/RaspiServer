@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="src\device\device.h" />
     <ClInclude Include="src\device\deviceMgr.h" />
+    <ClInclude Include="src\device\plc\dmcCommand.h" />
     <ClInclude Include="src\device\plc\dmcDevice.h" />
     <ClInclude Include="src\dmcServer.h" />
     <ClInclude Include="src\peripherals\plc\plcDriver.h" />

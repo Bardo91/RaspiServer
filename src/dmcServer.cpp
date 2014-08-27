@@ -10,6 +10,8 @@
 #include <cassert>
 #include "dmcServer.h"
 #include "peripherals/plc/plcDriver.h"
+#include <device/deviceMgr.h>
+#include <device/plc/dmcDevice.h>
 
 namespace dmc {
 
@@ -24,8 +26,6 @@ namespace dmc {
 		loadDatabase();
 		// Actually start the service
 		launchService();
-		// Register client processes to respond to service events
-		registerListeners();
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -66,17 +66,13 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::loadDatabase() {
-		// 666 TODO
+		// 666 TODO: Register commands straight from devices and load devices from a real database
+		// Register DMCCommand
+		DeviceMgr::get()->registerDevice(new DmcDevice(4)); // 4 is a random number
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::launchService() {
 		mService = new LANService;
 	}
-
-	//------------------------------------------------------------------------------------------------------------------
-	void DmcServer::registerListeners() {
-		mService->registerListener(mPlc);
-	}
-
 }
