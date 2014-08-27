@@ -110,7 +110,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void SocketMgr::startListening(const addrinfo* _socketAddress) {
 		// Setup the TCP listening socket
-		int res = bind( mListener, _socketAddress->ai_addr, (int)_socketAddress->ai_addrlen);
+		int res = ::bind( mListener, _socketAddress->ai_addr, (int)_socketAddress->ai_addrlen);
 		assert(res != SOCKET_ERROR);
 		res = listen(mListener, SOMAXCONN);
 		assert(res != SOCKET_ERROR);

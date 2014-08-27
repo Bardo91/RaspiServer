@@ -14,9 +14,7 @@ namespace dmc {
 
 	class DmcDevice : public Device {
 	public:
-		DmcDevice(unsigned _id)
-			:Device(_id)
-		{}
+		DmcDevice(unsigned _id);
 
 		void turnOn		();
 		void turnOff	();

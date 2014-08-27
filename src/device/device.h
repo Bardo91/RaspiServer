@@ -18,7 +18,6 @@ namespace dmc {
 
 	protected:
 		Device		(unsigned _id) : mId(_id) {}
-		unsigned id	() const { return mId; }
 
 	private:
 		unsigned	mId;
