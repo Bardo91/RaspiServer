@@ -5,25 +5,24 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifndef _DMCSERVER_DEVICE_DEVICE_H_
-#define _DMCSERVER_DEVICE_DEVICE_H_
+#ifndef _DMCSERVER_DEVICE_PLC_DMCDEVICE_H_
+#define _DMCSERVER_DEVICE_PLC_DMCDEVICE_H_
+
+#include <device/device.h>
 
 namespace dmc {
 
-	class Device;
-
-	class Device {
+	class DmcDevice : public Device {
 	public:
-		virtual unsigned id() const final { return mId; }
+		DmcDevice(unsigned _id)
+			:Device(_id)
+		{}
 
-	protected:
-		Device		(unsigned _id) : mId(_id) {}
-		unsigned id	() const { return mId; }
-
-	private:
-		unsigned	mId;
+		void turnOn		();
+		void turnOff	();
+		void dimm		(unsigned _value);
 	};
 
 }	// namespace dmc
 
-#endif // _DMCSERVER_DEVICE_DEVICE_H_
+#endif // _DMCSERVER_DEVICE_PLC_DMCDEVICE_H_

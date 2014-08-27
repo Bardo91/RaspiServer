@@ -101,5 +101,8 @@
     <ClInclude Include="src\service\command.h">
       <Filter>Source Files\service</Filter>
     </ClInclude>
+    <ClInclude Include="src\device\plc\dmcDevice.h">
+      <Filter>Source Files\device\plc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
