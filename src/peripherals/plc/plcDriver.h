@@ -18,13 +18,16 @@ namespace dmc {
 
 	class PLCDriver : public ServiceListener {
 	public:
-		PLCDriver(const char* _port);
+		static void			init	(const char* _port);
+		static PLCDriver*	get		();
 
 		void								operator()			(unsigned _clientId, const Message& _msg) override;
 		const std::vector<Message::Type>&	supportedMessages	() const override
 				{ return mSupportedMessages; }
 
 	private:
+		PLCDriver(const char* _port);
+
 		Serial	mCom;
 		std::vector<Message::Type>		mSupportedMessages;
 		static const unsigned			cBaudRate = 115200;
