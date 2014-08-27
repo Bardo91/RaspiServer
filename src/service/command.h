@@ -37,7 +37,7 @@ namespace dmc {
 		static void registerFactory() {
 			registerChildFactory([](const Message& _msg){
 				return new ChildCommand(_msg);
-			})
+			});
 		}
 	};
 
