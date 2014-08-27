@@ -9,6 +9,7 @@
 #include <cassert>
 #include <iostream>
 #include "lanService.h"
+#include <service/serviceListener.h>
 #include <string>
 
 using namespace std;
@@ -24,8 +25,13 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void LANService::registerListener(uint8_t _command, Listener _l) {
-		mEvents[_command] += _l;
+	void LANService::registerListener(ServiceListener* _l) {
+		for(auto supportedMsgType : _l->supportedMessages()) {
+			// Use a lambda to invoke listener
+			auto msgDelegate = [=](unsigned _client, const std::string& _msg) { (*_l)(_client, _msg); };
+			// Register delegate
+			mEvents[uint8_t(supportedMsgType)] += msgDelegate;
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -38,8 +44,8 @@ namespace dmc {
 			// Debug message
 			cout << "LAN Service received message a message\n";
 			// Alert everyone who is listening to this command
-			uint8_t commandType = message[1];
-			mEvents[commandType](client, message);
+			uint8_t msgType = message[1];
+			mEvents[msgType](client, message);
 		}
 	}
 }

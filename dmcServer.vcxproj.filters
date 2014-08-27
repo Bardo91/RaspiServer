@@ -51,6 +51,9 @@
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp">
       <Filter>Source Files\peripherals\plc</Filter>
     </ClCompile>
+    <ClCompile Include="src\service\message.cpp">
+      <Filter>Source Files\service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">
@@ -76,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="src\peripherals\plc\plcDriver.h">
       <Filter>Source Files\peripherals\plc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\service\message.h">
+      <Filter>Source Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\service\serviceListener.h">
+      <Filter>Source Files\service</Filter>
     </ClInclude>
     <ClInclude Include="src\peripherals\plc\SerialLinux.h">
       <Filter>Source Files\peripherals\plc</Filter>
