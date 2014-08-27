@@ -63,6 +63,9 @@
     <ClCompile Include="src\device\plc\dmcDevice.cpp">
       <Filter>Source Files\device\plc</Filter>
     </ClCompile>
+    <ClCompile Include="src\device\deviceMgr.cpp">
+      <Filter>Source Files\device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">

@@ -8,6 +8,8 @@
 #ifndef _DMCSERVER_DEVICE_DEVICEMGR_H_
 #define _DMCSERVER_DEVICE_DEVICEMGR_H_
 
+#include <unordered_map>
+
 namespace dmc {
 
 	class Device;
@@ -22,6 +24,8 @@ namespace dmc {
 
 	private:
 		DeviceMgr();
+		std::unordered_map<unsigned, Device*>	mRegisteredDevices;
+		static DeviceMgr*	sInstance;
 	};
 
 }	// namespace dmc

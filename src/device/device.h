@@ -8,6 +8,8 @@
 #ifndef _DMCSERVER_DEVICE_DEVICE_H_
 #define _DMCSERVER_DEVICE_DEVICE_H_
 
+#include "deviceMgr.h"
+
 namespace dmc {
 
 	class Device;
@@ -17,7 +19,9 @@ namespace dmc {
 		virtual unsigned id() const final { return mId; }
 
 	protected:
-		Device		(unsigned _id) : mId(_id) {}
+		Device		(unsigned _id) : mId(_id) {
+			DeviceMgr::get()->registerDevice(this);
+		}
 
 	private:
 		unsigned	mId;

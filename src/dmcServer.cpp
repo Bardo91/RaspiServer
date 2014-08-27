@@ -67,7 +67,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::loadDatabase() {
 		// 666 TODO: Load devices from a real database
-		DeviceMgr::get()->registerDevice(new DmcDevice(4)); // 4 is a random number
+		new DmcDevice(4);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
