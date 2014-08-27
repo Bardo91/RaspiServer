@@ -93,7 +93,6 @@
     <ClInclude Include="src\peripherals\plc\serial.h" />
     <ClInclude Include="src\peripherals\plc\serialWin32.h" />
     <ClInclude Include="src\service\command.h" />
-    <ClInclude Include="src\service\event.h" />
     <ClInclude Include="src\service\lanService.h" />
     <ClInclude Include="src\service\message.h" />
     <ClInclude Include="src\service\socket\serverSocket.h" />

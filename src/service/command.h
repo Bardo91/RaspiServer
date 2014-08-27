@@ -18,7 +18,7 @@ namespace dmc {
 	class Command {
 	public:
 		~Command();
-		static Command* CreateCommand(const Message&);
+		static Command* createCommand(const Message&);
 
 		void run();
 

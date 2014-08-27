@@ -7,8 +7,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <cassert>
+#include "command.h"
 #include <iostream>
 #include "lanService.h"
+#include "message.h"
 #include <string>
 
 using namespace std;
@@ -32,9 +34,14 @@ namespace dmc {
 			assert(message.size() > 1);
 			// Debug message
 			cout << "LAN Service received message a message\n";
-			// Alert everyone who is listening to this command
-			uint8_t msgType = message[1];
-			mEvents[msgType](client, message);
+			// Create a formatted message from the string
+			Message formatedMessage(message);
+			// Create a command using the message
+			Command * requestedCommand = Command::createCommand(formatedMessage);
+			assert(requestedCommand);
+			// run the command
+			requestedCommand->run();
+			delete requestedCommand;
 		}
 	}
 }

@@ -8,8 +8,6 @@
 #ifndef _DMCSERVER_SERVICE_LANSERVICE_H_
 #define _DMCSERVER_SERVICE_LANSERVICE_H_
 
-#include "event.h"
-#include <map>
 #include "socket/socketMgr.h"
 
 namespace dmc {
@@ -21,13 +19,10 @@ namespace dmc {
 		LANService();
 
 		// Listeners interface
-		void update					();
+		void update	();
 
 	private:
-		typedef Event<unsigned, const std::string&> MEvent;
-
-		std::map<uint8_t, MEvent>	mEvents;
-		SocketMgr					mComServer;
+		SocketMgr	mComServer;
 	};
 }
 
