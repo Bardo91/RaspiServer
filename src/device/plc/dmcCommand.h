@@ -16,6 +16,7 @@ namespace dmc {
 	class DmcCommand : public CommandBase<DmcCommand> {
 	public:
 		DmcCommand(const Message&);
+		void run() override;
 	};
 
 }	// namespace dmc
