@@ -13,13 +13,6 @@
 
 namespace dmc {
 
-	enum Command {
-		On = 1,
-		Off = 2,
-		Dimmer = 3,
-		RGB = 4
-	};
-
 	//------------------------------------------------------------------------------------------------------------------
 	DmcServer::DmcServer(int _argc, const char** _argv)
 		:mService(nullptr)

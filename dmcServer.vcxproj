@@ -72,6 +72,7 @@
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
     <ClCompile Include="src\service\lanService.cpp" />
+    <ClCompile Include="src\service\message.cpp" />
     <ClCompile Include="src\service\socket\serverSocket.cpp" />
     <ClCompile Include="src\service\socket\socketMgr.cpp" />
   </ItemGroup>
@@ -82,6 +83,7 @@
     <ClInclude Include="src\peripherals\plc\serialWin32.h" />
     <ClInclude Include="src\service\event.h" />
     <ClInclude Include="src\service\lanService.h" />
+    <ClInclude Include="src\service\message.h" />
     <ClInclude Include="src\service\socket\serverSocket.h" />
     <ClInclude Include="src\service\socket\socketMgr.h" />
   </ItemGroup>

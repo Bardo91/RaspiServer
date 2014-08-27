@@ -22,14 +22,6 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	enum Command {
-		On = 1,
-		Off = 2,
-		Dimmer = 3,
-		RGB = 4
-	};
-
-	//------------------------------------------------------------------------------------------------------------------
 	void PLCDriver::operator()(unsigned _clientId, const std::string& _msg) {
 		uint8_t command = uint8_t(_msg[1]);
 		cout << "PLCDriver received command \"" << command << "\" from client" << _clientId << "\n";
