@@ -31,15 +31,17 @@ namespace dmc {
 
 	class SocketMgr {
 	public:
-		SocketMgr		(unsigned _port);
+		SocketMgr					(unsigned _port);
 		// Write a message to the specified client
 		// Return true on exit, false on fail
-		bool write		(unsigned _clientId, const std::string& _msg) const;
+		bool write					(unsigned _clientId, const std::string& _msg) const;
 		// Return true if we read anything from anyone
-		bool readAny	(unsigned& _client, std::string& _msg) const;
-		bool readFrom	(unsigned _client, std::string& _msg) const;
+		bool readAny				(unsigned& _client, std::string& _msg) const;
+		bool readFrom				(unsigned _client, std::string& _msg) const;
 
-		bool closeConnection(unsigned _client);
+		void ownConnection			(unsigned _client); // Prevents messages from this client to be catched by readAny
+		void releaseConnection		(unsigned _client); // Relinquishes ownership of the connection, so it's messages will show in readAny requests again
+		bool closeConnection		(unsigned _client);
 
 	private:
 		addrinfo*	buildAddresInfo	(unsigned _port);
