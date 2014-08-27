@@ -24,8 +24,8 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void LANService::registerListener(uint8_t _command, Listener _l) {
-		mEvents[_command] += _l;
+	void LANService::registerListener(uint8_t _msgType, Listener _l) {
+		mEvents[_msgType] += _l;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -38,8 +38,8 @@ namespace dmc {
 			// Debug message
 			cout << "LAN Service received message a message\n";
 			// Alert everyone who is listening to this command
-			uint8_t commandType = message[1];
-			mEvents[commandType](client, message);
+			uint8_t msgType = message[1];
+			mEvents[msgType](client, message);
 		}
 	}
 }

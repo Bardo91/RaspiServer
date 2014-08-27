@@ -23,7 +23,7 @@ namespace dmc {
 		typedef MEvent::Listener Listener;
 
 		// Listeners interface
-		void registerListener		(uint8_t _command, Listener _listener);
+		void registerListener		(uint8_t _msgType, Listener _listener);
 		void update					();
 
 	private:
