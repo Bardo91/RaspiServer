@@ -75,6 +75,7 @@
     <ClCompile Include="src\dmcServer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
+    <ClCompile Include="src\peripherals\plc\SerialLinux.cpp" />
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
     <ClCompile Include="src\service\lanService.cpp" />
     <ClCompile Include="src\service\message.cpp" />
