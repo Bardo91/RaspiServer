@@ -5,20 +5,25 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// PLC Driver
-#ifndef _DMCSERVER_SERVICE_SERVICELISTENER_H_
-#define _DMCSERVER_SERVICE_SERVICELISTENER_H_
-
-#include <service/message.h>
+#ifndef _DMCSERVER_DEVICE_DEVICEMGR_H_
+#define _DMCSERVER_DEVICE_DEVICEMGR_H_
 
 namespace dmc {
 
-	class ServiceListener {
+	class Device;
+
+	class DeviceMgr {
 	public:
-		virtual void								operator()			(unsigned _clientId, const Message& _msg)	= 0;
-		virtual const std::vector<Message::Type>&	supportedMessages	() const									= 0;
+		// Singleton Interface
+		static DeviceMgr* get();
+
+		void		registerDevice	(Device*);
+		Device*		getDevice		(unsigned _devId);
+
+	private:
+		DeviceMgr();
 	};
 
 }	// namespace dmc
 
-#endif // _DMCSERVER_PERIPHERALS_PLC_PLCDRIVER_H_
+#endif // _DMCSERVER_DEVICE_DEVICEMGR_H_

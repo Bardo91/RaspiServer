@@ -28,6 +28,9 @@
     <Filter Include="Source Files\peripherals\plc">
       <UniqueIdentifier>{54c51a35-1b50-4bf2-96fb-0ea7df1fc9c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\device">
+      <UniqueIdentifier>{5bf0516f-805d-4727-be74-5c767c12dba4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="src\service\serviceListener.h">
       <Filter>Source Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\device\deviceMgr.h">
+      <Filter>Source Files\device</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

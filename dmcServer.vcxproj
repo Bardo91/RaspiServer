@@ -82,6 +82,7 @@
     <ClCompile Include="src\service\socket\socketMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\device\deviceMgr.h" />
     <ClInclude Include="src\dmcServer.h" />
     <ClInclude Include="src\peripherals\plc\plcDriver.h" />
     <ClInclude Include="src\peripherals\plc\serial.h" />
