@@ -31,6 +31,9 @@
     <Filter Include="Source Files\device">
       <UniqueIdentifier>{5bf0516f-805d-4727-be74-5c767c12dba4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\device\plc">
+      <UniqueIdentifier>{9cccc80c-16ad-45ca-a72c-31a09e96e4d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">

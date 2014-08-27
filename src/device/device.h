@@ -14,7 +14,10 @@ namespace dmc {
 
 	class Device {
 	public:
-		unsigned id() const { return mId; }
+		virtual unsigned id() const final { return mId; }
+
+	protected:
+		Device(unsigned _id) : mId(_id) {}
 
 	private:
 		unsigned	mId;
