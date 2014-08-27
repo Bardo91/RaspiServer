@@ -2,14 +2,19 @@
 //
 // Project: DMC Server
 // Date:	2014/Aug/27
-// Author:	Carmelo J. Fdez-Agüera Tortosa
+// Author:	Pablo Ramon Soria
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Simple serial port communications
 
-#ifdef _linux_
+#ifdef __linux__
 
+#include <fcntl.h>
+#include <termios.h>
+#include <unistd.h>
+#include <cstring>
 #include <cassert>
+
 #include "SerialLinux.h"
 
 namespace dmc {
@@ -27,13 +32,19 @@ namespace dmc {
 	unsigned SerialLinux::write(const void* _src, unsigned _nBytes) {
 		// Enforce correct input data
 		assert(nullptr != _src);
+		
+		int writtenBytes = ::write( mFileDesc, _src, _nBytes);
 
-		return write( mFileDesc, cmd, _nBytes);;
+		assert(-1 != writtenBytes);
+
+		return writtenBytes;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	bool SerialLinux::write(uint8_t _data) {
-		return write( mFileDesc, cmd, 1);
+		assert(-1 != ::write( mFileDesc, &_data, 1));
+
+		return true;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -63,20 +74,17 @@ namespace dmc {
 		case 19200:	cfsetospeed (&tty, B19200);		break;
 		case 57600:	cfsetospeed (&tty, B57600);		break;
 		case 115200:cfsetospeed (&tty, B115200);	break;
-		case 128000:cfsetospeed (&tty, B128000);	break;
-		case 256000:cfsetospeed (&tty, B256000);	break;
 		default:
 			assert(false); // Unsupported baudrate
 			return;
 		}
 	
 		// Configure Attributes
-		tty
-
-		//dcb.ByteSize = 8;
-		//dcb.fParity = FALSE;
-		//dcb.Parity = 0;
-		//dcb.StopBits = 0;
+		
+		tty.c_cflag &= ~PARENB;    // Set no parity, no stop bits and no data bits. Byte size = 8
+		tty.c_cflag &= ~CSTOPB;
+		tty.c_cflag &= ~CSIZE;
+		tty.c_cflag |= CS8;
 
 		tcflush( mFileDesc, TCIFLUSH );	// Flush port to set atributes
 
