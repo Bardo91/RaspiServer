@@ -25,11 +25,16 @@ namespace dmc {
 		// Return true if something was read
 		bool read	(std::string& _msg);
 
+		bool isOwned	() const { return mOwned; }
+		void own		() { assert(!mOwned); mOwned = true; }
+		void release	() { assert(mOwned); mOwned = false; }
+
 	private:
 		void listen ();
 
 	private:
 		int mSocket;
+		bool mOwned;
 		bool mMustClose;
 		std::thread mListenThread;
 		std::mutex mReadLock;

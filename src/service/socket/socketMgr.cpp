@@ -19,6 +19,8 @@
 	#define closesocket(SOCKET) close(SOCKET)
 #endif // __linux__
 
+using namespace std;
+
 namespace dmc {
 
 	void initSocketLib();
@@ -137,6 +139,38 @@ namespace dmc {
 		assert(mActiveConnections.find(_socketDesc) == mActiveConnections.end());
 		// Add new connection
 		mActiveConnections[_socketDesc] = new ServerSocket(_socketDesc);
+		mConMutex.unlock();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void SocketMgr::ownConnection(unsigned _clientId) {
+		// Is there such client between active connections?
+		mConMutex.lock();
+		auto connectionIter = mActiveConnections.find(_clientId);
+		if(connectionIter == mActiveConnections.end()) {
+			mConMutex.unlock();
+			cout << "Error trying to lock a connection: Connection " << _clientId << " not found in SocketMgr\n";
+			assert(false);
+			return;
+		}
+
+		connectionIter->second->own();
+		mConMutex.unlock();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void SocketMgr::releaseConnection(unsigned _clientId) {
+		// Is there such client between active connections?
+		mConMutex.lock();
+		auto connectionIter = mActiveConnections.find(_clientId);
+		if(connectionIter == mActiveConnections.end()) {
+			mConMutex.unlock();
+			cout << "Error trying to unlock a connection: Connection " << _clientId << " not found in SocketMgr\n";
+			assert(false);
+			return; // No client known by that id
+		}
+
+		connectionIter->second->release();
 		mConMutex.unlock();
 	}
 
