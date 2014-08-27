@@ -8,6 +8,9 @@
 #include <cassert>
 #include "device.h"
 #include "deviceMgr.h"
+#include <iostream>
+
+using namespace std;
 
 namespace dmc {
 
@@ -24,13 +27,21 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceMgr::registerDevice(Device* _dev) {
-		auto iter = mRegisteredDevices.find(_dev->id());
-		if(iter == mRegisteredDevices.end()) // Not found, as expected
-		{
+		// Nobody should be trying to register a device twice
+		assert(mRegisteredDevices.find(_dev->id()) == mRegisteredDevices.end());
+		// Actually register the device
+		mRegisteredDevices[_dev->id()];
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	Device* DeviceMgr::getDevice(unsigned _devId) const {
+		auto iter = mRegisteredDevices.find(_devId);
+		if(iter == mRegisteredDevices.end()) {
+			cout << "Warning: Requesting unregistered device (devId = " << _devId << ")\n";
+			return nullptr;
 		}
-		else {
-			// Nobody should be trying to register a device twice
-		}
+		else
+			return iter->second;
 	}
 
 }	// namespace dmc

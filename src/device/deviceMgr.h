@@ -20,10 +20,10 @@ namespace dmc {
 		static DeviceMgr* get();
 
 		void		registerDevice	(Device*);
-		Device*		getDevice		(unsigned _devId);
+		Device*		getDevice		(unsigned _devId) const;
 
 	private:
-		DeviceMgr();
+		DeviceMgr() = default;
 		std::unordered_map<unsigned, Device*>	mRegisteredDevices;
 		static DeviceMgr*	sInstance;
 	};
