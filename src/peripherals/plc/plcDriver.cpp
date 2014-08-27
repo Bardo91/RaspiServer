@@ -17,42 +17,34 @@ using namespace std;
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	PLCDriver::PLCDriver(const char* _port)
-		:mCom(_port, cBaudRate)
-	{
-		mSupportedMessages = {
-			Message::On,
-			Message::Off,
-			Message::Dimmer
-		};
+	// Singleton data
+	PLCDriver* PLCDriver::sInstance = nullptr;
+
+	//------------------------------------------------------------------------------------------------------------------
+	void PLCDriver::init(const char* _port) {
+		assert(_port && _port[0] != '\0'); // Port isn't an empty string
+		assert(!sInstance); // Init should not be called multiple times
+		sInstance = new PLCDriver(_port);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void PLCDriver::operator()(unsigned _clientId, const Message& _msg) {
-		cout << "PLCDriver received command \"" << _msg.type() << "\" from client" << _clientId << "\n";
-		switch(_msg.type()) {
-		case Message::On:
-			cout << "On command\n";
-			mCom.write("RBW", 3);
-			break;
-		case Message::Off:
-			cout << "Off command\n";
-			mCom.write("0", 1);
-			break;
-		case Message::Dimmer: {
-			unsigned intensity = unsigned(_msg.payload()[1]);
-			cout << "Dimmer command to " << intensity << "%\n";
-			if(intensity > 50)
-				mCom.write("RBG", 3);
-			else
-				mCom.write("0", 1);
-			break;
-		}
-		default:
-			std::cout << "Unknown command";
-			assert(false);
-			break;
-		}
+	PLCDriver* PLCDriver::get() {
+		assert(sInstance); // Should never return an invalid pointer
+		return sInstance;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	PLCDriver::PLCDriver(const char* _port)
+		:mCom(_port, cBaudRate)
+	{
+		// Intentionally blank
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void PLCDriver::sendCommand(unsigned _devId, const std::string& _payload) {
+		_devId; // Unused argument
+		if(mCom.write(_payload.c_str(), _payload.size() < _payload.size()))
+			cout << "Error: Unable to send message to PLC modem\n";
 	}
 
 }	// namespace dmc
