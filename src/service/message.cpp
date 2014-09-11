@@ -25,7 +25,7 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	bool Message::checkIntegrity(const std::string& _rawMsg) const {
+	bool Message::checkIntegrity(const std::string& _rawMsg) {
 		// Is message too short?
 		unsigned msgSize = _rawMsg.size();
 		if(msgSize < 2) {
