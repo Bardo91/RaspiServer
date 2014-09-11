@@ -31,7 +31,7 @@ namespace dmc {
 		unsigned			size	() const { return mSize; };
 
 	private:
-		bool	checkIntegrity		(const std::string& _rawMsg) const;
+		static bool			checkIntegrity	(const std::string& _rawMsg);
 
 	private:
 		Type		mType;
