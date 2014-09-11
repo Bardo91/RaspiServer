@@ -100,6 +100,9 @@
     <ClInclude Include="src\service\socket\serverSocket.h" />
     <ClInclude Include="src\service\socket\socketMgr.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
