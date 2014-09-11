@@ -34,6 +34,7 @@ namespace dmc {
 
 		addrinfo * socketAddress = buildAddresInfo(_port);
 		mListener = socket(socketAddress->ai_family, socketAddress->ai_socktype, socketAddress->ai_protocol);
+		delete socketAddress;
 		assert(mListener != INVALID_SOCKET);
 
 		startListening(socketAddress);
