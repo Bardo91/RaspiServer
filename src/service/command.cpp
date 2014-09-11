@@ -29,7 +29,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void Command::registerChildFactory(unsigned _command, Factory _childFactory) {
-		assert(sChildFactories.find(_command) == sChildFactories.end()); // Avoid factory duplication
+		// Note that factory overriding should not be an issue
 		sChildFactories[_command] = _childFactory;
 	}
 

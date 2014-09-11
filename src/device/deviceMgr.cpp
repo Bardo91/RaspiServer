@@ -30,7 +30,7 @@ namespace dmc {
 		// Nobody should be trying to register a device twice
 		assert(mRegisteredDevices.find(_dev->id()) == mRegisteredDevices.end());
 		// Actually register the device
-		mRegisteredDevices[_dev->id()];
+		mRegisteredDevices[_dev->id()] = _dev;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
