@@ -110,7 +110,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void SocketMgr::startListening(const addrinfo* _socketAddress) {
 		// Setup the TCP listening socket
-		int res = bind( mListener, _socketAddress->ai_addr, (int)_socketAddress->ai_addrlen);
+		int res = ::bind( mListener, _socketAddress->ai_addr, (int)_socketAddress->ai_addrlen);
 		assert(res != SOCKET_ERROR);
 		res = listen(mListener, SOMAXCONN);
 		assert(res != SOCKET_ERROR);
@@ -133,12 +133,12 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void SocketMgr::createConnection(int _socketDesc) {
+	void SocketMgr::createConnection(int _socketDescriptor) {
 		// Ensure descriptor isn't already in use
 		mConMutex.lock();
-		assert(mActiveConnections.find(_socketDesc) == mActiveConnections.end());
+		assert(mActiveConnections.find(_socketDescriptor) == mActiveConnections.end());
 		// Add new connection
-		mActiveConnections[_socketDesc] = new ServerSocket(_socketDesc);
+		mActiveConnections[_socketDescriptor] = new ServerSocket(_socketDescriptor);
 		mConMutex.unlock();
 	}
 
