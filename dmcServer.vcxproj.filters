@@ -28,6 +28,9 @@
     <Filter Include="Source Files\peripherals\plc">
       <UniqueIdentifier>{54c51a35-1b50-4bf2-96fb-0ea7df1fc9c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\peripherals\GPIO">
+      <UniqueIdentifier>{c5eef682-f9ff-4fb5-b48f-e957ae576689}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -56,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="src\peripherals\plc\SerialLinux.cpp">
       <Filter>Source Files\peripherals\plc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\peripherals\GPIO\PinControllerRaspi.cpp">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\peripherals\GPIO\PinControllerWin32.cpp">
+      <Filter>Source Files\peripherals\GPIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,15 @@
     </ClInclude>
     <ClInclude Include="src\peripherals\plc\SerialLinux.h">
       <Filter>Source Files\peripherals\plc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\PinControllerWin32.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\PinControllerRaspi.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\PinController.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
