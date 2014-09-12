@@ -5,16 +5,20 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#include <cassert>
 #include "deviceScanner.h"
+#include <device/deviceMgr.h>
 #include <device/plc/dmcDevice.h>
 
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	void DeviceScanner::startScan() {
+	void DeviceScanner::startScan(Delegate _listener) {
 		// 666 TODO: This is a fake. Scan should ocur in a separate thread
+		assert(!mIsScanning); // Already scanning
+		mDeviceFoundListener = _listener;
 		mIsScanning = true;
-		onDeviceFound();
+		onDeviceFound(); // Fake ocurrence
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -27,7 +31,9 @@ namespace dmc {
 		// Create the device
 		Device* foundDevice = new DmcDevice(7, "Light007");
 		// Add it to the manager
+		DeviceMgr::get()->registerDevice(foundDevice);
 		// Notify it
+		mDeviceFoundListener(foundDevice);
 	}
 
 }	// namespace dmc

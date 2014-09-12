@@ -8,17 +8,23 @@
 #ifndef _DMCSERVER_SERVICE_SCAN_DEVICESCANNER_H_
 #define _DMCSERVER_SERVICE_SCAN_DEVICESCANNER_H_
 
+#include <functional>
+
 namespace dmc {
 
 	class DeviceScanner {
 	public:
-		void startScan	(); // Start scanning the PLC channel
+		typedef std::function<void(Device*)>	Delegate;
+
+		void startScan	(Delegate _onDeviceFound); // Start scanning the PLC channel
 		void stopScan	(); // Stop scanning the PLC channel
 
 		bool isScanning	() { return mIsScanning; }
 	private:
 		void onDeviceFound ();
 		bool mIsScanning;
+
+		Delegate mDeviceFoundListener;
 	};
 
 }	// namespace dmc
