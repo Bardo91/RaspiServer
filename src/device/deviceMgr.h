@@ -18,15 +18,16 @@ namespace dmc {
 	class DeviceMgr {
 	public:
 		// Singleton Interface
-		static DeviceMgr*			get				();
+		static DeviceMgr*				get				();
 
-		void						registerDevice	(Device*);
-		Device*						getDevice		(unsigned _devId) const;
+		void							registerDevice	(Device*);
+		Device*							getDevice		(unsigned _devId) const;
 
-		unsigned					nRooms			() const;
-		unsigned					getRoomId		(const std::string& _roomName) const;
-		void						addDeviceToRoom	(unsigned _devId, unsigned _roomId);
-		const std::vector<unsigned>	devicesByRoom	(unsigned _roomId);
+		unsigned						nRooms			() const;
+		unsigned						getRoomId		(const std::string& _roomName) const;
+		void							addRoom			(unsigned _id, const std::string& _roomName);
+		void							addDeviceToRoom	(unsigned _devId, unsigned _roomId);
+		const std::vector<unsigned>&	devicesByRoom	(unsigned _roomId) const;
 
 	private:
 		DeviceMgr() = default;

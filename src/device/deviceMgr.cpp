@@ -44,4 +44,34 @@ namespace dmc {
 			return iter->second;
 	}
 
+	//------------------------------------------------------------------------------------------------------------------
+	unsigned DeviceMgr::nRooms() const {
+		return mRoomIndex.size();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	unsigned DeviceMgr::getRoomId(const std::string& _roomName) const {
+		auto roomIter = mRoomIndex.find(_roomName);
+		assert(roomIter != mRoomIndex.end());
+		return roomIter->second;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void DeviceMgr::addRoom(unsigned _roomId, const std::string& _roomName) {
+		mRoomIndex.insert(std::make_pair(_roomName, _roomId));
+		mRooms[_roomId]; // Make "room" for a new list of devices
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void DeviceMgr::addDeviceToRoom(unsigned _devId, unsigned _roomId) {
+		mRooms[_roomId].push_back(_devId);
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	const std::vector<unsigned>& DeviceMgr::devicesByRoom(unsigned _roomId) const {
+		auto roomIter = mRooms.find(_roomId);
+		assert(roomIter != mRooms.end());
+		return roomIter->second;
+	}
+
 }	// namespace dmc
