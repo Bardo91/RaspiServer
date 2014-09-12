@@ -9,6 +9,7 @@
 #include "device.h"
 #include "deviceMgr.h"
 #include <iostream>
+#include <device/plc/dmcDevice.h>
 
 using namespace std;
 
@@ -72,6 +73,17 @@ namespace dmc {
 		auto roomIter = mRooms.find(_roomId);
 		assert(roomIter != mRooms.end());
 		return roomIter->second;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void DeviceMgr::loadDatabase() {
+		// 666 TODO: Load devices from a real database
+		new DmcDevice(4); // 4 is a random number
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void DeviceMgr::saveDatabase() const {
+		// 666 TODO: Actually save something somewhere
 	}
 
 }	// namespace dmc

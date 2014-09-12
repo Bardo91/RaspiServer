@@ -29,6 +29,10 @@ namespace dmc {
 		void							addDeviceToRoom	(unsigned _devId, unsigned _roomId);
 		const std::vector<unsigned>&	devicesByRoom	(unsigned _roomId) const;
 
+		// Database management
+		void							loadDatabase	();
+		void							saveDatabase	() const;
+
 	private:
 		DeviceMgr() = default;
 
