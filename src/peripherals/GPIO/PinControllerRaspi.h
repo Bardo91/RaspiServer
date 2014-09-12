@@ -11,19 +11,29 @@
 
 #ifdef _RASPI
 
-
 namespace dmc{
 
 	class PinControllerRaspi{
 	public:
+		PinControllerRaspi(string _Pin); // _PinNumber is passed by the constructor
+		
+		int sentOut();
 
-		/*void sentOut();
+
+		/*
 		void sentIn();
 		onPulse;
 		dimmer;
 		on;
 		off;
+		onShortPulse;
+		onLongPulse;
+		setPulseThreshold(unsgined);
+		sinWaveDimmer;
 		*/
+	private:
+		string pinNumber;
+
 
 	};
 

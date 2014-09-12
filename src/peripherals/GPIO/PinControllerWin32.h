@@ -23,6 +23,10 @@ namespace dmc{
 		dimmer;
 		on;
 		off;
+		onShortPulse;
+		onLongPulse;
+		setPulseThreshold(unsgined);
+		sinWaveDimmer;
 		*/
 
 
