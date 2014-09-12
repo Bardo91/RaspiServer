@@ -78,6 +78,7 @@
     <ClCompile Include="src\dmcServer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
+    <ClCompile Include="src\peripherals\plc\SerialLinux.cpp" />
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
     <ClCompile Include="src\service\command.cpp" />
     <ClCompile Include="src\service\lanService.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="src\dmcServer.h" />
     <ClInclude Include="src\peripherals\plc\plcDriver.h" />
     <ClInclude Include="src\peripherals\plc\serial.h" />
+    <ClInclude Include="src\peripherals\plc\SerialLinux.h" />
     <ClInclude Include="src\peripherals\plc\serialWin32.h" />
     <ClInclude Include="src\service\command.h" />
     <ClInclude Include="src\service\lanService.h" />

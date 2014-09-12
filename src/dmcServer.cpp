@@ -33,7 +33,7 @@ namespace dmc {
 			std::string argument(_argv[i]);
 			if(argument.substr(0,9)=="-plcPort=") {
 				mPlcPortName = argument.substr(9);
-				assert(!mPlcPortName.empty());
+				assert(!mPlcPortName.empty()); //666 TODO This should be an error message instead of an assert
 			}
 		}
 	}

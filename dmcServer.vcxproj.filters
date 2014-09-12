@@ -60,6 +60,9 @@
     <ClCompile Include="src\service\message.cpp">
       <Filter>Source Files\service</Filter>
     </ClCompile>
+    <ClCompile Include="src\peripherals\plc\SerialLinux.cpp">
+      <Filter>Source Files\peripherals\plc</Filter>
+    </ClCompile>
     <ClCompile Include="src\device\plc\dmcDevice.cpp">
       <Filter>Source Files\device\plc</Filter>
     </ClCompile>
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="src\service\command.h">
       <Filter>Source Files\service</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\plc\SerialLinux.h">
+      <Filter>Source Files\peripherals\plc</Filter>
     </ClInclude>
     <ClInclude Include="src\device\plc\dmcDevice.h">
       <Filter>Source Files\device\plc</Filter>

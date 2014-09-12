@@ -15,7 +15,7 @@
 
 namespace dmc {
 
-	class ServerSocket {
+	class _socketDescriptor {
 	public:
 		ServerSocket(int _socketDescriptor);
 		~ServerSocket();

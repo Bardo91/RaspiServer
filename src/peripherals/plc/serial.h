@@ -10,9 +10,8 @@
 #define _DMCSERVER_PERIPHERALS_PLC_SERIAL_H_
 
 #include <cstdint>
-#ifdef _WIN32
 #include "serialWin32.h"
-#endif // _WIN32
+#include "SerialLinux.h"
 
 namespace dmc {
 
