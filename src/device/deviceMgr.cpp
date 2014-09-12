@@ -78,7 +78,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceMgr::loadDatabase() {
 		// 666 TODO: Load devices from a real database
-		new DmcDevice(4); // 4 is a random number
+		new DmcDevice(4, "light001"); // 4 is a random number
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

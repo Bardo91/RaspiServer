@@ -6,6 +6,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "deviceScanner.h"
+#include <device/plc/dmcDevice.h>
 
 namespace dmc {
 
@@ -24,6 +25,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::onDeviceFound() {
 		// Create the device
+		Device* foundDevice = new DmcDevice(7, "Light007");
 		// Add it to the manager
 		// Notify it
 	}

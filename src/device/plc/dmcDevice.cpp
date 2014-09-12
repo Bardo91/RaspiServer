@@ -13,8 +13,8 @@
 namespace dmc {
 
 	//---------------------------------------------------------------------------------------------------------------------
-	DmcDevice::DmcDevice(unsigned _id)
-		:Device(_id)
+	DmcDevice::DmcDevice(unsigned _id, const std::string& _name)
+		:Device(_id, _name)
 	{
 		DmcCommand::registerFactory(unsigned(Message::On));
 		DmcCommand::registerFactory(unsigned(Message::Off));

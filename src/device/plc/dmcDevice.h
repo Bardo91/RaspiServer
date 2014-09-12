@@ -14,7 +14,7 @@ namespace dmc {
 
 	class DmcDevice : public Device {
 	public:
-		DmcDevice(unsigned _id);
+		DmcDevice(unsigned _id, const std::string& _name);
 		void runCommand(const std::string&);
 	};
 
