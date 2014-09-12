@@ -34,6 +34,9 @@
     <Filter Include="Source Files\device\plc">
       <UniqueIdentifier>{9cccc80c-16ad-45ca-a72c-31a09e96e4d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\service\scan">
+      <UniqueIdentifier>{25cb1fdd-10ef-42b8-a3f5-b77cfbd97425}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="src\device\plc\dmcCommand.h">
       <Filter>Source Files\device\plc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\service\scan\deviceScanner.h">
+      <Filter>Source Files\service\scan</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

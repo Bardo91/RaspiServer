@@ -99,6 +99,7 @@
     <ClInclude Include="src\service\command.h" />
     <ClInclude Include="src\service\lanService.h" />
     <ClInclude Include="src\service\message.h" />
+    <ClInclude Include="src\service\scan\deviceScanner.h" />
     <ClInclude Include="src\service\socket\serverSocket.h" />
     <ClInclude Include="src\service\socket\socketMgr.h" />
   </ItemGroup>
