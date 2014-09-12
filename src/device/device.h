@@ -9,6 +9,7 @@
 #define _DMCSERVER_DEVICE_DEVICE_H_
 
 #include "deviceMgr.h"
+#include <string>
 
 namespace dmc {
 
@@ -16,15 +17,21 @@ namespace dmc {
 
 	class Device {
 	public:
-		virtual unsigned id() const final { return mId; }
+		virtual unsigned	id	() const final	{ return mId; }
+		const std::string&	name() const		{ return mName; }
+			  std::string&	name()				{ return mName; }
 
 	protected:
-		Device		(unsigned _id) : mId(_id) {
+		Device		(unsigned _id, const std::string& _name)
+			: mId(_id) 
+			, mName(_name)
+		{
 			DeviceMgr::get()->registerDevice(this);
 		}
 
 	private:
 		unsigned	mId;
+		std::string mName;
 	};
 
 }	// namespace dmc

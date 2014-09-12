@@ -83,6 +83,7 @@
     <ClCompile Include="src\service\command.cpp" />
     <ClCompile Include="src\service\lanService.cpp" />
     <ClCompile Include="src\service\message.cpp" />
+    <ClCompile Include="src\service\scan\deviceScanner.cpp" />
     <ClCompile Include="src\service\socket\serverSocket.cpp" />
     <ClCompile Include="src\service\socket\socketMgr.cpp" />
   </ItemGroup>

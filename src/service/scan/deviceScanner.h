@@ -15,7 +15,10 @@ namespace dmc {
 		void startScan	(); // Start scanning the PLC channel
 		void stopScan	(); // Stop scanning the PLC channel
 
-
+		bool isScanning	() { return mIsScanning; }
+	private:
+		void onDeviceFound ();
+		bool mIsScanning;
 	};
 
 }	// namespace dmc

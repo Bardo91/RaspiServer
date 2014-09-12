@@ -9,6 +9,7 @@
 #define _DMCSERVER_SERVICE_LANSERVICE_H_
 
 #include "socket/socketMgr.h"
+#include "scan/deviceScanner.h"
 
 namespace dmc {
 
@@ -22,7 +23,8 @@ namespace dmc {
 		void update	();
 
 	private:
-		SocketMgr	mComServer;
+		DeviceScanner	mScanner;
+		SocketMgr		mComServer;
 	};
 }
 
