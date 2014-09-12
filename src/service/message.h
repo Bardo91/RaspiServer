@@ -15,10 +15,23 @@ namespace dmc {
 	class Message {
 	public:
 		enum Type {
+			// --- Device commands ---
 			On = 1,
 			Off = 2,
 			Dimmer = 3,
 			RGB = 4,
+			// --- System commands ---
+			Scan = 0x80,
+			RequestListUpdate = 0x81,
+			ListInfo = 0x82,
+			newDevice = 0x83,
+			updateState = 0x84,
+			roomInfo = 0x85,
+			deviceInfo = 0x86,
+			pairDevToRoom = 0x87,
+			HandShake = 0x90,
+			RequestClientId = 0x91,
+			SubmitClientId = 0x92,
 			InvalidMsg = 0xff
 		};
 
