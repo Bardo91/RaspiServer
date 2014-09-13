@@ -21,7 +21,7 @@ CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
 TEMP_FILES := $(CXX_OBJ)
 
 # -- Build variables --
-PLATFORM_DEFINITIONS:= __Raspi__
+PLATFORM_DEFINITIONS := -D__Raspi__
 PREPROCESSOR_DEFINITIONS := $(PLATFROM_DEFINITIONS)
 WARNING_FLAGS := -Wall -Werror
 INCLUDE_FLAGS :=  -I$(SRC_DIR)
