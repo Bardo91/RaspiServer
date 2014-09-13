@@ -18,12 +18,12 @@ namespace dmc {
 	class Command {
 	public:
 		virtual ~Command() = default;
-		static Command* createCommand(const Message&);
+		static Command* createCommand(unsigned _client, const Message&);
 
 		virtual void run() = 0;
 
 	protected:
-		typedef std::function<Command*(const Message&)>	Factory;
+		typedef std::function<Command*(unsigned _client, const Message&)>	Factory;
 		static void registerChildFactory(unsigned _command, Factory _childFactory);
 		Command() = default;
 
@@ -35,8 +35,8 @@ namespace dmc {
 	class CommandBase : public Command {
 	public:
 		static void registerFactory(unsigned _command) {
-			registerChildFactory(_command, [](const Message& _msg){
-				return new ChildCommand(_msg);
+			registerChildFactory(_command, [](unsigned _client, const Message& _msg){
+				return new ChildCommand(_client, _msg);
 			});
 		}
 	};

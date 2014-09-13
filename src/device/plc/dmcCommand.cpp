@@ -18,11 +18,10 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	DmcCommand::DmcCommand(const Message& _msg)
+	DmcCommand::DmcCommand(unsigned, const Message& _msg)
 		:mSrcCommand(_msg)
 	{
-		assert(mSrcCommand.size() > 2); // Should contain at least size, command and id
-		// Intentionally blank
+		assert(mSrcCommand.payload().size()); // Should contain at least target device id
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

@@ -52,12 +52,12 @@ namespace dmc {
 			Message formatedMessage(message);
 			std::cout << "Client " << mId << " sent a message of type " << formatedMessage.type() << "\n";
 			if(!formatedMessage.isOk()) {
-				std::cout << "Error: Invalid message from client " << mId "\nMessage dump:\n-";
+				std::cout << "Error: Invalid message from client " << mId << "\nMessage dump:\n-";
 				formatedMessage.dump();
 				return;
 			}
 			// Create a command using the message
-			Command * requestedCommand = Command::createCommand(formatedMessage);
+			Command * requestedCommand = Command::createCommand(mId, formatedMessage);
 			assert(requestedCommand);
 			// run the command
 			requestedCommand->run();

@@ -17,14 +17,14 @@ namespace dmc {
 	std::map<unsigned, Command::Factory> Command::sChildFactories;
 
 	//------------------------------------------------------------------------------------------------------------------
-	Command* Command::createCommand(const Message& _msg) {
+	Command* Command::createCommand(unsigned _client, const Message& _msg) {
 		unsigned index = unsigned(_msg.type());
 		auto factoryIter = sChildFactories.find(index);
 		if(factoryIter == sChildFactories.end()) {
 			std::cout << "Error: Coudln't locate command factory for message type " << index << "\n";
 			return nullptr;
 		}
-		return factoryIter->second(_msg);
+		return factoryIter->second(_client, _msg);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

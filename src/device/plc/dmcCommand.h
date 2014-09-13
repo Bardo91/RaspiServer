@@ -15,7 +15,7 @@ namespace dmc {
 
 	class DmcCommand : public CommandBase<DmcCommand> {
 	public:
-		DmcCommand(const Message&);
+		DmcCommand(unsigned _client, const Message&);
 		void run() override;
 
 	private:
