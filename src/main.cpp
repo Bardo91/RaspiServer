@@ -19,8 +19,8 @@ int main()
 	PinController pin4("4");
 	PinController pin17("17");
 
-	pin4.inputPin();
-	pin17.outPutPin();
+	pin4.outPutPin();
+	pin17.inputPin();
 	cout << "Everything is set, push that button baby!" << endl;
 
 	string pinState;
