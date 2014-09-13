@@ -20,6 +20,7 @@
 	typedef int SOCKET;
 #endif // __linux__
 
+#include <functional>
 #include <map>
 #include <mutex>
 #include <string>
@@ -46,6 +47,8 @@ namespace dmc {
 		void releaseConnection		(unsigned _client); // Relinquishes ownership of the connection, so it's messages will show in readAny requests again
 		bool closeConnection		(unsigned _client);
 
+		void onNewConnection		(std::function<void(unsigned)>);
+
 	private:
 		SocketMgr					(unsigned _port);
 		addrinfo*	buildAddresInfo	(unsigned _port);
@@ -56,6 +59,7 @@ namespace dmc {
 		unsigned							mPort;
 		SOCKET								mListener;
 		mutable std::mutex					mConMutex;
+		std::function<void(unsigned)>		mOnNewConnection;
 		std::thread							mListenThread;
 		std::map<unsigned, ServerSocket*>	mActiveConnections;
 

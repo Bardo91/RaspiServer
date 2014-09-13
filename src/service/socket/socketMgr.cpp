@@ -43,7 +43,9 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	SocketMgr::SocketMgr(unsigned _port)
 		:mPort(_port)
+		,mOnNewConnection([](unsigned){}) // Default empty delegate
 	{
+		// Start listening thread
 		assert(0 != _port);	// Ensure data integrity
 		initSocketLib();
 
@@ -156,6 +158,7 @@ namespace dmc {
 		// Add new connection
 		mActiveConnections[_socketDescriptor] = new ServerSocket(_socketDescriptor);
 		mConMutex.unlock();
+		mOnNewConnection(_socketDescriptor); // Invoke delegate
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -204,6 +207,11 @@ namespace dmc {
 		mActiveConnections.erase(connectionIter);
 		mConMutex.unlock();
 		return true;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void SocketMgr::onNewConnection(std::function<void(unsigned)> _delegate) {
+		mOnNewConnection = _delegate;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
