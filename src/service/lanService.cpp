@@ -33,9 +33,10 @@ namespace dmc {
 		if(mComServer.readAny(client, message)) { // There are messages to process
 			assert(message.size() > 1);
 			// Debug message
-			cout << "LAN Service received message a message\n";
+			cout << "LAN Service received message of type: ";
 			// Create a formatted message from the string
 			Message formatedMessage(message);
+			cout << formatedMessage.type() << "\n";
 			// Create a command using the message
 			Command * requestedCommand = Command::createCommand(formatedMessage);
 			assert(requestedCommand);
