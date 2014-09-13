@@ -6,18 +6,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "dmcServer.h"
+#include "peripherals\GPIO\PinController.h"
 
 using namespace dmc;
 
 //----------------------------------------------------------------------------------------------------------------------
 int main(int _argc, const char** _argv)
 {
-	// Create application
-	DmcServer mainApplication(_argc, _argv);
-
-	// Run service as long as posible
-	while(mainApplication.update())
-	{}
+	//Testing GPIO
+	PinController pin("2");
+	
 
 	return 0;
 }

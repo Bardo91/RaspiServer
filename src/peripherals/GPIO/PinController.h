@@ -8,16 +8,17 @@
 #ifndef _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLER_H_
 #define _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLER_H_
 
-
+#include <string>
 #include "PinControllerWin32.h"
 #include "PinControllerRaspi.h"
+
+using namespace std;
 
 namespace dmc {
 
 	class PinController : public PinControllerBase {
-	public:
-	
-	
+	public:	
+		PinController(string _Pin) : PinControllerBase(_Pin){}
 	};
 
 	class Led{

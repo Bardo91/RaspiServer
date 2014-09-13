@@ -16,7 +16,8 @@ namespace dmc{
 
 	class PinControllerWin32{
 	public:
-
+		PinControllerWin32(string _Pin);
+		
 		/*void sentOut();
 		void sentIn();
 		onPulse;
@@ -28,7 +29,7 @@ namespace dmc{
 		setPulseThreshold(unsgined);
 		sinWaveDimmer;
 		*/
-
+		
 
 	};
 

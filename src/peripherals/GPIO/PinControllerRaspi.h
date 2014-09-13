@@ -15,9 +15,8 @@ namespace dmc{
 
 	class PinControllerRaspi{
 	public:
-		PinControllerRaspi(string _Pin); // _PinNumber is passed by the constructor
-		
-		int sentOut();
+		PinControllerRaspi(string _Pin); // _PinNumber is passed by the constructor, it also export the pin number.
+		int readPin();
 
 
 		/*
@@ -32,7 +31,9 @@ namespace dmc{
 		sinWaveDimmer;
 		*/
 	private:
-		string pinNumber;
+		//string pinNumber;
+	
+		
 
 
 	};
