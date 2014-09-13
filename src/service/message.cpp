@@ -25,6 +25,17 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	void Message::dump() const {
+		// Dump header
+		std::cout << "Size = " << mSize << ", Type = 0x"
+			<< std::hex << unsigned(mType) << std::dec << ", Payload = [ ";
+		// Dump payload
+		for(auto byte : mPayload)
+			std::cout << byte << "(0x" << std::hex << unsigned(byte) << ") " << std::dec;
+		std::cout << "]\n";
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
 	bool Message::checkIntegrity(const std::string& _rawMsg) {
 		// Is message too short?
 		unsigned msgSize = _rawMsg.size();

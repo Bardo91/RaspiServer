@@ -52,9 +52,8 @@ namespace dmc {
 			Message formatedMessage(message);
 			std::cout << "Client " << mId << " sent a message of type " << formatedMessage.type() << "\n";
 			if(!formatedMessage.isOk()) {
-				std::cout << "Error: Received invalid message\nMessage dump:\n";
-				for(auto byte : message) std::cout << " " << byte;
-				std::cout << "\n";
+				std::cout << "Error: Invalid message from client " << mId << "\nMessage dump:\n-";
+				formatedMessage.dump();
 				return;
 			}
 			// Create a command using the message
