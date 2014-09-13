@@ -40,7 +40,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void Client::registerCommands() {
-		// 666 TODO
+		// 666 TODO Register command factories
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ namespace dmc {
 			Message formatedMessage(message);
 			std::cout << "Client " << mId << " sent a message of type " << formatedMessage.type() << "\n";
 			if(!formatedMessage.isOk()) {
-				std::cout << "Error: Invalid message from client " << mId << "\nMessage dump:\n-";
+				std::cout << "Error: Invalid message from client " << mId "\nMessage dump:\n-";
 				formatedMessage.dump();
 				return;
 			}

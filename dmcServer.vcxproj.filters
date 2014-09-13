@@ -140,6 +140,9 @@
     <ClInclude Include="src\service\client\client.h">
       <Filter>Source Files\service\client</Filter>
     </ClInclude>
+    <ClInclude Include="src\service\client\commands\scanCommand.h">
+      <Filter>Source Files\service\client\commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
