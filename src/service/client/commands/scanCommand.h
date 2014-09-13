@@ -16,7 +16,7 @@ namespace dmc {
 
 	class ScanCommand : public Command {
 	public:
-		ScanCommand(const Message&);
+		ScanCommand(unsigned _client, const Message&);
 		void run() override;
 	};
 }	// namespace dmc

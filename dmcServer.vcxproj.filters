@@ -90,6 +90,9 @@
     <ClCompile Include="src\service\client\client.cpp">
       <Filter>Source Files\service\client</Filter>
     </ClCompile>
+    <ClCompile Include="src\service\client\commands\scanCommand.cpp">
+      <Filter>Source Files\service\client\commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">
