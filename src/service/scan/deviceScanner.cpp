@@ -30,9 +30,7 @@ namespace dmc {
 	void DeviceScanner::onDeviceFound() {
 		// Create the device
 		Device* foundDevice = new DmcDevice(7, "Light007");
-		// Add it to the manager
-		DeviceMgr::get()->registerDevice(foundDevice);
-		// Notify it
+		// Notify it to whoever is scanning
 		mDeviceFoundListener(foundDevice);
 	}
 
