@@ -24,7 +24,7 @@ namespace dmc {
 
 	private:
 		DeviceScanner	mScanner;
-		SocketMgr		mComServer;
+		SocketMgr*		mComServer;
 	};
 }
 

@@ -8,6 +8,7 @@
 #include <cassert>
 #include <iostream>
 #include "serverSocket.h"
+#include "socketMgr.h"
 
 #ifdef _WIN32
 	#include <winsock2.h>
@@ -28,11 +29,10 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	ServerSocket::ServerSocket(int _socketDescriptor) 
 		:mSocket(_socketDescriptor)
-		,mIsFinished(false)
 	{
 		mListenThread = std::thread([this](){
 			listen();
-			mIsFinished = true;
+			SocketMgr::get()->closeConnection(mSocket);
 		});
 	}
 

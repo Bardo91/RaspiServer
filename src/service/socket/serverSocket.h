@@ -28,9 +28,6 @@ namespace dmc {
 		bool isOwned	() const { return mOwned; }
 		void own		() { assert(!mOwned); mOwned = true; }
 		void release	() { assert(mOwned); mOwned = false; }
-		
-		// Returns true if the connection corresponding to this socket is closed
-		bool isFinished	() const { return mIsFinished; }
 
 	private:
 		void listen ();
@@ -39,7 +36,6 @@ namespace dmc {
 		int mSocket;
 		bool mOwned;
 		bool mMustClose;
-		bool mIsFinished;
 		std::thread mListenThread;
 		std::mutex mReadLock;
 		std::string mInBuffer;

@@ -31,7 +31,10 @@ namespace dmc {
 
 	class SocketMgr {
 	public:
-		SocketMgr					(unsigned _port);
+		// Singleton interface
+		static void			init	(unsigned _port);
+		static SocketMgr*	get		();
+
 		// Write a message to the specified client
 		// Return true on exit, false on fail
 		bool write					(unsigned _clientId, const std::string& _msg) const;
@@ -44,6 +47,7 @@ namespace dmc {
 		bool closeConnection		(unsigned _client);
 
 	private:
+		SocketMgr					(unsigned _port);
 		addrinfo*	buildAddresInfo	(unsigned _port);
 		void		startListening	(const addrinfo* _socketAddress);
 		void		createConnection(int _socketDesc);
@@ -54,6 +58,8 @@ namespace dmc {
 		mutable std::mutex					mConMutex;
 		std::thread							mListenThread;
 		std::map<unsigned, ServerSocket*>	mActiveConnections;
+
+		static SocketMgr*	sInstance;
 	};
 
 }

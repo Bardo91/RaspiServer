@@ -12,6 +12,8 @@
 
 namespace dmc {
 
+	class Device;
+
 	class DeviceScanner {
 	public:
 		typedef std::function<void(Device*)>	Delegate;

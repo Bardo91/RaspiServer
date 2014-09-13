@@ -20,9 +20,9 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	LANService::LANService()
-		:mComServer(PORT)
 	{
-		// Intentionally blank
+		SocketMgr::init(PORT);
+		mComServer = SocketMgr::get();
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ namespace dmc {
 		// Request received messages
 		std::string message;
 		unsigned client;
-		if(mComServer.readAny(client, message)) { // There are messages to process
+		if(mComServer->readAny(client, message)) { // There are messages to process
 			assert(message.size() > 1);
 			// Debug message
 			cout << "LAN Service received message a message\n";
