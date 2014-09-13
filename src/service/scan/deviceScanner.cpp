@@ -13,6 +13,16 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
+	DeviceScanner* DeviceScanner::sInstance = nullptr;
+
+	//------------------------------------------------------------------------------------------------------------------
+	DeviceScanner* DeviceScanner::get() {
+		if(!sInstance)
+			sInstance = new DeviceScanner;
+		return sInstance;
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
 		// 666 TODO: This is a fake. Scan should ocur in a separate thread
 		assert(!mIsScanning); // Already scanning

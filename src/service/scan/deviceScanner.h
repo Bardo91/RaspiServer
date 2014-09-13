@@ -16,6 +16,8 @@ namespace dmc {
 
 	class DeviceScanner {
 	public:
+		static DeviceScanner* get();
+
 		typedef std::function<void(Device*)>	Delegate;
 
 		void startScan	(Delegate _onDeviceFound); // Start scanning the PLC channel
@@ -23,10 +25,13 @@ namespace dmc {
 
 		bool isScanning	() { return mIsScanning; }
 	private:
+		DeviceScanner() = default;
+
 		void onDeviceFound ();
 		bool mIsScanning;
 
 		Delegate mDeviceFoundListener;
+		static DeviceScanner* sInstance;
 	};
 
 }	// namespace dmc
