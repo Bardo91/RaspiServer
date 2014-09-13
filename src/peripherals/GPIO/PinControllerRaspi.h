@@ -51,5 +51,5 @@ namespace dmc{
 }//namespace dmc
 
 
-#endif // __linux__
+#endif // __Raspi__
 #endif // _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLERRASPI_H_

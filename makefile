@@ -8,19 +8,20 @@ PRJ_NAME = dmcServer
 
 SRC_DIR := ./src
 CXX_SRC := $(SRC_DIR)/main.cpp \
-	#$(SRC_DIR)/dmcServer.cpp \
-	#$(SRC_DIR)/service/lanService.cpp \
-	#$(SRC_DIR)/service/message.cpp \
-	#$(SRC_DIR)/service/socket/socketMgr.cpp \
-	#$(SRC_DIR)/service/socket/serverSocket.cpp \
-	#$(SRC_DIR)/peripherals/plc/plcDriver.cpp \
-	#$(SRC_DIR)/peripherals/plc/SerialLinux.cpp \
+	$(SRC_DIR)/dmcServer.cpp \
+	$(SRC_DIR)/service/lanService.cpp \
+	$(SRC_DIR)/service/message.cpp \
+	$(SRC_DIR)/service/socket/socketMgr.cpp \
+	$(SRC_DIR)/service/socket/serverSocket.cpp \
+	$(SRC_DIR)/peripherals/plc/plcDriver.cpp \
+	$(SRC_DIR)/peripherals/plc/SerialLinux.cpp \
 	$(SRC_DIR)/peripherals/GPIO/PinControllerRaspi.cpp \
 	
 CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
 TEMP_FILES := $(CXX_OBJ)
 
 # -- Build variables --
+PLATFORM_DEFINITIONS:= __Raspi__
 PREPROCESSOR_DEFINITIONS := $(PLATFROM_DEFINITIONS)
 WARNING_FLAGS := -Wall -Werror
 INCLUDE_FLAGS :=  -I$(SRC_DIR)

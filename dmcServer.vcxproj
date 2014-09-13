@@ -79,6 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <PreprocessorDefinitions>__Raspi__</PreprocessorDefinitions>
+      <UndefinePreprocessorDefinitions>_WIN32</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
