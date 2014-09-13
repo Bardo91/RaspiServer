@@ -41,7 +41,7 @@ namespace dmc {
 		Message(Client* _sender, const std::string& _rawMessage);
 		Message(Type _command, const std::string& _payload);
 
-		const std::string&	payload	() const { return mRaw.substr(2);	}
+		std::string			payload	() const { return mRaw.substr(2);	}
 		Type				type	() const { return mType;	}
 		bool				isOk	() const { return mType != InvalidMsg; }
 		unsigned			size	() const { return mSize; };

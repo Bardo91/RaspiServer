@@ -13,7 +13,7 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	ScanCommand::ScanCommand(unsigned, const Message&) {
+	ScanCommand::ScanCommand(const Message&) {
 		// Intentionally blank
 	}
 
@@ -21,7 +21,7 @@ namespace dmc {
 	void ScanCommand::run() {
 		std::cout << "Run scan command\n";
 		DeviceScanner::get()->startScan([this](Device* _foundDev) {
-			mRequester->notifyFoundDevice(_foundDev);
+			mRequester->notifyNewDevice(_foundDev);
 		});
 
 	}

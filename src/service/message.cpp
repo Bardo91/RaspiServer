@@ -6,6 +6,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <cassert>
+#include <cstdint>
 #include <iostream>
 #include "message.h"
 
@@ -24,6 +26,19 @@ namespace dmc {
 
 		mSize = _rawMessage.size();
 		mType = Type(_rawMessage[1]);
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	Message::Message(Type _command, const std::string& _payload)
+		:mType(_command)
+	{
+		mSize = 2+_payload.size(); // Make room for size byte and command byte
+		mRaw.reserve(mSize);
+		assert(mSize < 256);
+		// Compose raw
+		mRaw[0] = uint8_t(mSize);
+		mRaw[1] = uint8_t(_command);
+		mRaw.append(_payload);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
