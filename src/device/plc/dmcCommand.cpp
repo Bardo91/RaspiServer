@@ -11,6 +11,7 @@
 #include <cstdint>
 #include <device/deviceMgr.h>
 #include <device/plc/dmcDevice.h>
+#include <iostream>
 #include <service/command.h>
 #include <service/message.h>
 
@@ -29,6 +30,10 @@ namespace dmc {
 		// Find device
 		unsigned targetId = mSrcCommand.payload()[0];
 		DmcDevice* targetDev = static_cast<DmcDevice*>(DeviceMgr::get()->getDevice(targetId));
+		if(!targetDev) {
+			std::cout << "Error: Trying to run command on inexisting device (devId = " << targetId << ")\n";
+			return;
+		}
 		// Run command
 		targetDev->runCommand(mSrcCommand.payload());
 	}

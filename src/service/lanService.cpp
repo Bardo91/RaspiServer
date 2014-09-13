@@ -34,6 +34,5 @@ namespace dmc {
 			else // Client is finished
 				clientIter = mClients.erase(clientIter);
 		}
-		
 	}
 }

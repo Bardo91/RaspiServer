@@ -18,6 +18,9 @@ namespace dmc {
 		bool update(); // Returns true if the client must be deleted
 
 	private:
+		void registerCommands();
+		void readMessage();
+
 		unsigned mId;
 	};
 
