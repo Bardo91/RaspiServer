@@ -6,7 +6,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "dmcServer.h"
-#include "peripherals\GPIO\PinController.h"
+#include "peripherals/GPIO/PinController.h"
 #include <iostream>
 
 using namespace std;
@@ -20,21 +20,21 @@ int main()
 	PinController pin4("4");
 	PinController pin17("17");
 
-	pin4.inputPin;
-	pin17.outPutPin;
+	pin4.inputPin();
+	pin17.outPutPin();
 	
 	string pinState;
 	while (1){
-		pinState = pin17.readPin;
+		pinState = pin17.readPin();
 		if (pinState == "0"){
 			
-			pin4.on;
+			pin4.on();
 			while (pinState == "0"){
-				pinState = pin17.readPin;
+				pinState = pin17.readPin();
 			}
 		}
 		else{
-			pin4.off;
+			pin4.off();
 			
 		}
 

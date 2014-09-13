@@ -9,13 +9,15 @@
 #ifndef _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLERRASPI_H_
 #define _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLERRASPI_H_
 
-#ifdef __linux__
+#ifdef __Raspi__
+
+#include <string>
 
 namespace dmc{
 
 	class PinControllerRaspi{
 	public:
-		PinControllerRaspi(string _Pin); // _PinNumber is passed by the constructor, it also export the pin number.
+		PinControllerRaspi(std::string _Pin); // _PinNumber is passed by the constructor, it also export the pin number.
 		
 		int on	();
 		int off	();
@@ -32,13 +34,13 @@ namespace dmc{
 		sinWaveDimmer;
 		*/
 	//private:
-		int		exportPin	(string _Pin);
-		int		unexportPin	(string _Pin);
-		string	readPin		();
-		int		inputPin	();
-		int		outPutPin	();
+		int			exportPin	(std::string _Pin);
+		int			unexportPin	(std::string _Pin);
+		std::string	readPin		();
+		int			inputPin	();
+		int			outPutPin	();
 
-		string	pinNumber;
+		std::string	pinNumber;
 		
 
 

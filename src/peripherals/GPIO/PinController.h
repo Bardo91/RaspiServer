@@ -18,7 +18,7 @@ namespace dmc {
 
 	class PinController : public PinControllerBase {
 	public:	
-		PinController(string _Pin) : PinControllerBase(_Pin){}
+		PinController(string _Pin) : PinControllerBase(_Pin) {}
 		
 
 		
