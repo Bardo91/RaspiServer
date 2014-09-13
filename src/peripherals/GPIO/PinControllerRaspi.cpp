@@ -5,7 +5,7 @@
 // Author:	Jose Enrique Corchado Miralles
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifdef _RASPI
+#ifdef __linux__
 #include "PinControllerRaspi.h"
 #include <string>
 #include <iostream>
@@ -143,4 +143,4 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 }
 
-#endif // _RASPI
+#endif // __linux__

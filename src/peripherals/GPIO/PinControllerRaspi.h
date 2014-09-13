@@ -9,7 +9,7 @@
 #ifndef _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLERRASPI_H_
 #define _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLERRASPI_H_
 
-#ifdef _RASPI
+#ifdef __linux__
 
 namespace dmc{
 
@@ -49,5 +49,5 @@ namespace dmc{
 }//namespace dmc
 
 
-#endif // _RASPI
+#endif // __linux__
 #endif // _DMCSERVER_PERIPHERALS_GPIO_PINCONTROLLERRASPI_H_
