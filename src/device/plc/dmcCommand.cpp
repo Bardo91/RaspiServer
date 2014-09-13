@@ -18,7 +18,7 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	DmcCommand::DmcCommand(unsigned, const Message& _msg)
+	DmcCommand::DmcCommand(const Message& _msg)
 		:mSrcCommand(_msg)
 	{
 		assert(mSrcCommand.payload().size()); // Should contain at least target device id

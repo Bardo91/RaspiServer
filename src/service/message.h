@@ -12,6 +12,8 @@
 
 namespace dmc {
 	
+	class Client;
+
 	class Message {
 	public:
 		enum Type {
@@ -36,7 +38,7 @@ namespace dmc {
 		};
 
 	public:
-		Message(const std::string& _rawMessage);
+		Message(Client* _sender, const std::string& _rawMessage);
 
 		const std::string&	payload	() const { return mPayload;	}
 		Type				type	() const { return mType;	}
@@ -49,6 +51,7 @@ namespace dmc {
 		static bool			checkIntegrity	(const std::string& _rawMsg);
 
 	private:
+		Client*		mSender;
 		Type		mType;
 		unsigned	mSize;
 		std::string mPayload;

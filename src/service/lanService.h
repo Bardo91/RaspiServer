@@ -9,7 +9,6 @@
 #define _DMCSERVER_SERVICE_LANSERVICE_H_
 
 #include <set>
-#include "scan/deviceScanner.h"
 
 namespace dmc {
 
@@ -25,7 +24,6 @@ namespace dmc {
 
 	private:
 		std::set<Client*>	mClients;
-		DeviceScanner		mScanner;
 	};
 }
 

@@ -7,6 +7,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 #include "scanCommand.h"
+#include <service/client/client.h>
+#include <service/scan/deviceScanner.h>
 
 namespace dmc {
 
@@ -18,6 +20,9 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void ScanCommand::run() {
 		std::cout << "Run scan command\n";
+		DeviceScanner::get()->startScan([this](Device* _foundDev) {
+			mRequester->foundDevice(_foundDev);
+		});
 
 	}
 

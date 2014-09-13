@@ -12,12 +12,16 @@
 
 namespace dmc {
 
+	class Client;
 	class Message;
 
 	class ScanCommand : public Command {
 	public:
 		ScanCommand(unsigned _client, const Message&);
 		void run() override;
+
+	private:
+		Client* mRequester;
 	};
 }	// namespace dmc
 

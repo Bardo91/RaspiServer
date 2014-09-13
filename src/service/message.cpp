@@ -12,7 +12,9 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	Message::Message(const std::string& _rawMessage) {
+	Message::Message(Client* _sender, const std::string& _rawMessage)
+		:mSender(_sender)
+	{
 		// Discard invalid messages
 		if(!checkIntegrity(_rawMessage)) {
 			mType = InvalidMsg;

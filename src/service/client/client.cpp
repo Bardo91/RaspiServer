@@ -49,7 +49,7 @@ namespace dmc {
 		std::string message;
 		if(SocketMgr::get()->readFrom(mId, message)) { // There are messages to process
 			// Create a formatted message from the string
-			Message formatedMessage(message);
+			Message formatedMessage(this, message);
 			std::cout << "Client " << mId << " sent a message of type " << formatedMessage.type() << "\n";
 			if(!formatedMessage.isOk()) {
 				std::cout << "Error: Invalid message from client " << mId << "\nMessage dump:\n-";
@@ -57,7 +57,7 @@ namespace dmc {
 				return;
 			}
 			// Create a command using the message
-			Command * requestedCommand = Command::createCommand(mId, formatedMessage);
+			Command * requestedCommand = Command::createCommand(formatedMessage);
 			assert(requestedCommand);
 			// run the command
 			requestedCommand->run();
