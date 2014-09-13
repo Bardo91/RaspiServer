@@ -19,7 +19,7 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	PinControllerRaspi::PinControllerRaspi(string _Pin){
 		exportPin(_Pin);
-		unexportPin(_Pin);
+		//unexportPin(_Pin);
 		pinNumber = _Pin;
 	}
 
