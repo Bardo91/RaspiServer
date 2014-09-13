@@ -20,16 +20,34 @@ namespace dmc{
 	PinControllerRaspi::PinControllerRaspi(string _Pin){
 		exportPin(_Pin);
 		unexportPin(_Pin);
+		pinNumber = _Pin
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-
-	int PinControllerRaspi::readPin(string& val){
+	PinControllerRaspi::exportPin(string _Pin){
 	
+		string export_str = "/sys/class/gpio/export";
+		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
+		if (exportgpio < 0){
+			cout << " OPERATION FAILED: Unable to export GPIO"<< _Pin <<" ."<< endl;
+			return -1;
+		}
+
+		exportgpio << _Pin; //write GPIO number to export
+		exportgpio.close(); //close export file
+		return 0;
+	
+	
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------
+	
+	string PinControllerRaspi::readPin(){
+		string val;
 		string getval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
 		ifstream getvalgpio(getval_str.c_str());// open value file for gpio
 		if (getvalgpio < 0){
-			cout << " OPERATION FAILED: Unable to get value of GPIO"<< PinNumber <<" ."<< endl;
+			cout << " OPERATION FAILED: Unable to get value of GPIO"<< pinNumber <<" ."<< endl;
 			return -1;
 		}
 
@@ -41,20 +59,18 @@ namespace dmc{
 			val = "0";
 
 		getvalgpio.close(); //close the value file
-		return 0;
-			
-		
-		
+		return val;
+					
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 
 	int PinControllerRaspi::inputPin(){
 	
-		string setdir_str ="/sys/class/gpio/gpio" + this->PinNumber + "/direction";
+		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
 		if (setdirgpio < 0){
-			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< this->PinNumber <<" ."<< endl;
+			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< pinNumber <<" ."<< endl;
 			return -1;
 		}
 
@@ -70,10 +86,10 @@ namespace dmc{
 
 	int PinControllerRaspi::outPutPin(){
 
-		string setdir_str ="/sys/class/gpio/gpio" + this->PinNumber + "/direction";
+		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
 		if (setdirgpio < 0){
-			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< this->PinNumber <<" ."<< endl;
+			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< pinNumber <<" ."<< endl;
 			return -1;
 		}
 

@@ -11,6 +11,9 @@
 
 #ifdef _WIN32
 #include <Windows.h>
+#include <string>
+
+using namespace std;
 
 namespace dmc{
 
@@ -18,18 +21,26 @@ namespace dmc{
 	public:
 		PinControllerWin32(string _Pin);
 		
+		int on();
+		int off();
+
 		/*void sentOut();
 		void sentIn();
 		onPulse;
 		dimmer;
-		on;
-		off;
 		onShortPulse;
 		onLongPulse;
 		setPulseThreshold(unsgined);
 		sinWaveDimmer;
 		*/
-		
+	//private:
+		int		exportPin(string _Pin);
+		int		unexportPin(string _Pin);
+		string	readPin();
+		int		inputPin();
+		int		outPutPin();
+
+		string	pinNumber;
 
 	};
 

@@ -19,16 +19,12 @@ namespace dmc {
 	class PinController : public PinControllerBase {
 	public:	
 		PinController(string _Pin) : PinControllerBase(_Pin){}
+		
+
+		
 	};
 
-	class Led{
-
-	};
-
-	class BackButton{
-
-	};
-
+	//Led and BackButton
 
 }	// namespace dmc
 
