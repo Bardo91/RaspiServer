@@ -29,8 +29,7 @@ int main()
 		//pinState = pin17.readPin();
 		//if (pinState == "0"){
 			
-			pin4.on();
-			cout << "Light" << endl;
+			pin4.on(pin4.pinNumber);
 	//		while (pinState == "0"){
 	//			pinState = pin17.readPin();
 	//		}

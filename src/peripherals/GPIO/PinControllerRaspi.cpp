@@ -19,25 +19,22 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	PinControllerRaspi::PinControllerRaspi(string _Pin){
 		exportPin(_Pin);
-		//unexportPin(_Pin);
+		//unexportPin(_Pin); //TODO 666 implement this
 		pinNumber = _Pin;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	int PinControllerRaspi::exportPin(string _Pin){
+	void PinControllerRaspi::exportPin(string _Pin){
 	
 		string export_str = "/sys/class/gpio/export";
 		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
-		/*if (exportgpio < 0){
+		if (!exportgpio){
 			cout << " OPERATION FAILED: Unable to export GPIO"<< _Pin <<" ."<< endl;
-			return -1;
-		}*/
+		}
 
 		exportgpio << _Pin; //write GPIO number to export
 		exportgpio.close(); //close export file
-		return 0;
-	
-	
+		
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------
@@ -46,10 +43,9 @@ namespace dmc{
 		string val;
 		string getval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
 		ifstream getvalgpio(getval_str.c_str());// open value file for gpio
-		/*if (getvalgpio < 0){
+		if (!getvalgpio){
 			cout << " OPERATION FAILED: Unable to get value of GPIO"<< pinNumber <<" ."<< endl;
-			return -1;
-		}*/
+		}
 
 		getvalgpio >> val ;  //read gpio value
 
@@ -65,79 +61,62 @@ namespace dmc{
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	int PinControllerRaspi::inputPin(){
+	void PinControllerRaspi::inputPin(){
 	
 		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
-		/*if (setdirgpio < 0){
+		if (!setdirgpio){
 			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< pinNumber <<" ."<< endl;
-			return -1;
-		}*/
+		}
 
 		setdirgpio << "in"; //write direction to direction file
 		setdirgpio.close(); // close direction file
-		return 0;
-			
-		
-		
+				
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	int PinControllerRaspi::outPutPin(){
+	void PinControllerRaspi::outPutPin(){
 
 		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
-		/*if (setdirgpio < 0){
+		if (!setdirgpio){
 			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< pinNumber <<" ."<< endl;
-			return -1;
-		}*/
+		}
 
 		setdirgpio << "out"; 
 		setdirgpio.close(); // close direction file
-		return 0;
 		
-
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	int PinControllerRaspi::on(){
+	void PinControllerRaspi::on(string pinNumber){
 
 		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
 		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
-		/*if (setvalgpio < 0){
+		if (!setvalgpio){
 			cout << " OPERATION FAILED: Unable to set the value of GPIO"<< pinNumber <<" ."<< endl;
-			return -1;
-		}*/
+		}
 
 		setvalgpio << "1" ;//write value to value file
 		setvalgpio.close();// close value file 
-		return 0;
-
-
+		
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	int PinControllerRaspi::off(){
+	void PinControllerRaspi::off(string _pinNumber){
 
 		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
 		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
-		/*if (setvalgpio < 0){
+		if (!setvalgpio){
 			cout << " OPERATION FAILED: Unable to set the value of GPIO"<< pinNumber <<" ."<< endl;
-			return -1;
-		}*/
+		}
 
 		setvalgpio << "0" ;//write value to value file
 		setvalgpio.close();// close value file 
 		
-
-		
-		return 0;
-
-
-
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
