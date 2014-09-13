@@ -22,13 +22,15 @@ namespace dmc {
 		// Write a message to the specified client
 		// Return true on exit, false on fail
 		bool write		(const std::string& _msg);
-		bool isFinished	() const { return mIsFinished; }
 		// Return true if something was read
 		bool read	(std::string& _msg);
 
 		bool isOwned	() const { return mOwned; }
 		void own		() { assert(!mOwned); mOwned = true; }
 		void release	() { assert(mOwned); mOwned = false; }
+		
+		// Returns true if the connection corresponding to this socket is closed
+		bool isFinished	() const { return mIsFinished; }
 
 	private:
 		void listen ();
