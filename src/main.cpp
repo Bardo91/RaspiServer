@@ -26,19 +26,19 @@ int main()
 	string pinState;
 	while (1){
 
-		pinState = pin17.readPin();
-		if (pinState == "0"){
+		//pinState = pin17.readPin();
+		//if (pinState == "0"){
 			
 			pin4.on();
 			cout << "Light" << endl;
-			while (pinState == "0"){
-				pinState = pin17.readPin();
-			}
-		}
-		else{
-			pin4.off();
-			cout << ":(" << endl;
-		}
+	//		while (pinState == "0"){
+	//			pinState = pin17.readPin();
+	//		}
+	//	}
+	//	else{
+	//		pin4.off();
+	//		cout << ":(" << endl;
+	//	}
 
 	}
 
