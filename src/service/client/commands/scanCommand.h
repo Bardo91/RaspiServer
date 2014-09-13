@@ -15,7 +15,7 @@ namespace dmc {
 	class Client;
 	class Message;
 
-	class ScanCommand : public Command {
+	class ScanCommand : public CommandBase<ScanCommand> {
 	public:
 		ScanCommand(unsigned _client, const Message&);
 		void run() override;

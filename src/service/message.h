@@ -26,11 +26,11 @@ namespace dmc {
 			Scan = 0x80,
 			RequestListUpdate = 0x81,
 			ListInfo = 0x82,
-			newDevice = 0x83,
-			updateState = 0x84,
-			roomInfo = 0x85,
-			deviceInfo = 0x86,
-			pairDevToRoom = 0x87,
+			NewDevice = 0x83,
+			UpdateState = 0x84,
+			RoomInfo = 0x85,
+			DeviceInfo = 0x86,
+			PairDevToRoom = 0x87,
 			HandShake = 0x90,
 			RequestClientId = 0x91,
 			SubmitClientId = 0x92,
@@ -39,13 +39,15 @@ namespace dmc {
 
 	public:
 		Message(Client* _sender, const std::string& _rawMessage);
+		Message(Type _command, const std::string& _payload);
 
-		const std::string&	payload	() const { return mPayload;	}
+		const std::string&	payload	() const { return mRaw.substr(2);	}
 		Type				type	() const { return mType;	}
 		bool				isOk	() const { return mType != InvalidMsg; }
 		unsigned			size	() const { return mSize; };
 		
 		void				dump	() const;
+		const std::string&	raw		() const { return mRaw; }
 
 	private:
 		static bool			checkIntegrity	(const std::string& _rawMsg);
@@ -54,7 +56,7 @@ namespace dmc {
 		Client*		mSender;
 		Type		mType;
 		unsigned	mSize;
-		std::string mPayload;
+		std::string mRaw;
 	};
 
 }	// namespace dmc

@@ -10,12 +10,17 @@
 
 namespace dmc {
 
+	class Device;
+
 	class Client {
 	public:
 		Client(unsigned _connectionId);
 		~Client();
 
 		bool update(); // Returns true if the client must be deleted
+
+		// Communications
+		void notifyNewDevice (Device*);
 
 	private:
 		void registerCommands();

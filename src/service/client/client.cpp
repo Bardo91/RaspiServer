@@ -9,6 +9,7 @@
 #include "client.h"
 #include <service/command.h>
 #include <iostream>
+#include <service/client/commands/scanCommand.h>
 #include <service/message.h>
 #include <service/socket/socketMgr.h>
 
@@ -40,7 +41,14 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void Client::registerCommands() {
-		// 666 TODO Register command factories
+		ScanCommand::registerFactory(Message::Scan);
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void Client::notifyNewDevice(Device* _dev) {
+		Message notification(Message::NewDevice, std::string()+char(1)); // 1 device found
+		SocketMgr::get()->write(mId, notification.raw());
+		/// 666 TODO: Keep on with the protocol and send device information
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

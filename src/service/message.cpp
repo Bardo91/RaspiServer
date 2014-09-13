@@ -14,6 +14,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	Message::Message(Client* _sender, const std::string& _rawMessage)
 		:mSender(_sender)
+		,mRaw(_rawMessage)
 	{
 		// Discard invalid messages
 		if(!checkIntegrity(_rawMessage)) {
@@ -23,7 +24,6 @@ namespace dmc {
 
 		mSize = _rawMessage.size();
 		mType = Type(_rawMessage[1]);
-		mPayload = _rawMessage.substr(2);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ namespace dmc {
 		std::cout << "Size = " << mSize << ", Type = 0x"
 			<< std::hex << unsigned(mType) << std::dec << ", Payload = [ ";
 		// Dump payload
-		for(auto byte : mPayload)
+		for(auto byte : payload())
 			std::cout << byte << "(0x" << std::hex << unsigned(byte) << ") " << std::dec;
 		std::cout << "]\n";
 	}

@@ -21,7 +21,7 @@ namespace dmc {
 	void ScanCommand::run() {
 		std::cout << "Run scan command\n";
 		DeviceScanner::get()->startScan([this](Device* _foundDev) {
-			mRequester->foundDevice(_foundDev);
+			mRequester->notifyFoundDevice(_foundDev);
 		});
 
 	}
