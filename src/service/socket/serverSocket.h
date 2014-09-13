@@ -21,7 +21,8 @@ namespace dmc {
 		~ServerSocket();
 		// Write a message to the specified client
 		// Return true on exit, false on fail
-		bool write	(const std::string& _msg);
+		bool write		(const std::string& _msg);
+		bool isFinished	() const { return mIsFinished; }
 		// Return true if something was read
 		bool read	(std::string& _msg);
 
@@ -36,6 +37,7 @@ namespace dmc {
 		int mSocket;
 		bool mOwned;
 		bool mMustClose;
+		bool mIsFinished;
 		std::thread mListenThread;
 		std::mutex mReadLock;
 		std::string mInBuffer;

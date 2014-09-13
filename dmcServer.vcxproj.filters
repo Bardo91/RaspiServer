@@ -37,6 +37,9 @@
     <Filter Include="Source Files\service\scan">
       <UniqueIdentifier>{25cb1fdd-10ef-42b8-a3f5-b77cfbd97425}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\service\client">
+      <UniqueIdentifier>{32d9738c-6c19-4cce-9b46-528459d6cc91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="src\service\scan\deviceScanner.h">
       <Filter>Source Files\service\scan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\service\client\client.h">
+      <Filter>Source Files\service\client</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

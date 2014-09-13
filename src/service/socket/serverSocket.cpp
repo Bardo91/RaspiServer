@@ -28,9 +28,11 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	ServerSocket::ServerSocket(int _socketDescriptor) 
 		:mSocket(_socketDescriptor)
+		,mIsFinished(false)
 	{
 		mListenThread = std::thread([this](){
 			listen();
+			mIsFinished = true;
 		});
 	}
 
