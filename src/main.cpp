@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "peripherals/GPIO/PinController.h"
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 using namespace dmc;
@@ -30,6 +31,8 @@ int main()
 		//if (pinState == "0"){
 			
 			pin4.on(pin4.pinNumber);
+			usleep(500000);
+			pin4.off(pin4.pinNumber);
 	//		while (pinState == "0"){
 	//			pinState = pin17.readPin();
 	//		}
