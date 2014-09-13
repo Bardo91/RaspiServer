@@ -12,8 +12,13 @@ namespace dmc {
 
 	class Client {
 	public:
-		Client();
+		Client(unsigned _connectionId);
+		~Client();
 
+		bool update(); // Returns true if the client must be deleted
+
+	private:
+		unsigned mId;
 	};
 
 }	// namespace dmc

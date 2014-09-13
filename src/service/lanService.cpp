@@ -6,12 +6,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <cassert>
-#include "command.h"
-#include <iostream>
+#include "client/client.h"
 #include "lanService.h"
-#include "message.h"
-#include <string>
+#include "socket/socketMgr.h"
 
 using namespace std;
 
@@ -22,27 +19,21 @@ namespace dmc {
 	LANService::LANService()
 	{
 		SocketMgr::init(PORT);
-		mComServer = SocketMgr::get();
+		SocketMgr::get()->onNewConnection([this](unsigned _connectionId){
+			mClients.insert(new Client(_connectionId));
+		});
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void LANService::update() {
 		// Request received messages
-		std::string message;
-		unsigned client;
-		if(mComServer->readAny(client, message)) { // There are messages to process
-			assert(message.size() > 1);
-			// Debug message
-			cout << "LAN Service received message of type: ";
-			// Create a formatted message from the string
-			Message formatedMessage(message);
-			cout << formatedMessage.type() << "\n";
-			// Create a command using the message
-			Command * requestedCommand = Command::createCommand(formatedMessage);
-			assert(requestedCommand);
-			// run the command
-			requestedCommand->run();
-			delete requestedCommand;
+		for(auto clientIter = mClients.begin(); clientIter != mClients.end();)
+		{
+			if((*clientIter)->update())
+				clientIter++;
+			else // Client is finished
+				clientIter = mClients.erase(clientIter);
 		}
+		
 	}
 }

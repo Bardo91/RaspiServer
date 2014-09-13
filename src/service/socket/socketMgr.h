@@ -47,6 +47,7 @@ namespace dmc {
 		void releaseConnection		(unsigned _client); // Relinquishes ownership of the connection, so it's messages will show in readAny requests again
 		bool closeConnection		(unsigned _client);
 
+		bool isConnectionAlive		(unsigned _client) const;
 		void onNewConnection		(std::function<void(unsigned)>);
 
 	private:

@@ -210,6 +210,11 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	bool SocketMgr::isConnectionAlive(unsigned _clientId) const {
+		return mActiveConnections.find(_clientId) != mActiveConnections.end();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
 	void SocketMgr::onNewConnection(std::function<void(unsigned)> _delegate) {
 		mOnNewConnection = _delegate;
 	}

@@ -8,11 +8,12 @@
 #ifndef _DMCSERVER_SERVICE_LANSERVICE_H_
 #define _DMCSERVER_SERVICE_LANSERVICE_H_
 
-#include "socket/socketMgr.h"
+#include <set>
 #include "scan/deviceScanner.h"
 
 namespace dmc {
 
+	class Client;
 	class ServiceListener;
 
 	class LANService {
@@ -23,8 +24,8 @@ namespace dmc {
 		void update	();
 
 	private:
-		DeviceScanner	mScanner;
-		SocketMgr*		mComServer;
+		std::set<Client*>	mClients;
+		DeviceScanner		mScanner;
 	};
 }
 

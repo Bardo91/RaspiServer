@@ -80,6 +80,7 @@
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
     <ClCompile Include="src\peripherals\plc\SerialLinux.cpp" />
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
+    <ClCompile Include="src\service\client\client.cpp" />
     <ClCompile Include="src\service\command.cpp" />
     <ClCompile Include="src\service\lanService.cpp" />
     <ClCompile Include="src\service\message.cpp" />
