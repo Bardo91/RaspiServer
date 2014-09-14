@@ -64,6 +64,7 @@ namespace dmc {
 		unsigned expectedSize = unsigned(_rawMsg[0]);
 		if(msgSize != expectedSize) {
 			std::cout << "Error: Message size (" << msgSize <<") doesn't match expexted size (" << expectedSize << ")\n";
+			return false;
 		}
 		// Everything is ok
 		return true;
