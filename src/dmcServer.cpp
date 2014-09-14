@@ -69,6 +69,6 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::launchService() {
-		mService = new LANService;
+		mService = LANService::get();
 	}
 }

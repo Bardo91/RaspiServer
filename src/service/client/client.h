@@ -10,21 +10,21 @@
 
 namespace dmc {
 
-	class Device;
+	class Message;
 
 	class Client {
 	public:
 		Client(unsigned _connectionId);
 		~Client();
 
-		bool update(); // Returns true if the client must be deleted
+		bool update				(); // Returns true if the client must be deleted
 
 		// Communications
-		void notifyNewDevice (Device*);
+		void sendMessage		(const Message&) const;
 
 	private:
-		void registerCommands();
-		void readMessage();
+		void registerCommands	();
+		void readMessage		();
 
 		unsigned mId;
 	};

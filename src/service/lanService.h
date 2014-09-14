@@ -13,17 +13,23 @@
 namespace dmc {
 
 	class Client;
+	class Message;
 	class ServiceListener;
 
 	class LANService {
 	public:
-		LANService();
+		static LANService* get();
 
 		// Listeners interface
-		void update	();
+		void update		();
+		void broadCast	(const Message&) const;
+
+	private:
+		LANService();
 
 	private:
 		std::set<Client*>	mClients;
+		static LANService*	sInstance;
 	};
 }
 

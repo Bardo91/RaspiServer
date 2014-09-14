@@ -46,9 +46,8 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void Client::notifyNewDevice(Device*) {
-		Message notification(Message::NewDevice, std::string()+char(1)); // 1 device found
-		SocketMgr::get()->write(mId, notification.raw());
+	void Client::sendMessage(const Message& _msg) const {
+		SocketMgr::get()->write(mId, _msg.raw());
 		/// 666 TODO: Keep on with the protocol and send device information
 	}
 

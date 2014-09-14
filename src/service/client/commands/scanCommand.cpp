@@ -8,7 +8,9 @@
 #include <iostream>
 #include "scanCommand.h"
 #include <service/client/client.h>
+#include <service/message.h>
 #include <service/scan/deviceScanner.h>
+#include <service/lanService.h>
 
 namespace dmc {
 
@@ -22,8 +24,9 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void ScanCommand::run() {
 		std::cout << "Run scan command\n";
-		DeviceScanner::get()->startScan([this](Device* _foundDev) {
-			mRequester->notifyNewDevice(_foundDev);
+		DeviceScanner::get()->startScan([this](Device*) {
+			Message notification(Message::NewDevice, std::string()+char(1)); // 1 device found
+			LANService::get()->broadCast(notification);
 		});
 
 	}

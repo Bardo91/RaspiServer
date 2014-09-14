@@ -15,6 +15,15 @@ using namespace std;
 namespace dmc {
 	const unsigned int PORT = 5028;
 
+	LANService* LANService::sInstance = nullptr;
+
+	//------------------------------------------------------------------------------------------------------------------
+	LANService* LANService::get() {
+		if(!sInstance)
+			sInstance = new LANService;
+		return sInstance;
+	}
+
 	//------------------------------------------------------------------------------------------------------------------
 	LANService::LANService()
 	{
@@ -35,6 +44,13 @@ namespace dmc {
 				clientIter++;
 			else // Client is finished
 				clientIter = mClients.erase(clientIter);
+		}
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void LANService::broadCast(const Message& _msg) const {
+		for(auto client : mClients) {
+			client->sendMessage(_msg);
 		}
 	}
 }
