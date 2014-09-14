@@ -19,10 +19,6 @@ namespace dmc{
 	public:
 		PinControllerRaspi(std::string _Pin); // _PinNumber is passed by the constructor, it also export the pin number.
 		
-		void on		(std::string _pinNumber);//Put this in Led.h 
-		void off	(std::string _pinNumber);//Put this in Led.h 
-
-	//protected:
 		void		exportPin	(std::string _Pin);
 		void		unexportPin	(std::string _Pin);
 		std::string	readPin		();

@@ -12,6 +12,22 @@
 
 namespace dmc{
 
+	class BackButton {
+	public:
+
+		BackButton();
+
+		void onShortPulse();
+		void onLongPulse();
+		void setPulseThreshold();
+	
+		~BackButton();
+
+	private:
+		PinController ButtonPin;
+
+
+	};
 
 } //namespace dmc
 
