@@ -20,11 +20,11 @@ int main(void)
 
 	while (1){
 
-			light.Led::on();
+			light.on();
 			cout << "Now is on" << endl;
 			usleep(50000);
 			
-			light.Led::off();
+			light.off();
 			cout << "Now is off" << endl;
  			usleep(50000);
 
