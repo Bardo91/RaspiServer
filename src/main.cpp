@@ -5,7 +5,8 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#include "peripherals/GPIO/PinController.h"
+#include "peripherals/GPIO/Pin.h"
+#include "peripherals\GPIO\Led.h"
 #include <iostream>
 #include <unistd.h>
 
@@ -15,32 +16,17 @@ using namespace dmc;
 //----------------------------------------------------------------------------------------------------------------------
 int main()
 {
-	//Testing GPIO
-	//it also call the function to export the pins into the specific file
-	PinController pin4("4");
-	PinController pin17("17");
+	Led light("4");
 
-	pin4.outPutPin();
-	pin17.inputPin();
-	cout << "Everything is set, push that button baby!" << endl;
-
-	string pinState;
 	while (1){
 
-		//pinState = pin17.readPin();
-		//if (pinState == "0"){
+			light.on();
+			cout << "Now is on" << endl;
+			usleep(50000);
 			
-			pin4.on(pin4.pinNumber);
-			usleep(500000);
-			pin4.off(pin4.pinNumber);
-	//		while (pinState == "0"){
-	//			pinState = pin17.readPin();
-	//		}
-	//	}
-	//	else{
-	//		pin4.off();
-	//		cout << ":(" << endl;
-	//	}
+			light.off();
+			cout << "Now is off" << endl;
+ 			usleep(50000);
 
 	}
 

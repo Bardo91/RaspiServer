@@ -14,12 +14,11 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	BackButton::BackButton() : ButtonPin("17"){
+	BackButton::BackButton(std::string _Pin) : ButtonPin(_Pin){
 	
-		ButtonPin.exportPin(ButtonPin.pinNumber);
-		ButtonPin.inputPin();
+		ButtonPin.input();
 
-		}
+	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void BackButton::onLongPulse(){
@@ -32,14 +31,15 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void BackButton::setPulseThreshold(){
+	void BackButton::setPulseThreshold(unsigned _pulseValue){
 
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	BackButton::~BackButton(){
 
-		ButtonPin.unexportPin(ButtonPin.pinNumber);
-	
 	}
+
+	//------------------------------------------------------------------------------------------------------------------
+
 } //namespace dmc

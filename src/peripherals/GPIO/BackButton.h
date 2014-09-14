@@ -8,24 +8,24 @@
 #ifndef _DMCSERVER_PERIPHERALS_BACKBUTTON_H_
 #define _DMCSERVER_PERIPHERALS_BACKBUTTON_H_
 
-#include "PinController.h"
+#include "Pin.h"
 
 namespace dmc{
 
 	class BackButton {
 	public:
 
-		BackButton();
+		BackButton(std::string _Pin); //hilo monitoreando el pin
 
-		void onShortPulse();
-		void onLongPulse();
-		void setPulseThreshold();
+		
+		void setPulseThreshold(unsigned _pulseValue);	// TODO 666 implement these functions
 	
 		~BackButton();
 
-	private:
-		PinController ButtonPin;
-
+	private: 
+		Pin ButtonPin;
+		void onShortPulse();							// TODO 666 implement these functions
+		void onLongPulse();								// TODO 666 implement these functions
 
 	};
 

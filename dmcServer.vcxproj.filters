@@ -60,16 +60,16 @@
     <ClCompile Include="src\peripherals\plc\SerialLinux.cpp">
       <Filter>Source Files\peripherals\plc</Filter>
     </ClCompile>
-    <ClCompile Include="src\peripherals\GPIO\PinControllerRaspi.cpp">
-      <Filter>Source Files\peripherals\GPIO</Filter>
-    </ClCompile>
-    <ClCompile Include="src\peripherals\GPIO\PinControllerWin32.cpp">
-      <Filter>Source Files\peripherals\GPIO</Filter>
-    </ClCompile>
     <ClCompile Include="src\peripherals\GPIO\Led.cpp">
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClCompile>
     <ClCompile Include="src\peripherals\GPIO\BackButton.cpp">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\peripherals\GPIO\PinRaspi.cpp">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\peripherals\GPIO\PinWin32.cpp">
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,19 +107,19 @@
     <ClInclude Include="src\peripherals\plc\SerialLinux.h">
       <Filter>Source Files\peripherals\plc</Filter>
     </ClInclude>
-    <ClInclude Include="src\peripherals\GPIO\PinControllerWin32.h">
-      <Filter>Source Files\peripherals\GPIO</Filter>
-    </ClInclude>
-    <ClInclude Include="src\peripherals\GPIO\PinControllerRaspi.h">
-      <Filter>Source Files\peripherals\GPIO</Filter>
-    </ClInclude>
-    <ClInclude Include="src\peripherals\GPIO\PinController.h">
-      <Filter>Source Files\peripherals\GPIO</Filter>
-    </ClInclude>
     <ClInclude Include="src\peripherals\GPIO\Led.h">
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClInclude>
     <ClInclude Include="src\peripherals\GPIO\BackButton.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\Pin.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\PinRaspi.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\PinWin32.h">
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClInclude>
   </ItemGroup>

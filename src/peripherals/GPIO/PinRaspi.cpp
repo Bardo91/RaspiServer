@@ -6,25 +6,34 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifdef __Raspi__
-#include "PinControllerRaspi.h"
+#include "PinRaspi.h"
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <assert.h>
 
 using namespace std;
 
 namespace dmc{
 
 	//------------------------------------------------------------------------------------------------------------------
-	PinControllerRaspi::PinControllerRaspi(string _Pin){
+	PinRaspi::PinRaspi(string _Pin){
 		
-		pinNumber = _Pin; //variable that is gonna be used several times in Led and Backbutton 
+		pinNumber = _Pin; 
+		assert(_Pin != "18"); //PWM pin
+		export(pinNumber);
+		
+	}
 	
+	//------------------------------------------------------------------------------------------------------------------
+	PinRaspi::~PinRaspi(){
+
+		unexport(pinNumber);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void PinControllerRaspi::exportPin(string _Pin){
+	void PinRaspi::export(string _Pin){
 	
 		string export_str = "/sys/class/gpio/export";
 		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
@@ -38,7 +47,7 @@ namespace dmc{
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void PinControllerRaspi::unexportPin(string _Pin){
+	void PinRaspi::unexport(string _Pin){
 
 		string export_str = "/sys/class/gpio/unexport";
 		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
@@ -52,7 +61,7 @@ namespace dmc{
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------
-	string PinControllerRaspi::readPin(){
+	bool PinRaspi::read(){
 		string val;
 		string getval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
 		ifstream getvalgpio(getval_str.c_str());// open value file for gpio
@@ -68,13 +77,13 @@ namespace dmc{
 			val = "0";
 
 		getvalgpio.close(); //close the value file
-		return val;
+		return true;
 					
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	void PinControllerRaspi::inputPin(){
+	void PinRaspi::input(){
 	
 		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
@@ -89,7 +98,7 @@ namespace dmc{
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	void PinControllerRaspi::outPutPin(){
+	void PinRaspi::outPut(){
 
 		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
@@ -103,6 +112,34 @@ namespace dmc{
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	void PinRaspi::setHigh(){
+
+		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
+		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
+		if (!setvalgpio){
+			cout << " OPERATION FAILED: Unable to set the value of GPIO" << pinNumber << " ." << endl;
+		}
+
+		setvalgpio << "1";//write value to value file
+		setvalgpio.close();// close value file 
+
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void PinRaspi::setLow(){
+
+		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
+		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
+		if (!setvalgpio){
+			cout << " OPERATION FAILED: Unable to set the value of GPIO" << pinNumber << " ." << endl;
+		}
+
+		setvalgpio << "0";//write value to value file
+		setvalgpio.close();// close value file 
+
+	}
+	//------------------------------------------------------------------------------------------------------------------
+
 } //namespace dmc
 
 #endif // __linux__

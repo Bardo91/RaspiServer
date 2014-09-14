@@ -6,19 +6,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifdef _WIN32
-#include "PinControllerWin32.h"
+#include "PinWin32.h"
 #include <string>
 
 using namespace std;
 
 namespace dmc{
 
-	PinControllerWin32::PinControllerWin32(string _Pin){
 	
-		//exportPin(_Pin);
-		//unexportPin(_Pin);
-
-	}
 
 
 

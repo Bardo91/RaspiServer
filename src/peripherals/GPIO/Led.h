@@ -8,23 +8,22 @@
 #ifndef _DMCSERVER_PERIPHERALS_LED_H_
 #define _DMCSERVER_PERIPHERALS_LED_H_
 
-#include "PinController.h"
+#include "Pin.h"
 
 namespace dmc{
 	
 	class Led{
 	public:
-		Led(); //constructor
-		
-		void on				();
-		void off			();
-		void dimmer			();
-		void sineWaveForm	();
-
+		Led(std::string _Pin ); //constructor
 		~Led(); //Destructor
 
+		void on				();
+		void off			();
+		void dimmer			();//TODO 666 implement these functions
+		void sineWaveForm	();//TODO 666 implement these functions
+		
 	private:
-		PinController ledPin;
+		Pin ledPin;
 
 
 	};

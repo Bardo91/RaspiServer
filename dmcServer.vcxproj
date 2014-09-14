@@ -106,8 +106,8 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\peripherals\GPIO\BackButton.cpp" />
     <ClCompile Include="src\peripherals\GPIO\Led.cpp" />
-    <ClCompile Include="src\peripherals\GPIO\PinControllerRaspi.cpp" />
-    <ClCompile Include="src\peripherals\GPIO\PinControllerWin32.cpp" />
+    <ClCompile Include="src\peripherals\GPIO\PinRaspi.cpp" />
+    <ClCompile Include="src\peripherals\GPIO\PinWin32.cpp" />
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
     <ClCompile Include="src\peripherals\plc\SerialLinux.cpp" />
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
@@ -120,9 +120,9 @@
     <ClInclude Include="src\dmcServer.h" />
     <ClInclude Include="src\peripherals\GPIO\BackButton.h" />
     <ClInclude Include="src\peripherals\GPIO\Led.h" />
-    <ClInclude Include="src\peripherals\GPIO\PinController.h" />
-    <ClInclude Include="src\peripherals\GPIO\PinControllerRaspi.h" />
-    <ClInclude Include="src\peripherals\GPIO\PinControllerWin32.h" />
+    <ClInclude Include="src\peripherals\GPIO\Pin.h" />
+    <ClInclude Include="src\peripherals\GPIO\PinRaspi.h" />
+    <ClInclude Include="src\peripherals\GPIO\PinWin32.h" />
     <ClInclude Include="src\peripherals\plc\plcDriver.h" />
     <ClInclude Include="src\peripherals\plc\serial.h" />
     <ClInclude Include="src\peripherals\plc\SerialLinux.h" />
