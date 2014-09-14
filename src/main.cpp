@@ -22,11 +22,11 @@ int main(void)
 
 			light.on();
 			cout << "Now is on" << endl;
-			usleep(50000);
+			sleep(5);
 			
 			light.off();
 			cout << "Now is off" << endl;
- 			usleep(50000);
+ 			sleep(5);
 
 	}
 
