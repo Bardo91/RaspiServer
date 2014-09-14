@@ -45,6 +45,7 @@ namespace dmc {
 		Type				type	() const { return mType;	}
 		bool				isOk	() const { return mType != InvalidMsg; }
 		unsigned			size	() const { return mSize; };
+		Client*				sender	() const { return mSender; }
 		
 		void				dump	() const;
 		const std::string&	raw		() const { return mRaw; }

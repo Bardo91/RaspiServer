@@ -21,6 +21,7 @@ namespace dmc {
 	{
 		std::cout << "New Client listening on port " << _connectionId << "\n";
 		SocketMgr::get()->ownConnection(_connectionId);
+		registerCommands();
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -66,7 +67,10 @@ namespace dmc {
 			}
 			// Create a command using the message
 			Command * requestedCommand = Command::createCommand(formatedMessage);
-			assert(requestedCommand);
+			if(!requestedCommand) {
+				std::cout << "Error: Unable to create command of message of type 0x" << std::hex << formatedMessage.type() << std::dec << "\n";
+				return;
+			}
 			// run the command
 			requestedCommand->run();
 			delete requestedCommand;

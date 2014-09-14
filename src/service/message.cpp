@@ -25,7 +25,7 @@ namespace dmc {
 		}
 
 		mSize = _rawMessage.size();
-		mType = Type(_rawMessage[1]);
+		mType = Type(uint8_t(_rawMessage[1]));
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ namespace dmc {
 		:mType(_command)
 	{
 		mSize = 2+_payload.size(); // Make room for size byte and command byte
-		mRaw.reserve(mSize);
+		mRaw.resize(2);
 		assert(mSize < 256);
 		// Compose raw
 		mRaw[0] = uint8_t(mSize);
