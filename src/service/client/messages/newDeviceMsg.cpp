@@ -11,10 +11,13 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	NewDeviceMsg::NewDeviceMsg(const Device& _dev) {
-
-		std::string devName = _dev.name();
-
+	NewDeviceMsg::NewDeviceMsg(const Device& _dev)
+		:Message(Type::DeviceInfo, "")
+	{
+		mRaw += char(_dev.type());
+		mRaw += char(_dev.id()); 
+		mRaw += _dev.name();
+		mSize = mRaw.size();
 	}
 
 }

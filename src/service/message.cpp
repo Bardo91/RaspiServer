@@ -30,7 +30,8 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	Message::Message(Type _command, const std::string& _payload)
-		:mType(_command)
+		: mSender(nullptr)
+		, mType(_command)
 	{
 		mSize = 2+_payload.size(); // Make room for size byte and command byte
 		mRaw.resize(2);
