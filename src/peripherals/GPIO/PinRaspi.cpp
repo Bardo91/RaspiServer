@@ -22,18 +22,18 @@ namespace dmc{
 		
 		pinNumber = _Pin; 
 		assert(_Pin != "18"); //PWM pin
-		export(pinNumber);
+		exportPin(pinNumber);
 		
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------
 	PinRaspi::~PinRaspi(){
 
-		unexport(pinNumber);
+		unexportPin(pinNumber);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void PinRaspi::export(string _Pin){
+	void PinRaspi::exportPin(string _Pin){
 	
 		string export_str = "/sys/class/gpio/export";
 		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
@@ -47,7 +47,7 @@ namespace dmc{
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void PinRaspi::unexport(string _Pin){
+	void PinRaspi::unexportPin(string _Pin){
 
 		string export_str = "/sys/class/gpio/unexport";
 		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
