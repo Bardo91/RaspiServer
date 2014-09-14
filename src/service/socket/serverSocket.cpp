@@ -38,6 +38,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	ServerSocket::~ServerSocket() {
+		assert(mListenThread.get_id() != std::this_thread::get_id()); // Ensure it's not this thread trying to delete itself
 		mMustClose = true;
 		assert(mListenThread.joinable());
 		mListenThread.join();

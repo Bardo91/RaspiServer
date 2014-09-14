@@ -25,6 +25,7 @@
 #include <mutex>
 #include <string>
 #include <thread>
+#include <vector>
 
 namespace dmc {
 
@@ -36,25 +37,28 @@ namespace dmc {
 		static void			init	(unsigned _port);
 		static SocketMgr*	get		();
 
+		void		update					(); // House keeping
+
 		// Write a message to the specified client
 		// Return true on exit, false on fail
-		bool write					(unsigned _clientId, const std::string& _msg) const;
+		bool		write					(unsigned _clientId, const std::string& _msg) const;
 		// Return true if we read anything from anyone
-		bool readAny				(unsigned& _client, std::string& _msg) const;
-		bool readFrom				(unsigned _client, std::string& _msg) const;
+		bool		readAny					(unsigned& _client, std::string& _msg) const;
+		bool		readFrom				(unsigned _client, std::string& _msg) const;
 
-		void ownConnection			(unsigned _client); // Prevents messages from this client to be catched by readAny
-		void releaseConnection		(unsigned _client); // Relinquishes ownership of the connection, so it's messages will show in readAny requests again
-		bool closeConnection		(unsigned _client);
+		void		ownConnection			(unsigned _client); // Prevents messages from this client to be catched by readAny
+		void		releaseConnection		(unsigned _client); // Relinquishes ownership of the connection, so it's messages will show in readAny requests again
+		bool		closeConnection			(unsigned _client);
 
-		bool isConnectionAlive		(unsigned _client) const;
-		void onNewConnection		(std::function<void(unsigned)>);
+		bool		isConnectionAlive		(unsigned _client) const;
+		void		onNewConnection			(std::function<void(unsigned)>);
 
 	private:
-		SocketMgr					(unsigned _port);
-		addrinfo*	buildAddresInfo	(unsigned _port);
-		void		startListening	(const addrinfo* _socketAddress);
-		void		createConnection(int _socketDesc);
+		SocketMgr							(unsigned _port);
+		addrinfo*	buildAddresInfo			(unsigned _port);
+		void		startListening			(const addrinfo* _socketAddress);
+		void		createConnection		(int _socketDesc);
+		void		cleanDeadConnections	();
 
 	private:
 		unsigned							mPort;
@@ -63,6 +67,7 @@ namespace dmc {
 		std::function<void(unsigned)>		mOnNewConnection;
 		std::thread							mListenThread;
 		std::map<unsigned, ServerSocket*>	mActiveConnections;
+		std::vector<ServerSocket*>			mDeadConnections;
 
 		static SocketMgr*	sInstance;
 	};

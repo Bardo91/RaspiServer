@@ -41,6 +41,11 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	void SocketMgr::update() {
+		cleanDeadConnections();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
 	SocketMgr::SocketMgr(unsigned _port)
 		:mPort(_port)
 		,mOnNewConnection([](unsigned){}) // Default empty delegate
@@ -162,6 +167,13 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	void SocketMgr::cleanDeadConnections() {
+		for(auto deadConn : mDeadConnections)
+			delete deadConn;
+		mDeadConnections.clear();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
 	void SocketMgr::ownConnection(unsigned _clientId) {
 		// Is there such client between active connections?
 		mConMutex.lock();
@@ -203,8 +215,9 @@ namespace dmc {
 			return false; // No client known by that id
 		}
 
-		delete connectionIter->second;
-		mActiveConnections.erase(connectionIter);
+		ServerSocket* closedConn = connectionIter->second;
+		mDeadConnections.push_back(closedConn); // Ensure connections only get closed by the main thread
+		mActiveConnections.erase(connectionIter); // Remove it from the list of active connections
 		mConMutex.unlock();
 		return true;
 	}

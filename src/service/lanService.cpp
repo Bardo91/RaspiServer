@@ -26,6 +26,8 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void LANService::update() {
+		// Update socket manager
+		SocketMgr::get()->update();
 		// Request received messages
 		for(auto clientIter = mClients.begin(); clientIter != mClients.end();)
 		{
