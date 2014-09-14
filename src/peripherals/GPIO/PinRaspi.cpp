@@ -62,6 +62,7 @@ namespace dmc{
 	
 	//------------------------------------------------------------------------------------------------------------------
 	bool PinRaspi::read(){
+
 		string val;
 		string getval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
 		ifstream getvalgpio(getval_str.c_str());// open value file for gpio
@@ -82,7 +83,6 @@ namespace dmc{
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-
 	void PinRaspi::input(){
 	
 		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
@@ -97,7 +97,6 @@ namespace dmc{
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-
 	void PinRaspi::outPut(){
 
 		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";

@@ -19,13 +19,12 @@ namespace dmc{
 
 		
 		void setPulseThreshold(unsigned _pulseValue);	// TODO 666 implement these functions
-	
-		~BackButton();
+		void onShortPulse();							// TODO 666 implement these functions
+		void onLongPulse();								// TODO 666 implement these functions
 
 	private: 
 		Pin ButtonPin;
-		void onShortPulse();							// TODO 666 implement these functions
-		void onLongPulse();								// TODO 666 implement these functions
+		
 
 	};
 

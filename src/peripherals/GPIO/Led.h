@@ -15,7 +15,7 @@ namespace dmc{
 	class Led{
 	public:
 		Led(std::string _Pin); //constructor
-		//~Led(); //Destructor
+		
 
 		void on				();
 		void off			();
