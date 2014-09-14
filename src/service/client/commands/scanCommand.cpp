@@ -25,6 +25,7 @@ namespace dmc {
 	void ScanCommand::run() {
 		std::cout << "Run scan command\n";
 		DeviceScanner::get()->startScan([this](Device*) {
+			DeviceScanner::get()->stopScan(); // Done scanning, just one device at a time
 			Message notification(Message::NewDevice, std::string()+char(1)); // 1 device found
 			LANService::get()->broadCast(notification);
 		});
