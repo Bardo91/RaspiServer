@@ -43,6 +43,9 @@
     <Filter Include="Source Files\service\client\commands">
       <UniqueIdentifier>{efb41bc0-aefd-4ba1-ba12-581a9ca2b9c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\service\client\messages">
+      <UniqueIdentifier>{4582566e-107d-4c2d-bf6f-d87e3cb424ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="src\service\client\commands\scanCommand.cpp">
       <Filter>Source Files\service\client\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="src\service\client\messages\newDeviceMsg.cpp">
+      <Filter>Source Files\service\client\messages</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="src\service\client\commands\scanCommand.h">
       <Filter>Source Files\service\client\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="src\service\client\messages\newDeviceMsg.h">
+      <Filter>Source Files\service\client\messages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
