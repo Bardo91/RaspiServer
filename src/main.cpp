@@ -14,17 +14,17 @@ using namespace std;
 using namespace dmc;
 
 //----------------------------------------------------------------------------------------------------------------------
-int main()
+int main(void)
 {
 	Led light("4");
 
 	while (1){
 
-			light.on();
+			light.Led::on();
 			cout << "Now is on" << endl;
 			usleep(50000);
 			
-			light.off();
+			light.Led::off();
 			cout << "Now is off" << endl;
  			usleep(50000);
 
