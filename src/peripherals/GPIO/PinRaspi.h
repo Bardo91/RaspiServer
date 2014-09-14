@@ -25,10 +25,11 @@ namespace dmc{
 		void		outPut		();
 		void		setHigh		();
 		void		setLow		();
+
 	private:
-		std::string	pinNumber; 
-		void		export		(std::string _Pin);
-		void		unexport	(std::string _Pin);
+		string		pinNumber; 
+		void		export		(string _Pin);
+		void		unexport	(string _Pin);
 
 	};
 
