@@ -15,13 +15,15 @@ CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/service/socket/serverSocket.cpp \
 	$(SRC_DIR)/peripherals/plc/plcDriver.cpp \
 	$(SRC_DIR)/peripherals/plc/SerialLinux.cpp \
-
-
+	$(SRC_DIR)/peripherals/GPIO/PinRaspi.cpp \
+	$(SRC_DIR)/peripherals/GPIO/Led.cpp \
+		
 CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
 TEMP_FILES := $(CXX_OBJ)
 
 # -- Build variables --
-PREPROCESSOR_DEFINITIONS := $(PLATFROM_DEFINITIONS)
+PLATFORM_DEFINITIONS := -D__Raspi__
+PREPROCESSOR_DEFINITIONS := $(PLATFORM_DEFINITIONS)
 WARNING_FLAGS := -Wall -Werror
 INCLUDE_FLAGS :=  -I$(SRC_DIR)
 CXX_COMPILE_FLAGS := -std=c++11 -fno-rtti -fno-exceptions -pthread

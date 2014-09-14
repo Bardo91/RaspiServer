@@ -5,19 +5,30 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#include "dmcServer.h"
+#include "peripherals/GPIO/Pin.h"
+#include "peripherals/GPIO/Led.h"
+#include <iostream>
+#include <unistd.h>
 
+using namespace std;
 using namespace dmc;
 
 //----------------------------------------------------------------------------------------------------------------------
-int main(int _argc, const char** _argv)
+int main(void)
 {
-	// Create application
-	DmcServer mainApplication(_argc, _argv);
+	Led light("4");
 
-	// Run service as long as posible
-	while(mainApplication.update())
-	{}
+	while (1){
+
+			light.on();
+			cout << "Now is on" << endl;
+			sleep(2);
+			
+			light.off();
+			cout << "Now is off" << endl;
+ 			sleep(2);
+
+	}
 
 	return 0;
 }
