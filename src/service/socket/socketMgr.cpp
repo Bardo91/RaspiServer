@@ -69,6 +69,7 @@ namespace dmc {
 		auto connectionIter = mActiveConnections.find(_clientId);
 		if(connectionIter == mActiveConnections.end()) {
 			mConMutex.unlock();
+			std::cout << "Warning: Trying to write to inexistent client " << _clientId << "\n";
 			return false; // No client known by that id
 		}
 
