@@ -104,6 +104,8 @@
   <ItemGroup>
     <ClCompile Include="src\dmcServer.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\peripherals\GPIO\BackButton.cpp" />
+    <ClCompile Include="src\peripherals\GPIO\Led.cpp" />
     <ClCompile Include="src\peripherals\GPIO\PinControllerRaspi.cpp" />
     <ClCompile Include="src\peripherals\GPIO\PinControllerWin32.cpp" />
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
@@ -116,6 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h" />
+    <ClInclude Include="src\peripherals\GPIO\BackButton.h" />
+    <ClInclude Include="src\peripherals\GPIO\Led.h" />
     <ClInclude Include="src\peripherals\GPIO\PinController.h" />
     <ClInclude Include="src\peripherals\GPIO\PinControllerRaspi.h" />
     <ClInclude Include="src\peripherals\GPIO\PinControllerWin32.h" />

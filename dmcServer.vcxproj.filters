@@ -66,6 +66,12 @@
     <ClCompile Include="src\peripherals\GPIO\PinControllerWin32.cpp">
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClCompile>
+    <ClCompile Include="src\peripherals\GPIO\Led.cpp">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClCompile>
+    <ClCompile Include="src\peripherals\GPIO\BackButton.cpp">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">
@@ -108,6 +114,12 @@
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClInclude>
     <ClInclude Include="src\peripherals\GPIO\PinController.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\Led.h">
+      <Filter>Source Files\peripherals\GPIO</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\GPIO\BackButton.h">
       <Filter>Source Files\peripherals\GPIO</Filter>
     </ClInclude>
   </ItemGroup>

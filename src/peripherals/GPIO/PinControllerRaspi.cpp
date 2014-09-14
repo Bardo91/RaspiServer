@@ -18,9 +18,9 @@ namespace dmc{
 
 	//------------------------------------------------------------------------------------------------------------------
 	PinControllerRaspi::PinControllerRaspi(string _Pin){
-		exportPin(_Pin);
-		//unexportPin(_Pin); //TODO 666 implement this
-		pinNumber = _Pin;
+		
+		pinNumber = _Pin; //variable that is gonna be used several times in Led and Backbutton 
+	
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -36,9 +36,22 @@ namespace dmc{
 		exportgpio.close(); //close export file
 		
 	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void PinControllerRaspi::unexportPin(string _Pin){
+
+		string export_str = "/sys/class/gpio/unexport";
+		ofstream exportgpio(export_str.c_str()); // Open "export" file. Convert C++ string to C string. Required for all Linux pathnames
+		if (!exportgpio){
+			cout << " OPERATION FAILED: Unable to export GPIO" << _Pin << " ." << endl;
+		}
+
+		exportgpio << _Pin; //write GPIO number to export
+		exportgpio.close(); //close export file
+
+	}
 	
 	//------------------------------------------------------------------------------------------------------------------
-	
 	string PinControllerRaspi::readPin(){
 		string val;
 		string getval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
@@ -90,36 +103,6 @@ namespace dmc{
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-
-	void PinControllerRaspi::on(string pinNumber){
-
-		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
-		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
-		if (!setvalgpio){
-			cout << " OPERATION FAILED: Unable to set the value of GPIO"<< pinNumber <<" ."<< endl;
-		}
-
-		setvalgpio << "1" ;//write value to value file
-		setvalgpio.close();// close value file 
-		
-	}
-
-	//------------------------------------------------------------------------------------------------------------------
-
-	void PinControllerRaspi::off(string _pinNumber){
-
-		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
-		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
-		if (!setvalgpio){
-			cout << " OPERATION FAILED: Unable to set the value of GPIO"<< pinNumber <<" ."<< endl;
-		}
-
-		setvalgpio << "0" ;//write value to value file
-		setvalgpio.close();// close value file 
-		
-	}
-
-	//------------------------------------------------------------------------------------------------------------------
-}
+} //namespace dmc
 
 #endif // __linux__

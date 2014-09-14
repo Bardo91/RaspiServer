@@ -20,11 +20,9 @@ namespace dmc {
 	public:	
 		PinController(string _Pin) : PinControllerBase(_Pin) {}
 		
-
-		
+	
 	};
 
-	//Led and BackButton
 
 }	// namespace dmc
 
