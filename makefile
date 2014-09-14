@@ -15,7 +15,7 @@ CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/service/socket/serverSocket.cpp \
 	$(SRC_DIR)/peripherals/plc/plcDriver.cpp \
 	$(SRC_DIR)/peripherals/plc/SerialLinux.cpp \
-	$(SRC_DIR)/peripherals/GPIO/PinControllerRaspi.cpp \
+	$(SRC_DIR)/peripherals/GPIO/PinRaspi.cpp \
 	
 CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
 TEMP_FILES := $(CXX_OBJ)
