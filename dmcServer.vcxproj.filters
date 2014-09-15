@@ -96,6 +96,9 @@
     <ClCompile Include="src\service\client\commands\scanCommand.cpp">
       <Filter>Source Files\service\client\commands</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\time.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">
@@ -149,7 +152,7 @@
     <ClInclude Include="src\service\client\commands\scanCommand.h">
       <Filter>Source Files\service\client\commands</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\Time.h">
+    <ClInclude Include="src\core\time.h">
       <Filter>Source Files\core</Filter>
     </ClInclude>
   </ItemGroup>
