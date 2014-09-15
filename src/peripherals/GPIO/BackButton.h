@@ -16,15 +16,17 @@ namespace dmc{
 	public:
 
 		BackButton(std::string _Pin); //hilo monitoreando el pin
-
+		~BackButton();
 		
-		void setPulseThreshold(unsigned _pulseValue);	// TODO 666 implement these functions
 		void onShortPulse();							// TODO 666 implement these functions
 		void onLongPulse();								// TODO 666 implement these functions
 
 	private: 
-		Pin ButtonPin;
-		
+		Pin			ButtonPin;
+		std::thread mThread;
+		bool		mMustClose		= false;
+		double		mPulseDuration;
+		double		mThresHold		= 34;
 
 	};
 
