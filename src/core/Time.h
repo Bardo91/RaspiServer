@@ -32,7 +32,7 @@ namespace dmc {
 		Time();
 	private:
 		// Singleton instance
-		static Time* sTime; // Static data definition
+		static Time* sInstance; // Static data definition
 		// members
 		#if defined(__linux__)
 			timeval mInitTime;
@@ -43,7 +43,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	inline Time * Time::get() {
-		return sTime;
+		return sInstance;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
