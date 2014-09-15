@@ -43,6 +43,9 @@
     <Filter Include="Source Files\service\client\commands">
       <UniqueIdentifier>{efb41bc0-aefd-4ba1-ba12-581a9ca2b9c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{1864e95f-3093-4ee7-be93-51e2b40980bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="src\service\client\commands\scanCommand.h">
       <Filter>Source Files\service\client\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Time.h">
+      <Filter>Source Files\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

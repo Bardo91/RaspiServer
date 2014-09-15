@@ -90,6 +90,7 @@
     <ClCompile Include="src\service\socket\socketMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\Time.h" />
     <ClInclude Include="src\device\device.h" />
     <ClInclude Include="src\device\deviceMgr.h" />
     <ClInclude Include="src\device\plc\dmcCommand.h" />
