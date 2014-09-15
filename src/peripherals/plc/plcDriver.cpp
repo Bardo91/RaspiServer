@@ -41,8 +41,7 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void PLCDriver::sendCommand(unsigned _devId, const std::string& _payload) {
-		_devId; // Unused argument
+	void PLCDriver::sendCommand(unsigned, const std::string& _payload) {
 		if(mCom.write(_payload.c_str(), _payload.size() < _payload.size()))
 			cout << "Error: Unable to send message to PLC modem\n";
 	}
