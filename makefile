@@ -17,11 +17,11 @@ CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/peripherals/plc/SerialLinux.cpp \
 	$(SRC_DIR)/peripherals/GPIO/PinRaspi.cpp \
 	$(SRC_DIR)/peripherals/GPIO/Led.cpp \
-	$(SRC_DIR)/device/deviceMgr.cpp \
 	$(SRC_DIR)/service/client/client.cpp \
 	$(SRC_DIR)/service/commands/scanCommand.cpp \
 	$(SRC_DIR)/service/scan/deviceScanner.cpp \
-	
+	$(SRC_DIR)/core/time.cpp \
+
 	
 		
 CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
