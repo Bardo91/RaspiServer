@@ -10,7 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "core/time.h"
+#include <core/time.h>
 #include <service/scan/deviceScanner.h>
 #include <service/client/commands/scanCommand.h>
 #include <service/lanService.h>
