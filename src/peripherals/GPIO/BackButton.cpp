@@ -11,6 +11,7 @@
 #include <fstream>
 #include <sstream>
 #include <thread>
+#include "core/time.h"
 
 namespace dmc {
 
