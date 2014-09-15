@@ -18,16 +18,10 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	// Method implementations
 	//------------------------------------------------------------------------------------------------------------------
-	void Time::init() {
-		assert(sInstance == nullptr);
-		sInstance = new Time();
-	}
-
-	//------------------------------------------------------------------------------------------------------------------
-	void Time::end() {
-		assert(sInstance != nullptr);
-		delete sInstance;
-		sInstance = nullptr;
+	Time* Time::get() {
+		if(!sInstance)
+			sInstance = new Time;
+		return sInstance;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -40,6 +34,26 @@ namespace dmc {
 			// Get initial time
 			QueryPerformanceCounter(&mInitTime);
 		#endif
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	inline double Time::getTime() {
+	#if defined (__linux__)
+			// Get current time
+			timeval currentTime;
+			gettimeofday(&currentTime, 0);
+			return double(currentTime.tv_sec - mInitTime.tv_sec) + double(currentTime.tv_usec - mInitTime.tv_usec) / 1000000;
+	#elif defined (_WIN32)
+			// Get current time
+			LARGE_INTEGER largeTicks;
+			QueryPerformanceCounter(&largeTicks);
+			unsigned currTime = largeTicks.LowPart;
+			// Convert time difference to seconds
+			LARGE_INTEGER frequency;
+			QueryPerformanceFrequency(&frequency);
+			return (double(currTime) / double(frequency.LowPart)) -
+				(double(mInitTime.LowPart) / double(frequency.LowPart));
+	#endif 
 	}
 	
 }	// namespace dmc
