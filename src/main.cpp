@@ -5,8 +5,9 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#include "peripherals/GPIO/Pin.h"
-#include "peripherals/GPIO/Led.h"
+#include <peripherals/GPIO/Pin.h>
+#include <peripherals/GPIO/Led.h>
+#include <peripherals/GPIO/BackButton.h>
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -18,10 +19,14 @@ using namespace dmc;
 int main()
 {
 	Led light("4");
+	BackButton button("17");
+
 	std::chrono::milliseconds ms(2000);
 	for (;;){
 
+		
 		light.on();
+
 		cout << "Now is on" << endl;
 		std::this_thread::sleep_for(ms);
 		light.off();

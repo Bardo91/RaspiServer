@@ -13,7 +13,7 @@ CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/service/message.cpp \
 	$(SRC_DIR)/service/command.cpp \
 	$(SRC_DIR)/service/client/client.cpp \
-	$(SRC_DIR)/service/client/scanCommand.cpp \
+	$(SRC_DIR)/service/client/commands/scanCommand.cpp \
 	$(SRC_DIR)/service/scan/deviceScanner.cpp \
 	$(SRC_DIR)/service/socket/socketMgr.cpp \
 	$(SRC_DIR)/service/socket/serverSocket.cpp \
