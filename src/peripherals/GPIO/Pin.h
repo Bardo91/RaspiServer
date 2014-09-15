@@ -19,7 +19,7 @@ namespace dmc {
 	class Pin : public PinBase {
 	public:	
 		Pin(string _Pin) : PinBase(_Pin) {}
-		~Pin();
+		//~Pin();
 
 	};
 

@@ -6,8 +6,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GPIO controller
-#define _DMCSERVER_PERIPHERALS_GPIO_PINWIN32_H_
 #ifndef _DMCSERVER_PERIPHERALS_GPIO_PINWIN32_H_
+#define _DMCSERVER_PERIPHERALS_GPIO_PINWIN32_H_
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -30,8 +30,8 @@ namespace dmc{
 		void		setLow		();
 	private:
 		std::string	pinNumber;
-		void		export		(std::string _Pin);
-		void		unexport	(std::string _Pin);
+		void		exportPin		(std::string _Pin);
+		void		unexportPin		(std::string _Pin);
 
 		//export y unexport constructor y destructor
 	};

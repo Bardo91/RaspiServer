@@ -43,6 +43,9 @@
     <Filter Include="Source Files\service\client\commands">
       <UniqueIdentifier>{efb41bc0-aefd-4ba1-ba12-581a9ca2b9c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{1864e95f-3093-4ee7-be93-51e2b40980bc}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\peripherals\GPIO">
       <UniqueIdentifier>{c5eef682-f9ff-4fb5-b48f-e957ae576689}</UniqueIdentifier>
     </Filter>
@@ -95,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="src\service\client\commands\scanCommand.cpp">
       <Filter>Source Files\service\client\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\time.cpp">
+      <Filter>Source Files\core</Filter>
     </ClCompile>
     <ClCompile Include="src\peripherals\GPIO\Led.cpp">
       <Filter>Source Files\peripherals\GPIO</Filter>
@@ -160,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="src\service\client\commands\scanCommand.h">
       <Filter>Source Files\service\client\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\time.h">
+      <Filter>Source Files\core</Filter>
     </ClInclude>
     <ClInclude Include="src\peripherals\GPIO\Led.h">
       <Filter>Source Files\peripherals\GPIO</Filter>

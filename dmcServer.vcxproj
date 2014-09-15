@@ -102,6 +102,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\time.cpp" />
     <ClCompile Include="src\device\deviceMgr.cpp" />
     <ClCompile Include="src\device\plc\dmcCommand.cpp" />
     <ClCompile Include="src\device\plc\dmcDevice.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="src\service\socket\socketMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\time.h" />
     <ClInclude Include="src\device\device.h" />
     <ClInclude Include="src\device\deviceMgr.h" />
     <ClInclude Include="src\device\plc\dmcCommand.h" />
