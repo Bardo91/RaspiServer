@@ -5,31 +5,20 @@
 // Author:	Carmelo J. Fdez-Agüera Tortosa
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#include <peripherals/GPIO/Pin.h>
-#include <peripherals/GPIO/Led.h>
-#include <peripherals/GPIO/BackButton.h>
-#include <iostream>
-#include <thread>
-#include <chrono>
+#include "dmcServer.h"
 
-using namespace std;
 using namespace dmc;
 
 //----------------------------------------------------------------------------------------------------------------------
-int main()
+int main(int _argc, const char** _argv)
 {
-	Led light("4");
-	BackButton button("17");
+	// Create application
+	DmcServer mainApplication(_argc, _argv);
 
-	std::chrono::milliseconds ms(2000);
-	for (;;){		
-		//cout << "Now is on" << endl;
-		//std::this_thread::sleep_for(ms);
-		//light.off();
-		//cout << "Now is off" << endl;
-		//std::this_thread::sleep_for(ms);
+	// Run service as long as posible
+	while (mainApplication.update())
+	{
 	}
-	
 
 	return 0;
 }

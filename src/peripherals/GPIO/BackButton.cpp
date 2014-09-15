@@ -35,6 +35,7 @@ namespace dmc {
 					mPulseDuration = Time::get()->getTime() - measuredTime;
 					lastState = false;
 					if (mPulseDuration > mThresHold){
+						cout << "ha entrao en el lonpurse" << endl;
 						onLongPulse();
 					}
 					else{
