@@ -9,17 +9,18 @@
 #define _DMCSERVER_PERIPHERALS_BACKBUTTON_H_
 
 #include "Pin.h"
+#include <thread>
 
 namespace dmc{
 
 	class BackButton {
 	public:
 
-		BackButton(std::string _Pin); //hilo monitoreando el pin
-		~BackButton();
+		BackButton			(std::string _Pin); 
+		~BackButton			();
 		
-		void onShortPulse();							// TODO 666 implement these functions
-		void onLongPulse();								// TODO 666 implement these functions
+		void onShortPulse	();											// TODO 666 implement these functions
+		void onLongPulse	();											// TODO 666 implement these functions
 
 	private: 
 		Pin			ButtonPin;

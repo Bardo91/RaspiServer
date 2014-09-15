@@ -8,27 +8,27 @@
 #include "peripherals/GPIO/Pin.h"
 #include "peripherals/GPIO/Led.h"
 #include <iostream>
-#include <unistd.h>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 using namespace dmc;
 
 //----------------------------------------------------------------------------------------------------------------------
-int main(void)
+int main()
 {
 	Led light("4");
+	std::chrono::milliseconds ms(2000);
+	for (;;){
 
-	while (1){
-
-			light.on();
-			cout << "Now is on" << endl;
-			sleep(2);
-			
-			light.off();
-			cout << "Now is off" << endl;
- 			sleep(2);
-
+		light.on();
+		cout << "Now is on" << endl;
+		std::this_thread::sleep_for(ms);
+		light.off();
+		cout << "Now is off" << endl;
+		std::this_thread::sleep_for(ms);
 	}
+	
 
 	return 0;
 }

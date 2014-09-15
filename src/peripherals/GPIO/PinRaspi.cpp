@@ -72,14 +72,16 @@ namespace dmc{
 
 		getvalgpio >> val ;  //read gpio value
 
-		if(val != "0")
-			val = "1";
-		else
-			val = "0";
-
-		getvalgpio.close(); //close the value file
-		return true;
-					
+		if (val != "0"){
+			getvalgpio.close();
+			return true;
+			//val = "1";
+		}
+		else{
+			//val = "0";
+			return false;
+			getvalgpio.close(); //close the value file
+		}
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

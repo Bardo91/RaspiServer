@@ -30,14 +30,14 @@ namespace dmc {
 			// Get current time
 			std::cout << "por aqui he pasao" << std::endl;
 			gettimeofday(&mInitTime, 0);
-		#elif defined (WIN32)
+		#elif defined (_WIN32)
 			// Get initial time
 			QueryPerformanceCounter(&mInitTime);
 		#endif
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	inline double Time::getTime() {
+	double Time::getTime() {
 	#if defined (__linux__)
 			// Get current time
 			timeval currentTime;
