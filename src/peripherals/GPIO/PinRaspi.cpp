@@ -79,8 +79,9 @@ namespace dmc{
 		}
 		else{
 			//val = "0";
-			return false;
 			getvalgpio.close(); //close the value file
+			return false;
+			
 		}
 	}
 
