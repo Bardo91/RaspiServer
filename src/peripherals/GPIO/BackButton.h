@@ -27,7 +27,6 @@ namespace dmc{
 		bool		mMustClose		= false;
 		double		mPulseDuration;
 		double		mThresHold		= 34;
-
 	};
 
 } //namespace dmc
