@@ -11,6 +11,9 @@
 #include <device/plc/dmcDevice.h>
 
 namespace dmc {
+	//------------------------------------------------------------------------------------------------------------------
+	DeviceScanner::DeviceScanner() : mLight("4"){
+	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	DeviceScanner* DeviceScanner::sInstance = nullptr;
@@ -25,14 +28,17 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
 		// 666 TODO: This is a fake. Scan should ocur in a separate thread
+		mLight.on();
 		assert(!mIsScanning); // Already scanning
 		mDeviceFoundListener = _listener;
 		mIsScanning = true;
 		onDeviceFound(); // Fake ocurrence
+		
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::stopScan() {
+		mLight.off();
 		mIsScanning = false;
 	}
 

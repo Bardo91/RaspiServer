@@ -65,6 +65,7 @@ namespace dmc {
 			LANService::get()->broadCast(notification);
 			
 		});
+
 		cout << "On long pulse" << endl;
 	
 	}

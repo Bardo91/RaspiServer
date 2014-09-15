@@ -9,6 +9,8 @@
 #define _DMCSERVER_SERVICE_SCAN_DEVICESCANNER_H_
 
 #include <functional>
+#include <peripherals/GPIO/Led.h>
+
 
 namespace dmc {
 
@@ -25,13 +27,14 @@ namespace dmc {
 
 		bool isScanning	() { return mIsScanning; }
 	private:
-		DeviceScanner() = default;
+		DeviceScanner();
 
 		void onDeviceFound ();
 		bool mIsScanning;
 
 		Delegate mDeviceFoundListener;
 		static DeviceScanner* sInstance;
+		Led mLight;
 	};
 
 }	// namespace dmc

@@ -22,17 +22,7 @@ int main()
 	BackButton button("17");
 
 	std::chrono::milliseconds ms(2000);
-	for (;;){
-
-		button.onLongPulse();
-			cout << "El boton se ha pulsado" << endl;
-			for (unsigned i = 0; i < 4; i++){
-				light.on();
-				std::this_thread::sleep_for(ms);
-				light.off();
-				std::this_thread::sleep_for(ms);
-			}
-		
+	for (;;){		
 		//cout << "Now is on" << endl;
 		//std::this_thread::sleep_for(ms);
 		//light.off();
