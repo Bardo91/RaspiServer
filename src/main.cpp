@@ -16,8 +16,9 @@ int main(int _argc, const char** _argv)
 	DmcServer mainApplication(_argc, _argv);
 
 	// Run service as long as posible
-	while(mainApplication.update())
-	{}
+	while (mainApplication.update())
+	{
+	}
 
 	return 0;
 }
