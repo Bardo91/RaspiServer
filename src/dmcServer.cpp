@@ -53,7 +53,11 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::loadDefaultConfig() {
-		mPlcPortName = "/sys/ttyS0";
+		mPlcPortName = "/sys/ttyAMA0";
+		/*In order to disable serial port login, we need to log in via ssh into the raspi, and then look for the file
+		/etc/inititab. There we need to comment the line T0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100.
+		After that, we can disable the bootup info, it's optional because maybe you'll like to know what is happening there.
+		Whatever you decide, you need to edit the file /boot/cmdline.txt and remove all the references to the serial port.*/
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
