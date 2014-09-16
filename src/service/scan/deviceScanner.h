@@ -10,6 +10,7 @@
 
 #include <functional>
 #include <peripherals/GPIO/Led.h>
+#include <peripherals/GPIO/BackButton.h>
 
 
 namespace dmc {
@@ -34,7 +35,8 @@ namespace dmc {
 
 		Delegate mDeviceFoundListener;
 		static DeviceScanner* sInstance;
-		Led mLight;
+		Led	mLight;
+		BackButton mButton;
 	};
 
 }	// namespace dmc

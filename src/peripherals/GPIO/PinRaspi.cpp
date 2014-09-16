@@ -71,7 +71,7 @@ namespace dmc{
 		}
 
 		getvalgpio >> val ;  //read gpio value
-
+		cout << "value has been read" << endl;
 		if (val != "0"){
 			getvalgpio.close();
 			return true;
