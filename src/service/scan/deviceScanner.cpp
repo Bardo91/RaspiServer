@@ -39,7 +39,7 @@ namespace dmc {
 			string message;
 			while (!mMustClose){
 			
-					PLCDriver::get()->sendCommand(21, "fake you Carmelo");
+					PLCDriver::get()->sendCommand(21, "S");
 					PLCDriver::get()->recieveCommand(10, message);
 				
 				onDeviceFound(); // Fake ocurrence*/
