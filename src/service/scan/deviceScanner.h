@@ -34,7 +34,7 @@ namespace dmc {
 
 		void onDeviceFound ();
 		bool mIsScanning;
-		bool mMustClose = false;
+		bool mMustClose		= false;
 
 		std::thread mThreadScanner;
 		Delegate mDeviceFoundListener;

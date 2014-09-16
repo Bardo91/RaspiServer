@@ -30,15 +30,15 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
-		mThreadScanner = std::thread([this]() {
-			
+		mThreadScanner = std::thread([this](Delegate _listener) {
 			while (!mMustClose){
-				if (PLCDriver::get()->)
-				mLight.on(); //Leds on while looking for
-				assert(!mIsScanning); // Already scanning
+				/*if (canRead()){
+					mLight.on(); //Leds on while looking for
+					PLCDriver::get()->sendCommand(21, "fake you Carmelo");
+					PLCDriver::get()->recieveCommand(10, "fake you Carmelo from PLc");
+				}
 				mDeviceFoundListener = _listener;
-				mIsScanning = true;
-				onDeviceFound(); // Fake ocurrence
+				onDeviceFound(); // Fake ocurrence*/
 			}
 
 		});
@@ -50,12 +50,11 @@ namespace dmc {
 		mLight.off();
 		mMustClose = true;
 		mThreadScanner.join();
-		
-		//mIsScanning = false;
+		mIsScanning = false;
 	}
 	//------------------------------------------------------------------------------------------------------------------
 	DeviceScanner::~DeviceScanner(){
-		if (mIsScanning == false){
+		if (!isScanning){
 			stopScan();
 		}
 	
