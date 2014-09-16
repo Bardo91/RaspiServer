@@ -26,6 +26,8 @@ CXX_SRC := $(SRC_DIR)/main.cpp \
 	$(SRC_DIR)/device/plc/dmcCommand.cpp \
 	$(SRC_DIR)/device/plc/dmcDevice.cpp \
 	$(SRC_DIR)/device/deviceMgr.cpp \
+	$(SRC_DIR)/service/client/messages/newDeviceMsg.cpp \
+	
 	
 CXX_OBJ := $(patsubst %.cpp, %.cpp.o, $(CXX_SRC))
 TEMP_FILES := $(CXX_OBJ)
