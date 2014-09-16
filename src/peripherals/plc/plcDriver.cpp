@@ -45,5 +45,9 @@ namespace dmc {
 		if(mCom.write(_payload.c_str(), _payload.size() < _payload.size()))
 			cout << "Error: Unable to send message to PLC modem\n";
 	}
-
+	//------------------------------------------------------------------------------------------------------------------
+	void PLCDriver::recieveCommand(unsigned, const std::string& _payload) {
+		if (mCom.read(_payload.c_str(), _payload.size() < _payload.size()))
+			cout << "Error: Unable to send message to PLC modem\n";
+	}
 }	// namespace dmc

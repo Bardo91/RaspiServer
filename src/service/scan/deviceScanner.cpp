@@ -10,6 +10,7 @@
 #include <device/deviceMgr.h>
 #include <device/plc/dmcDevice.h>
 #include <iostream>
+#include <peripherals/plc/plcDriver.h>
 
 namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
@@ -29,21 +30,36 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
-		// 666 TODO: This is a fake. Scan should ocur in a separate thread
-		mLight.on();
-		assert(!mIsScanning); // Already scanning
-		mDeviceFoundListener = _listener;
-		mIsScanning = true;
-		onDeviceFound(); // Fake ocurrence
-		
+		mThreadScanner = std::thread([this]() {
+			
+			while (!mMustClose){
+				if (PLCDriver::get()->)
+				mLight.on(); //Leds on while looking for
+				assert(!mIsScanning); // Already scanning
+				mDeviceFoundListener = _listener;
+				mIsScanning = true;
+				onDeviceFound(); // Fake ocurrence
+			}
+
+		});
+	
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::stopScan() {
 		mLight.off();
-		mIsScanning = false;
+		mMustClose = true;
+		mThreadScanner.join();
+		
+		//mIsScanning = false;
 	}
-
+	//------------------------------------------------------------------------------------------------------------------
+	DeviceScanner::~DeviceScanner(){
+		if (mIsScanning == false){
+			stopScan();
+		}
+	
+	}
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::onDeviceFound() {
 		// Create the device
