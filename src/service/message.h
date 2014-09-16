@@ -50,10 +50,10 @@ namespace dmc {
 		void				dump	() const;
 		const std::string&	raw		() const { return mRaw; }
 
-	private:
+	protected:
 		static bool			checkIntegrity	(const std::string& _rawMsg);
 
-	private:
+	protected:
 		Client*		mSender;
 		Type		mType;
 		unsigned	mSize;

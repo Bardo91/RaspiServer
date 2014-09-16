@@ -225,7 +225,10 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	bool SocketMgr::isConnectionAlive(unsigned _clientId) const {
-		return mActiveConnections.find(_clientId) != mActiveConnections.end();
+		mConMutex.lock();
+		bool isAlive = mActiveConnections.find(_clientId) != mActiveConnections.end();
+		mConMutex.unlock();
+		return isAlive;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

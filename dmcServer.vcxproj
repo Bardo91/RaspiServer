@@ -117,6 +117,7 @@
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
     <ClCompile Include="src\service\client\client.cpp" />
     <ClCompile Include="src\service\client\commands\scanCommand.cpp" />
+    <ClCompile Include="src\service\client\messages\newDeviceMsg.cpp" />
     <ClCompile Include="src\service\command.cpp" />
     <ClCompile Include="src\service\lanService.cpp" />
     <ClCompile Include="src\service\message.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="src\peripherals\plc\serialWin32.h" />
     <ClInclude Include="src\service\client\client.h" />
     <ClInclude Include="src\service\client\commands\scanCommand.h" />
+    <ClInclude Include="src\service\client\messages\newDeviceMsg.h" />
     <ClInclude Include="src\service\command.h" />
     <ClInclude Include="src\service\lanService.h" />
     <ClInclude Include="src\service\message.h" />

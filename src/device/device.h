@@ -17,19 +17,22 @@ namespace dmc {
 
 	class Device {
 	public:
-		virtual unsigned	id	() const final	{ return mId; }
+		virtual unsigned	id	() const final	{ return mId;	}
+				unsigned	type() const		{ return mType; }
 		const std::string&	name() const		{ return mName; }
 			  std::string&	name()				{ return mName; }
 
 	protected:
-		Device		(unsigned _id, const std::string& _name)
-			: mId(_id) 
+		Device		(unsigned _type, unsigned _id, const std::string& _name)
+			: mType(_type)
+			, mId(_id) 
 			, mName(_name)
 		{
 			DeviceMgr::get()->registerDevice(this);
 		}
 
 	private:
+		unsigned	mType;
 		unsigned	mId;
 		std::string mName;
 	};

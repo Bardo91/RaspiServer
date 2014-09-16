@@ -9,6 +9,7 @@
 #include "deviceScanner.h"
 #include <device/deviceMgr.h>
 #include <device/plc/dmcDevice.h>
+#include <iostream>
 
 namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
@@ -46,7 +47,11 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::onDeviceFound() {
 		// Create the device
-		Device* foundDevice = new DmcDevice(7, "Light007");
+		Device* foundDevice = DeviceMgr::get()->getDevice(7);
+		if(foundDevice)
+			std::cout << "Warning: Trying to register duplicate device 7\n";
+		else
+			foundDevice = new DmcDevice(7, "Light007");
 		// Notify it to whoever is scanning
 		mDeviceFoundListener(foundDevice);
 	}
