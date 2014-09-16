@@ -64,7 +64,7 @@ namespace dmc {
 		uint8_t data;
 		int readBytes = ::read(mFileDesc, &data , 1);
 
-		assert(-1 != readBytes);
+		assert(-1 != data);
 
 		return data;
 
