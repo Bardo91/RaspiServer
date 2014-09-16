@@ -76,11 +76,11 @@ namespace dmc{
 			getvalgpio.close();
 			return true;
 			//val = "1";
-			cout << "my value is " << val << endl;
+			cout << "my value is " << val << " ." <<endl;
 		}
 		else{
 			//val = "0";
-			cout << "my value is " << val << endl;
+			cout << "my value is " << val << " ." <<endl;
 			getvalgpio.close(); //close the value file
 			return false;
 			
