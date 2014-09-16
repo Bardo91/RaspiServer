@@ -73,14 +73,14 @@ namespace dmc{
 		getvalgpio >> val ;  //read gpio value
 		//cout << "value has been read" << endl;
 		if (val != "0"){
-			cout << "my value is " << val << " ." <<endl;
+			//cout << "my value is " << val << " ." <<endl;
 			getvalgpio.close();
 			return true;
 			//val = "1";
 		}
 		else{
 			//val = "0";
-			cout << "my value is " << val << " ." <<endl;
+			//cout << "my value is " << val << " ." <<endl;
 			getvalgpio.close(); //close the value file
 			return false;
 			
