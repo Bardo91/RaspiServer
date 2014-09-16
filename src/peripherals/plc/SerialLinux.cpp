@@ -42,11 +42,35 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	bool SerialLinux::write(uint8_t _data) {
-		assert(-1 != ::write( mFileDesc, &_data, 1));
-
-		return true;
+		return -1 != ::write( mFileDesc, &_data, 1);
 	}
 
+
+	//------------------------------------------------------------------------------------------------------------------
+	unsigned SerialLinux::read(void * _dst, unsigned _nBytes){
+	//Enforce correct output data
+		assert(nullptr != _dst);
+
+		int readBytes = ::read(mFileDesc, _dst , _nBytes);
+
+		assert(-1 != readBytes);
+
+		return readBytes;
+	
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	uint8_t SerialLinux::read(){
+		//Enforce correct output data
+		assert(nullptr != _dst);
+		uint8_t data;
+		int readBytes = ::read(mFileDesc, &data , 1);
+
+		assert(-1 != readBytes);
+
+		return data;
+
+	}
 	//------------------------------------------------------------------------------------------------------------------
 	void SerialLinux::openPort(const char* _port) {
 		mFileDesc = open(	_port,			// Port name
