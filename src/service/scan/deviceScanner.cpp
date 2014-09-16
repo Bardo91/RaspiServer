@@ -57,7 +57,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	DeviceScanner::~DeviceScanner(){
 		assert(mThreadScanner.get_id() != std::this_thread::get_id()); // Ensure it's not this thread trying to delete itself
-		if (!isScanning){
+		if (!isScanning()){
 			stopScan();
 		}
 		assert(mThreadScanner.joinable());
