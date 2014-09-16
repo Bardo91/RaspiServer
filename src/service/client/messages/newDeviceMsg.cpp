@@ -18,7 +18,7 @@ namespace dmc {
 		mRaw += char(_dev.id()); 
 		mRaw += _dev.name();
 		mSize = mRaw.size();
-		mRaw[0] = char(mRaw.size()+2); // Update information about my size
+		mRaw[0] = char(mRaw.size()); // Update information about my size
 	}
 
 }
