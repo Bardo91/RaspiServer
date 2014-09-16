@@ -18,6 +18,7 @@ int main(int _argc, const char** _argv)
 	// Run service as long as posible
 	while (mainApplication.update())
 	{
+
 	}
 
 	return 0;

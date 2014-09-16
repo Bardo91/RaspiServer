@@ -20,7 +20,8 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	BackButton::BackButton(std::string _Pin) : ButtonPin(_Pin){
 		
-		ButtonPin.input(); 
+		ButtonPin.input();
+		cout << "button set as input" << endl;
 		mThread = std::thread([this](){
 
 			double measuredTime = Time::get()->getTime();

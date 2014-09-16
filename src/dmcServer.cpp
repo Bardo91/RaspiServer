@@ -11,6 +11,7 @@
 #include "dmcServer.h"
 #include "peripherals/plc/plcDriver.h"
 #include <device/deviceMgr.h>
+#include <service/scan/deviceScanner.h>
 
 namespace dmc {
 
@@ -62,8 +63,9 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::initHardware() {
-		// 666 TODO: Buttons, Leds and pins
+		
 		PLCDriver::init(mPlcPortName.c_str());
+		DeviceScanner::get(); //lazy initialization
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
