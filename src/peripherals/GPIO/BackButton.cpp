@@ -14,6 +14,7 @@
 #include <service/scan/deviceScanner.h>
 #include <service/client/commands/scanCommand.h>
 #include <service/lanService.h>
+#include <service/client/messages/newDeviceMsg.h>
 
 namespace dmc {
 
@@ -65,10 +66,12 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void BackButton::onLongPulse(){
 
-		DeviceScanner::get()->startScan([this](Device*){
+		DeviceScanner::get()->startScan([this](Device* _dev){
 			DeviceScanner::get()->stopScan(); // Done scanning, just one device at a time
 			Message notification(Message::NewDevice, std::string() + char(1)); // 1 device found
 			LANService::get()->broadCast(notification);
+			NewDeviceMsg deviceInfo(*_dev);
+			LANService::get()->broadCast(deviceInfo);
 			
 		});
 
