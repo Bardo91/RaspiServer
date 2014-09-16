@@ -23,17 +23,20 @@ namespace dmc {
 		ButtonPin.input();
 		cout << "button set as input" << endl;
 		mThread = std::thread([this](){
-
+			cout << "button thread is running" << endl;
 			double measuredTime = Time::get()->getTime();
 			bool lastState = false;
 
 			while (!mMustClose){
 				if (ButtonPin.read() == true && lastState == false){				
 					measuredTime = Time::get()->getTime();
+					cout << "on High edge" << endl;
 					lastState = true;
 				}
 				else if (ButtonPin.read() == false && lastState == true){					
+					cout << "on low edge" << endl;
 					mPulseDuration = Time::get()->getTime() - measuredTime;
+					cout << "pulse duration " << mPulseDuration << endl;
 					lastState = false;
 					if (mPulseDuration > mThresHold){
 						cout << "it is a long pulse" << endl;
