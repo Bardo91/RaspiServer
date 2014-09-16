@@ -10,8 +10,14 @@
 #include <device/deviceMgr.h>
 #include <device/plc/dmcDevice.h>
 #include <iostream>
+#include <peripherals/plc/plcDriver.h>
+#include <assert.h>
 
 namespace dmc {
+	//------------------------------------------------------------------------------------------------------------------
+	DeviceScanner::DeviceScanner() : mLight("4"),mButton("17"){
+	
+	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	DeviceScanner* DeviceScanner::sInstance = nullptr;
@@ -25,18 +31,39 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
-		// 666 TODO: This is a fake. Scan should ocur in a separate thread
-		assert(!mIsScanning); // Already scanning
-		mDeviceFoundListener = _listener;
+		mLight.on();
 		mIsScanning = true;
-		onDeviceFound(); // Fake ocurrence
+		mDeviceFoundListener = _listener;
+		
+		mThreadScanner = std::thread([this]() {
+			string message;
+			while (!mMustClose){
+			
+					PLCDriver::get()->sendCommand(21, "S");
+					PLCDriver::get()->recieveCommand(10, message);
+				
+				onDeviceFound(); // Fake ocurrence*/
+			}
+			mIsScanning = false;
+		
+		});
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::stopScan() {
-		mIsScanning = false;
+		mLight.off();
+		mMustClose = true;
 	}
-
+	//------------------------------------------------------------------------------------------------------------------
+	DeviceScanner::~DeviceScanner(){
+		assert(mThreadScanner.get_id() != std::this_thread::get_id()); // Ensure it's not this thread trying to delete itself
+		if (!isScanning()){
+			stopScan();
+		}
+		assert(mThreadScanner.joinable());
+		mThreadScanner.join();
+	
+	}
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::onDeviceFound() {
 		// Create the device

@@ -24,7 +24,7 @@ namespace dmc {
 		static Time* get();        // Returns the singleton instance
 
 	public: // --- Public interface ---
-		double getTime();
+		double getTime();			//getTime in seconds
 
 	private:
 		Time();

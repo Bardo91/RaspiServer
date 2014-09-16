@@ -2,7 +2,7 @@
 //
 // Project: DMC Server
 // Date:	2014/Aug/25
-// Author:	Carmelo J. Fdez-Agüera Tortosa
+// Author:	Carmelo J. Fdez-Agüera Tortosa 
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Simple serial port communications
@@ -20,6 +20,10 @@ namespace dmc {
 	public:
 		unsigned	write	(const void* _src, unsigned _nBytes);
 		bool		write	(uint8_t);
+
+		unsigned	read	(void * _dst, unsigned _nBytes); 
+		uint8_t		read	(); 
+
 
 	protected:
 		SerialWin32			(const char* _port, unsigned _baudRate);

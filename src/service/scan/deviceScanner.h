@@ -9,6 +9,9 @@
 #define _DMCSERVER_SERVICE_SCAN_DEVICESCANNER_H_
 
 #include <functional>
+#include <peripherals/GPIO/Led.h>
+#include <peripherals/GPIO/BackButton.h>
+#include <thread>
 
 namespace dmc {
 
@@ -24,14 +27,22 @@ namespace dmc {
 		void stopScan	(); // Stop scanning the PLC channel
 
 		bool isScanning	() { return mIsScanning; }
+
+		~DeviceScanner();
 	private:
-		DeviceScanner() = default;
+		DeviceScanner();
 
 		void onDeviceFound ();
 		bool mIsScanning;
+		bool mMustClose		= false;
 
+		std::thread mThreadScanner;
 		Delegate mDeviceFoundListener;
 		static DeviceScanner* sInstance;
+
+		Led	mLight;
+		BackButton mButton;
+		
 	};
 
 }	// namespace dmc

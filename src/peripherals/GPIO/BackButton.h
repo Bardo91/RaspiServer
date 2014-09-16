@@ -27,7 +27,7 @@ namespace dmc{
 		std::thread mThread;
 		bool		mMustClose		= false;
 		double		mPulseDuration;
-		double		mThresHold		= 34;
+		double		mThresHold		= 2;
 	};
 
 } //namespace dmc

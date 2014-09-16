@@ -33,6 +33,23 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
+	unsigned SerialWin32::read(void * _dstBuffer, unsigned _nBytes)
+	{
+		DWORD readBytes;
+		::ReadFile(mPortHandle, _dstBuffer, _nBytes, &readBytes, NULL);
+		return readBytes;
+	
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	uint8_t SerialWin32::read()
+	{
+		uint8_t result;
+		DWORD readBytes;
+		::ReadFile(mPortHandle, &result, 1, &readBytes, NULL);
+		return result;
+	}
+	//------------------------------------------------------------------------------------------------------------------
 	bool SerialWin32::write(uint8_t _data) {
 		DWORD writtenBytes;
 		::WriteFile(mPortHandle, &_data, 1, &writtenBytes, NULL);
