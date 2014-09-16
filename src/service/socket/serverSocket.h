@@ -34,8 +34,8 @@ namespace dmc {
 
 	private:
 		int mSocket;
-		bool mOwned;
-		bool mMustClose;
+		bool mOwned = false;
+		bool mMustClose = false;
 		std::thread mListenThread;
 		std::mutex mReadLock;
 		std::string mInBuffer;
