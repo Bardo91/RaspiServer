@@ -20,16 +20,16 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	PinRaspi::PinRaspi(string _Pin){
 		
-		pinNumber = _Pin; 
+		mPinNumber = _Pin; 
 		assert(_Pin != "18"); //PWM pin
-		exportPin(pinNumber);
+		exportPin(mPinNumber);
 		
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------
 	PinRaspi::~PinRaspi(){
-
-		unexportPin(pinNumber);
+		cout << "destroying pin " << mPinNumber;
+		unexportPin(mPinNumber);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -64,10 +64,10 @@ namespace dmc{
 	bool PinRaspi::read(){
 
 		string val;
-		string getval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
+		string getval_str = "/sys/class/gpio/gpio" + mPinNumber + "/value";
 		ifstream getvalgpio(getval_str.c_str());// open value file for gpio
 		if (!getvalgpio){
-			cout << " OPERATION FAILED: Unable to get value of GPIO"<< pinNumber <<" ."<< endl;
+			cout << " OPERATION FAILED: Unable to get value of GPIO"<< mPinNumber <<" ."<< endl;
 		}
 
 		getvalgpio >> val ;  //read gpio value
@@ -88,10 +88,10 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	void PinRaspi::input(){
 	
-		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
+		string setdir_str ="/sys/class/gpio/gpio" + mPinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
 		if (!setdirgpio){
-			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< pinNumber <<" ."<< endl;
+			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< mPinNumber <<" ."<< endl;
 		}
 
 		setdirgpio << "in"; //write direction to direction file
@@ -102,10 +102,10 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	void PinRaspi::outPut(){
 
-		string setdir_str ="/sys/class/gpio/gpio" + pinNumber + "/direction";
+		string setdir_str ="/sys/class/gpio/gpio" + mPinNumber + "/direction";
 		ofstream setdirgpio(setdir_str.c_str()); // open direction file for gpio
 		if (!setdirgpio){
-			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< pinNumber <<" ."<< endl;
+			cout << " OPERATION FAILED: Unable to set direction of GPIO"<< mPinNumber <<" ."<< endl;
 		}
 
 		setdirgpio << "out"; 
@@ -116,10 +116,10 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	void PinRaspi::setHigh(){
 
-		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
+		string setval_str = "/sys/class/gpio/gpio" + mPinNumber + "/value";
 		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
 		if (!setvalgpio){
-			cout << " OPERATION FAILED: Unable to set the value of GPIO" << pinNumber << " ." << endl;
+			cout << " OPERATION FAILED: Unable to set the value of GPIO" << mPinNumber << " ." << endl;
 		}
 
 		setvalgpio << "1";//write value to value file
@@ -130,10 +130,10 @@ namespace dmc{
 	//------------------------------------------------------------------------------------------------------------------
 	void PinRaspi::setLow(){
 
-		string setval_str = "/sys/class/gpio/gpio" + pinNumber + "/value";
+		string setval_str = "/sys/class/gpio/gpio" + mPinNumber + "/value";
 		ofstream setvalgpio(setval_str.c_str()); // open value file for gpio
 		if (!setvalgpio){
-			cout << " OPERATION FAILED: Unable to set the value of GPIO" << pinNumber << " ." << endl;
+			cout << " OPERATION FAILED: Unable to set the value of GPIO" << mPinNumber << " ." << endl;
 		}
 
 		setvalgpio << "0";//write value to value file
