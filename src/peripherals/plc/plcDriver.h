@@ -22,7 +22,7 @@ namespace dmc {
 		static PLCDriver*	get			();
 
 		void				sendCommand		(unsigned _devId, const std::string& _payload);
-		void				recieveCommand	(unsigned _devId, const std::string& _payload);
+		void				recieveCommand	(unsigned _devId, std::string& _payload);
 
 	private:
 		PLCDriver(const char* _port);

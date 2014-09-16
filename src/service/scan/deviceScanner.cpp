@@ -11,6 +11,7 @@
 #include <device/plc/dmcDevice.h>
 #include <iostream>
 #include <peripherals/plc/plcDriver.h>
+#include <assert.h>
 
 namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
@@ -30,33 +31,37 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
-		mThreadScanner = std::thread([this](Delegate _listener) {
+		mLight.on();
+		mIsScanning = true;
+		mDeviceFoundListener = _listener;
+		
+		mThreadScanner = std::thread([this]() {
+			string message;
 			while (!mMustClose){
-				/*if (canRead()){
-					mLight.on(); //Leds on while looking for
+			
 					PLCDriver::get()->sendCommand(21, "fake you Carmelo");
-					PLCDriver::get()->recieveCommand(10, "fake you Carmelo from PLc");
-				}
-				mDeviceFoundListener = _listener;
+					PLCDriver::get()->recieveCommand(10, message);
+				
 				onDeviceFound(); // Fake ocurrence*/
 			}
-
+			mIsScanning = false;
+		
 		});
-	
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::stopScan() {
 		mLight.off();
 		mMustClose = true;
-		mThreadScanner.join();
-		mIsScanning = false;
 	}
 	//------------------------------------------------------------------------------------------------------------------
 	DeviceScanner::~DeviceScanner(){
+		assert(mThreadScanner.get_id() != std::this_thread::get_id()); // Ensure it's not this thread trying to delete itself
 		if (!isScanning){
 			stopScan();
 		}
+		assert(mThreadScanner.joinable());
+		mThreadScanner.join();
 	
 	}
 	//------------------------------------------------------------------------------------------------------------------

@@ -42,12 +42,11 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void PLCDriver::sendCommand(unsigned, const std::string& _payload) {
-		if(mCom.write(_payload.c_str(), _payload.size() < _payload.size()))
+		if(mCom.write(_payload.c_str(), _payload.size()) < _payload.size())
 			cout << "Error: Unable to send message to PLC modem\n";
 	}
 	//------------------------------------------------------------------------------------------------------------------
-	void PLCDriver::recieveCommand(unsigned, const std::string& _payload) {
-		if (mCom.read(,))
-			cout << "Error: Unable to recieve message from PLC modem\n";
+	void PLCDriver::recieveCommand(unsigned, std::string& ) {
+		mCom.read();
 	}
 }	// namespace dmc
