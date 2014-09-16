@@ -61,8 +61,6 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	uint8_t SerialLinux::read(){
-		//Enforce correct output data
-		assert(nullptr != _dst);
 		uint8_t data;
 		int readBytes = ::read(mFileDesc, &data , 1);
 
