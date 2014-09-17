@@ -31,7 +31,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
-		assert(mThreadScanner.get_id() != std::thread::id());
+		assert(mThreadScanner.get_id() != std::this_thread::get_id());
 
 		mLight.on();
 		mIsScanning = true;
@@ -40,12 +40,10 @@ namespace dmc {
 		
 		if (mThreadScanner.joinable())
 			mThreadScanner.join();
-		
-			
+					
 		mThreadScanner = std::thread([this]() {
 			string message;
 			while (!mMustClose){
-			
 					PLCDriver::get()->sendCommand(21, "S");
 					PLCDriver::get()->recieveCommand(10, message);
 				
