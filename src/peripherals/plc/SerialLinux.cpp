@@ -31,7 +31,7 @@ namespace dmc {
 		struct termios serialPortInfo;
 		memset (&serialPortInfo, 0, sizeof(serialPortInfo)); // Clear memory
 
-		if ( tcgetattr ( mFileDesc, &tty ) != 0 ) // Get port address
+		if ( tcgetattr ( mFileDesc, &serialPortInfo ) != 0 ) // Get port address
 			std::cout << "Error: Unable to open serial port " << _port << "\n";
 
 		setBaudRate(serialPortInfo, _baudRate, _port);
@@ -94,7 +94,7 @@ namespace dmc {
 					O_RDWR |		// Read and write
 					O_NONBLOCK);	// Nonblocking mode
 
-		if(mFileDest <= 0)
+		if(mFileDesc <= 0)
 			std::cout << "Error: Unable to access file << " << _port << std::endl;
 	}
 
