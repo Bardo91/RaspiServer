@@ -15,7 +15,7 @@
 
 namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
-	DeviceScanner::DeviceScanner() : mLight("4"),mButton("17"){
+	DeviceScanner::DeviceScanner() : mLight("18"),mButton("23"){
 	
 	}
 
