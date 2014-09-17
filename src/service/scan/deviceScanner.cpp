@@ -33,6 +33,7 @@ namespace dmc {
 	void DeviceScanner::startScan(Delegate _listener) {
 		mLight.on();
 		mIsScanning = true;
+		mMustClose = false;
 		mDeviceFoundListener = _listener;
 		
 		mThreadScanner = std::thread([this]() {
