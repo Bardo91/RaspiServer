@@ -9,6 +9,7 @@
 
 #ifdef __linux__
 
+#include <iostream>
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
@@ -24,8 +25,26 @@ namespace dmc {
 		// Enforce correct data
 		assert(nullptr != _port && '\0' != _port[0]);
 
-		openPort(_port);
-		setBaudRate(_baudRate);
+		openPortFile(_port);
+		
+		// Gett addess info
+		struct termios serialPortInfo;
+		memset (&serialPortInfo, 0, sizeof(serialPortInfo)); // Clear memory
+
+		if ( tcgetattr ( mFileDesc, &tty ) != 0 ) // Get port address
+			std::cout << "Error: Unable to open serial port " << _port << "\n";
+
+		setBaudRate(serialPortInfo, _baudRate, _port);
+
+		serialPortInfo.c_cflag &= ~PARENB;    // Set no parity, no stop bits and no data bits. Byte size = 8
+		serialPortInfo.c_cflag &= ~CSTOPB;
+		serialPortInfo.c_cflag &= ~CSIZE;
+		serialPortInfo.c_cflag |= CS8;
+
+		tcflush( mFileDesc, TCIFLUSH );	// Flush port to set atributes
+
+		if ( tcsetattr ( mFileDesc, TCSANOW, &serialPortInfo ) != 0)	// Set attributes
+			std::cout << "Error: Unable to set serial port attributes\n";
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -70,51 +89,47 @@ namespace dmc {
 
 	}
 	//------------------------------------------------------------------------------------------------------------------
-	void SerialLinux::openPort(const char* _port) {
+	void SerialLinux::openPortFile(const char* _port) {
 		mFileDesc = open(	_port,			// Port name
 					O_RDWR |		// Read and write
 					O_NONBLOCK);	// Nonblocking mode
 
-		assert(0 < mFileDesc);
+		if(mFileDest <= 0)
+			std::cout << "Error: Unable to access file << " << _port << std::endl;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void SerialLinux::setBaudRate(unsigned _baudRate)
+	void SerialLinux::setBaudRate(struct termios& _serialPortInfo, unsigned _baudRate, const char* _port)
 	{
-		struct termios tty;
-		memset (&tty, 0, sizeof tty);
-
-		if ( tcgetattr ( mFileDesc, &tty ) != 0 )
-		{
-			assert(false);
-			//cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << endl;
-		}
-
+		// Actually select address
+		speed_t commBaudRate;
 		switch (_baudRate) {
-		case 4800:	cfsetospeed (&tty, B4800);		break;
-		case 9600:	cfsetospeed (&tty, B9600);		break;
-		case 19200:	cfsetospeed (&tty, B19200);		break;
-		case 57600:	cfsetospeed (&tty, B57600);		break;
-		case 115200:cfsetospeed (&tty, B115200);	break;
+		case 4800:	
+			commBaudRate = (speed_t)B4800;
+			break;
+		case 9600:	
+			commBaudRate = (speed_t)B9600;
+			break;
+		case 19200:	
+			commBaudRate = (speed_t)B19200;
+			break;
+		case 38400:	
+			commBaudRate = (speed_t)B38400;
+			break;
+		case 57600:	
+			commBaudRate = (speed_t)B57600;
+			break;
+		case 115200:	
+			commBaudRate = (speed_t)B115200;
+			break;
 		default:
+			commBaudRate = (speed_t)B115200;
 			assert(false); // Unsupported baudrate
 			return;
 		}
-	
-		// Configure Attributes
-		
-		tty.c_cflag &= ~PARENB;    // Set no parity, no stop bits and no data bits. Byte size = 8
-		tty.c_cflag &= ~CSTOPB;
-		tty.c_cflag &= ~CSIZE;
-		tty.c_cflag |= CS8;
 
-		tcflush( mFileDesc, TCIFLUSH );	// Flush port to set atributes
-
-		if ( tcsetattr ( mFileDesc, TCSANOW, &tty ) != 0)	// Set attributes
-		{
-			assert(false);
-			//cout << "Error " << errno << " from tcsetattr" << endl;
-		}
+		cfsetospeed (&_serialPortInfo, commBaudRate);
+		cfsetispeed (&_serialPortInfo, commBaudRate);
 	}
 
 }	// namespace dmc
