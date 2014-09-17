@@ -21,7 +21,7 @@ namespace dmc{
 	PinRaspi::PinRaspi(string _Pin){
 		
 		mPinNumber = _Pin; 
-		assert(_Pin != "18"); //PWM pin
+		//assert(_Pin != "18"); //PWM pin
 		exportPin(mPinNumber);
 		
 	}
