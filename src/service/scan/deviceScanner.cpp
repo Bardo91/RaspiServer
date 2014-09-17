@@ -31,11 +31,17 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
+		assert(mThreadScanner.get_id() != std::thread::id());
+
 		mLight.on();
 		mIsScanning = true;
 		mMustClose = false;
 		mDeviceFoundListener = _listener;
 		
+		if (mThreadScanner.joinable())
+			mThreadScanner.join();
+		
+			
 		mThreadScanner = std::thread([this]() {
 			string message;
 			while (!mMustClose){
