@@ -17,8 +17,8 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	DmcServer::DmcServer(int _argc, const char** _argv)
-		:mService(nullptr)
-		,mTopPin("8")
+		:mTopPin("8")
+		,mService(nullptr)
 	{
 		loadDefaultConfig(); // This fills every important thing with default values
 		processArguments(_argc, _argv); // Execution arguments can override default configuration values
