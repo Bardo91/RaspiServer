@@ -9,34 +9,38 @@
 #ifndef _DMCSERVER_PERIPHERALS_PLC_SERIALLINUX_H_
 #define _DMCSERVER_PERIPHERALS_PLC_SERIALLINUX_H_
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__Raspi__)
 
 #include <cstdint>
+extern "C" {
+#include <termios.h>
+}
 
 namespace dmc {
 
 	class SerialLinux {
 	public:
-		unsigned	write	(const void* _src, unsigned _nBytes);
-		bool		write	(uint8_t);
+		unsigned	write		(const void* _src, unsigned _nBytes);
+		bool		write		(uint8_t);
 
-		unsigned	read (void * _dst, unsigned _nBytes); // Returns the amount of bytes read
-		uint8_t		read(); // Reads one byte
+		unsigned	read		(void * _dst, unsigned _nBytes); // Returns the amount of bytes read
+		uint8_t		read		(); // Reads one byte
 
 	protected:
-		SerialLinux			(const char* _port, unsigned _baudRate);
-
-	private:
-		void openPortFile	(const char* _port);
-		void setBaudRate	(struct termios* _serialPortInfo, unsigned _baudRate, const char* _port);
+		SerialLinux						(const char* _port, unsigned _baudRate);
+		void		setBlocking			(bool);
+		void		clearInputBuffer	();
+		void		openPortFile		(const char* _port);
+		void		setBaudRate			(struct termios* _serialPortInfo, unsigned _baudRate, const char* _port);
 		
 	private:
-		int		mFileDesc;
+		int				mFileDesc;
+		struct termios*	mPortConfig;
 	};
 
 	typedef SerialLinux SerialBase;
 
 }	// namespace dmc
 
-#endif // __linux__
+#endif // __linux__ || __Raspi__
 #endif // _DMCSERVER_PERIPHERALS_PLC_SERIALLINUX_H_

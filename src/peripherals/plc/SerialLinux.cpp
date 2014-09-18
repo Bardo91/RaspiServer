@@ -7,12 +7,14 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Simple serial port communications
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__Raspi__)
 
 #include <iostream>
-#include <fcntl.h>
-#include <termios.h>
-#include <unistd.h>
+extern "C" {
+	#include <fcntl.h>
+	#include <termios.h>
+	#include <unistd.h>
+}
 #include <cstring>
 #include <cassert>
 
@@ -28,27 +30,56 @@ namespace dmc {
 		openPortFile(_port);
 		
 		// Gett addess info
-		struct termios serialPortInfo;
-		memset (&serialPortInfo, 0, sizeof(serialPortInfo)); // Clear memory
+		mPortConfig = new termios;
+		memset (mPortConfig, 0, sizeof(struct termios)); // Clear memory
 
-		if ( tcgetattr ( mFileDesc, &serialPortInfo ) != 0 ) // Get port address
+		if ( tcgetattr ( mFileDesc, mPortConfig) != 0 ) // Get port address
 			std::cout << "Error: Unable to open serial port " << _port << "\n";
 
-		setBaudRate(&serialPortInfo, _baudRate, _port);
+		setBaudRate(&mPortConfig, _baudRate, _port);
 
-		serialPortInfo.c_cflag &= ~PARENB;    // Set no parity, no stop bits. Byte size = 8
-		serialPortInfo.c_cflag &= ~CSTOPB;
-		serialPortInfo.c_cflag &= ~CSIZE;
-		serialPortInfo.c_cflag |= CS8; // 8-bit frame size
-		serialPortInfo.c_cflag |= CREAD; // Enable reading
-		serialPortInfo.c_cc[VMIN] = 1; // Always read at least one character
-		serialPortInfo.c_cc[VTIME] = 0; // Disable time-out?
+		mPortConfig->c_cflag &= ~PARENB;    // Set no parity, no stop bits. Byte size = 8
+		mPortConfig->c_cflag &= ~CSTOPB;
+		mPortConfig->c_cflag &= ~CSIZE;
+		mPortConfig->c_cflag |= CS8; // 8-bit frame size
+		mPortConfig->c_cflag |= CREAD; // Enable reading
+		mPortConfig->c_cc[VMIN] = 1; // Always read at least one character
+		mPortConfig->c_cc[VTIME] = 0; // Disable time-out?
 
-		cfmakeraw(&serialPortInfo); // Apply configuration;
+		cfmakeraw(mPortConfig); // Apply configuration;
 		tcflush( mFileDesc, TCIFLUSH );	// Flush port to set atributes
 
-		if ( tcsetattr ( mFileDesc, TCSANOW, &serialPortInfo ) != 0)	// Set attributes
+		if ( tcsetattr ( mFileDesc, TCSANOW, mPortConfig ) != 0)	// Set attributes
 			std::cout << "Error: Unable to set serial port attributes\n";
+
+		clearInputBuffer();
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void SerialLinux::setBlocking(bool _blocking) {
+        memset (mPortConfig, 0, sizeof(struct termios));
+        if (tcgetattr (mFileDesc, mPortConfig) != 0)
+        {
+                error ("error %d getting term settings set_blocking", errno);
+                return;
+        }
+
+        mPortConfig->c_cc[VMIN]  = _blocking ? 1 : 0;
+        mPortConfig->c_cc[VTIME] = _blocking ? 5 : 0; // 0.5 seconds read timeout
+
+        if (tcsetattr (mFileDesc, TCSANOW, mPortConfig) != 0)
+                error ("error setting term %sblocking", _blocking ? "" : "not-");
+	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	void SerialLinux::clearInputBuffer() {
+		setBlocking(false);
+		char buf [10000];
+		int n;
+		do {
+				n = ::read (mFileDesc, buf, sizeof(buf));
+		} while (n > 0);
+		setBlocking(true);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -139,4 +170,4 @@ namespace dmc {
 
 }	// namespace dmc
 
-#endif // _linux_
+#endif // __linux__ || __Raspi__

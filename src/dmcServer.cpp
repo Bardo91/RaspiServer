@@ -76,6 +76,8 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DmcServer::launchService() {
+		mTopPin.outPut();
+		mTopPin.setHigh();
 		mService = LANService::get();
 	}
 }

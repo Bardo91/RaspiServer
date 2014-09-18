@@ -15,7 +15,8 @@
 
 namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
-	DeviceScanner::DeviceScanner() : mLight("18"),mButton("23"), mAvrReset("24"){
+	DeviceScanner::DeviceScanner() : mLight("18"),mButton("23"), mAvrReset("7"){
+		mAvrReset.outPut();
 		mAvrReset.setLow(); //reset the Avr at loading time
 	}
 

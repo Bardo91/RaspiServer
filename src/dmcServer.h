@@ -9,6 +9,7 @@
 #define _DMCSERVER_DMCSERVER_H_
 
 #include <string>
+#include <peripherals/GPIO/Pin.h>
 
 namespace dmc {
 
@@ -30,6 +31,7 @@ namespace dmc {
 		void launchService		();
 
 	private:
+		Pin			mTopPin;
 		LANService* mService;
 		PLCDriver*	mPlc;
 		std::string	mPlcPortName;
