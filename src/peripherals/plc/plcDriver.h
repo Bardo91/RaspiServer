@@ -28,7 +28,7 @@ namespace dmc {
 		PLCDriver(const char* _port);
 
 		Serial	mCom;
-		static const unsigned			cBaudRate = 115200;
+		static const unsigned			cBaudRate = 9600;
 
 		// Singleton
 		static PLCDriver* sInstance;
