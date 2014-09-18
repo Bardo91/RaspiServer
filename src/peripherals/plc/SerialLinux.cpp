@@ -97,8 +97,7 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	void SerialLinux::openPortFile(const char* _port) {
 		mFileDesc = open(	_port,			// Port name
-					O_RDWR |		// Read and write
-					O_NONBLOCK);	// Nonblocking mode
+					O_RDWR );		// Read and write
 
 		if(mFileDesc <= 0)
 			std::cout << "Error: Unable to access file << " << _port << std::endl;
