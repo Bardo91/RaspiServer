@@ -76,7 +76,8 @@ namespace dmc {
 
 		int readBytes = ::read(mFileDesc, _dst , _nBytes);
 
-		assert(-1 != readBytes);
+		if(readBytes < 0)
+			std::cout << "Error: reading from serial port failed\n";
 
 		return readBytes;
 	
@@ -85,10 +86,11 @@ namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
 	uint8_t SerialLinux::read(){
 		uint8_t data;
-			::read(mFileDesc, &data , 1);
+		unsigned nBytesRead = ::read(mFileDesc, &data , 1);
+		if(nBytesRead < 0)
+			std::cout << "Error: reading from serial port failed\n";
 
-		assert(-1 != data);
-
+		assert(nBytesRead == 1);
 		return data;
 
 	}
