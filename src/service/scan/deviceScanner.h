@@ -12,6 +12,7 @@
 #include <peripherals/GPIO/Led.h>
 #include <peripherals/GPIO/BackButton.h>
 #include <thread>
+#include <peripherals/GPIO/Pin.h>
 
 namespace dmc {
 
@@ -42,6 +43,7 @@ namespace dmc {
 
 		Led	mLight;
 		BackButton mButton;
+		Pin mAvrReset;
 		
 	};
 

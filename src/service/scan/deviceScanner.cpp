@@ -15,8 +15,8 @@
 
 namespace dmc {
 	//------------------------------------------------------------------------------------------------------------------
-	DeviceScanner::DeviceScanner() : mLight("18"),mButton("23"){
-	
+	DeviceScanner::DeviceScanner() : mLight("18"),mButton("23"), mAvrReset("24"){
+		mAvrReset.setLow(); //reset the Avr at loading time
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -31,6 +31,7 @@ namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
 	void DeviceScanner::startScan(Delegate _listener) {
+		mAvrReset.setHigh(); //make sure Avr is set High
 		assert(mThreadScanner.get_id() != std::this_thread::get_id());
 
 		mLight.on();
