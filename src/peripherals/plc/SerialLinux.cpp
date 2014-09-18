@@ -34,13 +34,17 @@ namespace dmc {
 		if ( tcgetattr ( mFileDesc, &serialPortInfo ) != 0 ) // Get port address
 			std::cout << "Error: Unable to open serial port " << _port << "\n";
 
-		setBaudRate(serialPortInfo, _baudRate, _port);
+		setBaudRate(&serialPortInfo, _baudRate, _port);
 
-		serialPortInfo.c_cflag &= ~PARENB;    // Set no parity, no stop bits and no data bits. Byte size = 8
+		serialPortInfo.c_cflag &= ~PARENB;    // Set no parity, no stop bits. Byte size = 8
 		serialPortInfo.c_cflag &= ~CSTOPB;
 		serialPortInfo.c_cflag &= ~CSIZE;
-		serialPortInfo.c_cflag |= CS8;
+		serialPortInfo.c_cflag |= CS8; // 8-bit frame size
+		serialPortInfo.c_cflag |= CREAD; // Enable reading
+		serialPortInfo.c_cc[VMIN] = 1; // Always read at least one character
+		serialPortInfo.c_cc[VTIME] = 0; // Disable time-out?
 
+		cfmakeraw(&serialPortInfo); // Apply configuration;
 		tcflush( mFileDesc, TCIFLUSH );	// Flush port to set atributes
 
 		if ( tcsetattr ( mFileDesc, TCSANOW, &serialPortInfo ) != 0)	// Set attributes
@@ -99,7 +103,7 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void SerialLinux::setBaudRate(struct termios& _serialPortInfo, unsigned _baudRate, const char* _port)
+	void SerialLinux::setBaudRate(struct termios* _serialPortInfo, unsigned _baudRate, const char* _port)
 	{
 		// Actually select address
 		speed_t commBaudRate;
@@ -128,8 +132,8 @@ namespace dmc {
 			return;
 		}
 
-		cfsetospeed (&_serialPortInfo, commBaudRate);
-		cfsetispeed (&_serialPortInfo, commBaudRate);
+		cfsetospeed (_serialPortInfo, commBaudRate);
+		cfsetispeed (_serialPortInfo, commBaudRate);
 	}
 
 }	// namespace dmc

@@ -28,7 +28,7 @@ namespace dmc {
 
 	private:
 		void openPortFile	(const char* _port);
-		void setBaudRate	(struct termios& _serialPortInfo, unsigned _baudRate, const char* _port);
+		void setBaudRate	(struct termios* _serialPortInfo, unsigned _baudRate, const char* _port);
 		
 	private:
 		int		mFileDesc;
