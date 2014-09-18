@@ -36,7 +36,7 @@ namespace dmc {
 		if ( tcgetattr ( mFileDesc, mPortConfig) != 0 ) // Get port address
 			std::cout << "Error: Unable to open serial port " << _port << "\n";
 
-		setBaudRate(&mPortConfig, _baudRate, _port);
+		setBaudRate(mPortConfig, _baudRate, _port);
 
 		mPortConfig->c_cflag &= ~PARENB;    // Set no parity, no stop bits. Byte size = 8
 		mPortConfig->c_cflag &= ~CSTOPB;
@@ -60,7 +60,7 @@ namespace dmc {
         memset (mPortConfig, 0, sizeof(struct termios));
         if (tcgetattr (mFileDesc, mPortConfig) != 0)
         {
-                error ("error %d getting term settings set_blocking", errno);
+                std::cout << "error " << errno << " getting term settings set_blocking\n";
                 return;
         }
 
@@ -68,7 +68,7 @@ namespace dmc {
         mPortConfig->c_cc[VTIME] = _blocking ? 5 : 0; // 0.5 seconds read timeout
 
         if (tcsetattr (mFileDesc, TCSANOW, mPortConfig) != 0)
-                error ("error setting term %sblocking", _blocking ? "" : "not-");
+                std::cout << "error setting term " << (_blocking ? "" : "not-") << "sblocking\n";
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
