@@ -113,6 +113,8 @@
     <ClCompile Include="src\peripherals\GPIO\PinRaspi.cpp" />
     <ClCompile Include="src\peripherals\GPIO\PinWin32.cpp" />
     <ClCompile Include="src\peripherals\plc\plcDriver.cpp" />
+    <ClCompile Include="src\peripherals\plc\plcDriverDummy.cpp" />
+    <ClCompile Include="src\peripherals\plc\plcDriverSerial.cpp" />
     <ClCompile Include="src\peripherals\plc\SerialLinux.cpp" />
     <ClCompile Include="src\peripherals\plc\serialWin32.cpp" />
     <ClCompile Include="src\service\client\client.cpp" />
@@ -138,6 +140,8 @@
     <ClInclude Include="src\peripherals\GPIO\PinRaspi.h" />
     <ClInclude Include="src\peripherals\GPIO\PinWin32.h" />
     <ClInclude Include="src\peripherals\plc\plcDriver.h" />
+    <ClInclude Include="src\peripherals\plc\plcDriverDummy.h" />
+    <ClInclude Include="src\peripherals\plc\plcDriverSerial.h" />
     <ClInclude Include="src\peripherals\plc\serial.h" />
     <ClInclude Include="src\peripherals\plc\SerialLinux.h" />
     <ClInclude Include="src\peripherals\plc\serialWin32.h" />

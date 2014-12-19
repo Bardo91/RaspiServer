@@ -26,6 +26,8 @@ namespace dmc {
 		unsigned	read		(void * _dst, unsigned _nBytes); // Returns the amount of bytes read
 		uint8_t		read		(); // Reads one byte
 
+		bool		isOpen		() const;
+
 	protected:
 		SerialLinux						(const char* _port, unsigned _baudRate);
 		void		setBlocking			(bool);

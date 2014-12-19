@@ -18,8 +18,8 @@ namespace dmc {
 		// Enforce correct data
 		assert(nullptr != _port && '\0' != _port[0]);
 
-		openPort(_port);
-		setBaudRate(_baudRate);
+		if(openPort(_port))
+			setBaudRate(_baudRate);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -49,6 +49,12 @@ namespace dmc {
 		::ReadFile(mPortHandle, &result, 1, &readBytes, NULL);
 		return result;
 	}
+
+	//------------------------------------------------------------------------------------------------------------------
+	bool SerialWin32::isOpen() const {
+		return mPortHandle != INVALID_HANDLE_VALUE;
+	}
+
 	//------------------------------------------------------------------------------------------------------------------
 	bool SerialWin32::write(uint8_t _data) {
 		DWORD writtenBytes;
@@ -57,7 +63,7 @@ namespace dmc {
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
-	void SerialWin32::openPort(const char* _port) {	
+	bool SerialWin32::openPort(const char* _port) {	
 		mPortHandle = ::CreateFileA(_port,
 			GENERIC_READ|GENERIC_WRITE,
 			0, // Don't share the port
@@ -65,7 +71,7 @@ namespace dmc {
 			OPEN_EXISTING,
 			FILE_ATTRIBUTE_NORMAL,
 			0); // No templates
-		assert(INVALID_HANDLE_VALUE != mPortHandle);
+		return INVALID_HANDLE_VALUE != mPortHandle;
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------

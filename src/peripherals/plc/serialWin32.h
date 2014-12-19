@@ -22,14 +22,15 @@ namespace dmc {
 		bool		write	(uint8_t);
 
 		unsigned	read	(void * _dst, unsigned _nBytes); 
-		uint8_t		read	(); 
+		uint8_t		read	();
 
+		bool		isOpen	() const;
 
 	protected:
 		SerialWin32			(const char* _port, unsigned _baudRate);
 
 	private:
-		void openPort		(const char* _port);
+		bool openPort		(const char* _port);
 		void setBaudRate	(unsigned _baudRate);
 		
 	private:

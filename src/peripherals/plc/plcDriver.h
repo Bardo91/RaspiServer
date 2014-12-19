@@ -20,15 +20,12 @@ namespace dmc {
 	public:
 		static void			init			(const char* _port);
 		static PLCDriver*	get				();
+		virtual ~PLCDriver() = default;
 
-		virtual void		sendCommand		(unsigned _devId, const std::string& _payload);
-		virtual void		recieveCommand	(unsigned _devId, std::string& _payload);
+		virtual void		sendCommand		(unsigned _devId, const std::string& _payload)	= 0;
+		virtual void		receiveCommand	(unsigned _devId, std::string& _payload)		= 0;
 
 	private:
-		PLCDriver(const char* _port);
-
-		Serial	mCom;
-		static const unsigned			cBaudRate = 9600;
 
 		// Singleton
 		static PLCDriver* sInstance;

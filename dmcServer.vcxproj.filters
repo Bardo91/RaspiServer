@@ -120,6 +120,12 @@
     <ClCompile Include="src\service\client\messages\newDeviceMsg.cpp">
       <Filter>Source Files\service\client\messages</Filter>
     </ClCompile>
+    <ClCompile Include="src\peripherals\plc\plcDriverSerial.cpp">
+      <Filter>Source Files\peripherals\plc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\peripherals\plc\plcDriverDummy.cpp">
+      <Filter>Source Files\peripherals\plc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">
@@ -193,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="src\service\client\messages\newDeviceMsg.h">
       <Filter>Source Files\service\client\messages</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\plc\plcDriverSerial.h">
+      <Filter>Source Files\peripherals\plc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\peripherals\plc\plcDriverDummy.h">
+      <Filter>Source Files\peripherals\plc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
