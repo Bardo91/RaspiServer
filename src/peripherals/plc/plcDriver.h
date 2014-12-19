@@ -18,11 +18,11 @@ namespace dmc {
 
 	class PLCDriver {
 	public:
-		static void			init		(const char* _port);
-		static PLCDriver*	get			();
+		static void			init			(const char* _port);
+		static PLCDriver*	get				();
 
-		void				sendCommand		(unsigned _devId, const std::string& _payload);
-		void				recieveCommand	(unsigned _devId, std::string& _payload);
+		virtual void		sendCommand		(unsigned _devId, const std::string& _payload);
+		virtual void		recieveCommand	(unsigned _devId, std::string& _payload);
 
 	private:
 		PLCDriver(const char* _port);
