@@ -52,6 +52,9 @@
     <Filter Include="Source Files\service\client\messages">
       <UniqueIdentifier>{4582566e-107d-4c2d-bf6f-d87e3cb424ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\device\hue">
+      <UniqueIdentifier>{08ff7a3c-6bd0-4660-8269-18dbbc440a64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -125,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="src\peripherals\plc\plcDriverDummy.cpp">
       <Filter>Source Files\peripherals\plc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\device\hue\hueBridge.cpp">
+      <Filter>Source Files\device\hue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="src\peripherals\plc\plcDriverDummy.h">
       <Filter>Source Files\peripherals\plc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\device\hue\hueBridge.h">
+      <Filter>Source Files\device\hue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\device\hue\hueVar.h">
+      <Filter>Source Files\device\hue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

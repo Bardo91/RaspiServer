@@ -8,6 +8,7 @@
 #ifndef _DMCSERVER_DMCSERVER_H_
 #define _DMCSERVER_DMCSERVER_H_
 
+#include <device/hue/hueBridge.h>
 #include <string>
 #include <peripherals/GPIO/Pin.h>
 
@@ -35,6 +36,7 @@ namespace dmc {
 		LANService* mService;
 		PLCDriver*	mPlc;
 		std::string	mPlcPortName;
+		HueBridge*	mHueBridge;
 	};
 
 }

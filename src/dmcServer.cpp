@@ -27,6 +27,9 @@ namespace dmc {
 		loadDatabase();
 		// Actually start the service
 		launchService();
+
+		// Test hue
+		mHueBridge = new HueBridge(_argc,_argv);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -44,6 +47,8 @@ namespace dmc {
 		// Prerequisites for launching the service
 		if(mService)
 			delete mService;
+		if(mHueBridge)
+			delete mHueBridge;
 	}
 
 	//------------------------------------------------------------------------------------------------------------------
