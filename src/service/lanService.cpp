@@ -8,7 +8,7 @@
 
 #include "client/client.h"
 #include "lanService.h"
-#include "socket/socketMgr.h"
+#include <service/socket/socketMgr.h>
 
 using namespace std;
 

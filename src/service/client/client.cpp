@@ -57,7 +57,7 @@ namespace dmc {
 		std::string message;
 		if(SocketMgr::get()->readFrom(mId, message)) { // There are messages to process
 			// Create a formatted message from the string
-			Message formatedMessage(this, message);
+			Message formatedMessage(message);
 			std::cout << "Client " << mId << " sent a message of type " << formatedMessage.type() << "\n";
 			if(!formatedMessage.isOk()) {
 				std::cout << "Error: Invalid message from client " << mId << "\nMessage dump:\n-";

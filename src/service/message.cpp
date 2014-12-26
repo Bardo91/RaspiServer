@@ -14,9 +14,8 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	Message::Message(Client* _sender, const std::string& _rawMessage)
-		:mSender(_sender)
-		,mRaw(_rawMessage)
+	Message::Message(const std::string& _rawMessage)
+		:mRaw(_rawMessage)
 	{
 		// Discard invalid messages
 		if(!checkIntegrity(_rawMessage)) {

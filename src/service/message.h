@@ -38,7 +38,7 @@ namespace dmc {
 		};
 
 	public:
-		Message(Client* _sender, const std::string& _rawMessage);
+		Message(const std::string& _rawMessage);
 		Message(Type _command, const std::string& _payload);
 
 		std::string			payload	() const { return mRaw.substr(2);	}

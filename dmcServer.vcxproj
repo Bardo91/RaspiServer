@@ -66,6 +66,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -80,6 +82,8 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <PreprocessorDefinitions>__Raspi__</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>_WIN32</UndefinePreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -94,6 +98,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -106,6 +111,7 @@
     <ClCompile Include="src\core\time.cpp" />
     <ClCompile Include="src\device\deviceMgr.cpp" />
     <ClCompile Include="src\device\hue\hueBridge.cpp" />
+    <ClCompile Include="src\device\hue\hueVar.cpp" />
     <ClCompile Include="src\device\plc\dmcCommand.cpp" />
     <ClCompile Include="src\device\plc\dmcDevice.cpp" />
     <ClCompile Include="src\dmcServer.cpp" />
@@ -126,8 +132,6 @@
     <ClCompile Include="src\service\lanService.cpp" />
     <ClCompile Include="src\service\message.cpp" />
     <ClCompile Include="src\service\scan\deviceScanner.cpp" />
-    <ClCompile Include="src\service\socket\serverSocket.cpp" />
-    <ClCompile Include="src\service\socket\socketMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\time.h" />
@@ -156,8 +160,6 @@
     <ClInclude Include="src\service\lanService.h" />
     <ClInclude Include="src\service\message.h" />
     <ClInclude Include="src\service\scan\deviceScanner.h" />
-    <ClInclude Include="src\service\socket\serverSocket.h" />
-    <ClInclude Include="src\service\socket\socketMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

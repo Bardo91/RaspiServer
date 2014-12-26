@@ -16,8 +16,8 @@
 namespace dmc {
 
 	//------------------------------------------------------------------------------------------------------------------
-	ScanCommand::ScanCommand(const Message& _msg)
-		:mRequester(_msg.sender())
+	ScanCommand::ScanCommand(const Message&)
+		:mRequester(nullptr)
 	{
 		// Intentionally blank
 	}

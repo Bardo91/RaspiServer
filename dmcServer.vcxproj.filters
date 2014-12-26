@@ -22,9 +22,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{d3cc7262-d02a-4031-b0ee-cafe9cf13e47}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\service\socket">
-      <UniqueIdentifier>{2f85a8df-ec32-4dfe-bd27-9dfcacdd6c00}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\peripherals\plc">
       <UniqueIdentifier>{54c51a35-1b50-4bf2-96fb-0ea7df1fc9c8}</UniqueIdentifier>
     </Filter>
@@ -63,12 +60,6 @@
     <ClCompile Include="src\dmcServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\service\socket\socketMgr.cpp">
-      <Filter>Source Files\service\socket</Filter>
-    </ClCompile>
-    <ClCompile Include="src\service\socket\serverSocket.cpp">
-      <Filter>Source Files\service\socket</Filter>
-    </ClCompile>
     <ClCompile Include="src\service\lanService.cpp">
       <Filter>Source Files\service</Filter>
     </ClCompile>
@@ -86,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="src\device\plc\dmcDevice.cpp">
       <Filter>Source Files\device\plc</Filter>
-    </ClCompile>
-    <ClCompile Include="src\device\deviceMgr.cpp">
-      <Filter>Source Files\device</Filter>
     </ClCompile>
     <ClCompile Include="src\service\command.cpp">
       <Filter>Source Files\service</Filter>
@@ -132,6 +120,12 @@
     <ClCompile Include="src\device\hue\hueBridge.cpp">
       <Filter>Source Files\device\hue</Filter>
     </ClCompile>
+    <ClCompile Include="src\device\hue\hueVar.cpp">
+      <Filter>Source Files\device\hue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\device\deviceMgr.cpp">
+      <Filter>Source Files\device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dmcServer.h">
@@ -139,12 +133,6 @@
     </ClInclude>
     <ClInclude Include="src\service\lanService.h">
       <Filter>Source Files\service</Filter>
-    </ClInclude>
-    <ClInclude Include="src\service\socket\serverSocket.h">
-      <Filter>Source Files\service\socket</Filter>
-    </ClInclude>
-    <ClInclude Include="src\service\socket\socketMgr.h">
-      <Filter>Source Files\service\socket</Filter>
     </ClInclude>
     <ClInclude Include="src\peripherals\plc\serial.h">
       <Filter>Source Files\peripherals\plc</Filter>
@@ -157,9 +145,6 @@
     </ClInclude>
     <ClInclude Include="src\service\message.h">
       <Filter>Source Files\service</Filter>
-    </ClInclude>
-    <ClInclude Include="src\device\deviceMgr.h">
-      <Filter>Source Files\device</Filter>
     </ClInclude>
     <ClInclude Include="src\device\device.h">
       <Filter>Source Files\device</Filter>
@@ -217,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="src\device\hue\hueVar.h">
       <Filter>Source Files\device\hue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\device\deviceMgr.h">
+      <Filter>Source Files\device</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

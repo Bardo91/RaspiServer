@@ -9,15 +9,16 @@
 
 #include <unordered_map>
 #include <string>
-#inckyde <vector>
+#include <vector>
 
 namespace dmc {
 	class HueVar {
 	public:
 		// Construction and asignment
-		explicit HueVar(const std::string _code);
-		HueVar(const HueVar&);
-		HueVar& operator=(const HueVar&);
+		HueVar() = default;
+		explicit HueVar(const std::string& _code);
+		HueVar(const HueVar&) = default;
+		HueVar& operator=(const HueVar&) = default;
 
 		void setFromCode(const std::string& _code);
 
@@ -44,6 +45,7 @@ namespace dmc {
 		const HueVar&		operator[]	(unsigned _idx) const;
 
 	private:
+		unsigned initWithCode(const std::string& _code); // Returns number of parsed characters
 		typedef std::unordered_map<std::string, HueVar>	Dictionary;
 		typedef std::vector<HueVar>	List;
 
@@ -53,7 +55,7 @@ namespace dmc {
 			text,
 			dictionary,
 			list
-		} mType;
+		} mType = DataType::nill;
 
 		std::string mString;
 		int			mInt;

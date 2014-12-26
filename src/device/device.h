@@ -8,7 +8,7 @@
 #ifndef _DMCSERVER_DEVICE_DEVICE_H_
 #define _DMCSERVER_DEVICE_DEVICE_H_
 
-#include "deviceMgr.h"
+#include <device/deviceMgr.h>
 #include <string>
 
 namespace dmc {
